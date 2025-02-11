@@ -7,6 +7,9 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Main.cpp
 )
 
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/MyAnimalArt)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/MyMath)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 
