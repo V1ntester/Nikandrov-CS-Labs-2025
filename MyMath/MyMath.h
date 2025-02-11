@@ -2,7 +2,7 @@
 #define MYMATH_H
 
 namespace MyMath {
-    int Sum(int firstValue, int secondValue);
+int Sum(int firstValue, int secondValue);
 }
 
 #endif

@@ -1,3 +1,3 @@
 namespace MyAnimalArt {
-    void PrintRandomAnimalArt();
+void PrintRandomAnimalArt();
 }
