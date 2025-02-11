@@ -1,2 +1,0 @@
-/usr/bin/ar qc libMyAnimalArt.a CMakeFiles/MyAnimalArt.dir/MyAnimalArt.cpp.o
-/usr/bin/ranlib libMyAnimalArt.a
