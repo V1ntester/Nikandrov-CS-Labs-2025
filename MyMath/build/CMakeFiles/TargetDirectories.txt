@@ -1,0 +1,3 @@
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyMath/build/CMakeFiles/MyMath.dir
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyMath/build/CMakeFiles/edit_cache.dir
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyMath/build/CMakeFiles/rebuild_cache.dir

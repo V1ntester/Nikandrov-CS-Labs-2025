@@ -1,0 +1,3 @@
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyAnimalArt/build/CMakeFiles/MyAnimalArt.dir
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyAnimalArt/build/CMakeFiles/edit_cache.dir
+/home/v1ntester/Nikandrov-CS-Labs-2025/MyAnimalArt/build/CMakeFiles/rebuild_cache.dir
