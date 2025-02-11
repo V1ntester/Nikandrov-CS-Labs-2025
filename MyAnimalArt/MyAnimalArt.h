@@ -1,3 +1,0 @@
-namespace MyAnimalArt {
-    void PrintRandomAnimalArt();
-}
