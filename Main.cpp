@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
-#include "MyMath/MyMath.h"
-#include "MyAnimalArt/MyAnimalArt.h"
+#include "MyMath.h"
+#include "MyAnimalArt.h"
 
 namespace {
     const int kFirstValueForSum = 4;
