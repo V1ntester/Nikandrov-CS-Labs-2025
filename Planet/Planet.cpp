@@ -50,6 +50,6 @@ void Planet::SetSatellitesCount(size_t satellitesCount) {
 }
 
 void Planet::Print() {
-    std::cout << "Название: " << this->name << " Диаметр: " << this->diameter << " Жизнь" << this->population
-              << " Спутники: " << this->satellitesCount << '\n';
+    std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->population
+              << "; Спутники: " << this->satellitesCount << ";\n";
 }
