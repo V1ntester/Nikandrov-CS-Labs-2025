@@ -1,3 +1,6 @@
+#ifndef PLANET_H
+#define PLANET_H
+
 #include <cstddef>
 
 class Planet {
@@ -22,3 +25,5 @@ class Planet {
 
     void Print();
 };
+
+#endif
