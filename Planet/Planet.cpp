@@ -5,7 +5,7 @@
 
 using std::size_t;
 
-Planet::Planet(char* name, size_t diameter, size_t population, size_t satellitesCount)
+Planet::Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount)
     : diameter(diameter), population(population), satellitesCount(satellitesCount) {
     size_t nameLength = strlen(name) + 1;
     this->name = new char[nameLength];

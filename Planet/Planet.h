@@ -11,7 +11,7 @@ class Planet {
     size_t satellitesCount = 0;
 
  public:
-    Planet(char* name, size_t diameter, size_t population, size_t satellitesCount);
+    Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount);
     ~Planet();
 
     char* GetName();
