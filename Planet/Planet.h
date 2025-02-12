@@ -11,5 +11,14 @@ class Planet {
     Planet(char* name, size_t diameter, size_t population, size_t satellitesCount);
     ~Planet();
 
+    char* GetName();
+    size_t GetDiameter();
+    size_t GetPopulation();
+    size_t GetSatellitesCount();
+    void SetName(char* name);
+    void SetDiameter(size_t diameter);
+    void SetPopulation(size_t population);
+    void SetSatellitesCount(size_t satellitesCount);
+
     void Print();
 };
