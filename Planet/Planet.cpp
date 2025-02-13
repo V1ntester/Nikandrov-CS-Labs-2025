@@ -11,6 +11,9 @@ const size_t kBufferSize = 256;
 }
 
 namespace Space {
+
+size_t Planet::totalCount = 0;
+
 Planet::Planet() {
     this->InitId();
 
@@ -53,6 +56,10 @@ void Planet::InitName(const char* name, size_t nameLength) {
     strlcpy(this->name, name, this->nameLength);
 }
 
+size_t Planet::GetTotalCount() {
+    return this->totalCount;
+}
+
 size_t Planet::GetId() {
     return this->id;
 }
@@ -71,6 +78,10 @@ bool Planet::GetLifeExists() {
 
 size_t Planet::GetSatellitesCount() {
     return this->satellitesCount;
+}
+
+void Planet::SetTotalCount(size_t totalCount) {
+    this->totalCount = totalCount;
 }
 
 void Planet::SetName(const char* name) {
