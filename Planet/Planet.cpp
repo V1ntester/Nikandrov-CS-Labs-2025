@@ -53,12 +53,12 @@ std::ofstream& operator<<(std::ofstream& out, Planet planet) {
     return out;
 }
 
-Planet& Planet::operator=(Planet& planet) {
-    size_t nameLength = strlen(planet.GetName());
-    this->InitName(planet.GetName(), nameLength);
-    this->diameter = planet.GetDiameter();
-    this->lifeExists = planet.GetLifeExists();
-    this->satellitesCount = GetSatellitesCount();
+Planet& Planet::operator=(const Planet& planet) {
+    size_t nameLength = strlen(planet.name);
+    this->InitName(planet.name, nameLength);
+    this->diameter = planet.diameter;
+    this->lifeExists = planet.lifeExists;
+    this->satellitesCount = planet.satellitesCount;
 
     return *this;
 }

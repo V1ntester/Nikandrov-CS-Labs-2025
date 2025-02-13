@@ -22,7 +22,7 @@ class Planet {
     Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount);
     ~Planet();
 
-    Planet& operator=(Planet& planet);
+    Planet& operator=(const Planet& planet);
 
     size_t GetId();
     char* GetName();
