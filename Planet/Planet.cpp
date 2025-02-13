@@ -10,25 +10,56 @@ namespace {
 const size_t kBufferSize = 256;
 }
 
+Planet::Planet() {
+    this->InitId();
+
+    std::cout << "Создание ID " << this->id << '\n';
+};
+
+Planet::Planet(const char* name, size_t diameter, size_t lifeExists, size_t satellitesCount)
+    : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
+    this->InitId();
+    size_t nameLength = strlen(name) + 1;
+    this->InitName(name, nameLength);
+
+    std::cout << "Создание ID " << this->id << '\n';
+}
+
+Planet::~Planet() {
+    delete[] this->name;
+
+    std::cout << "Удаление ID " << this->id << '\n';
+}
+
 std::ifstream& operator>>(std::ifstream& in, Planet planet) {
     char name[kBufferSize]{'\0'};
-    size_t diameter = 0;
-    size_t population = 0;
+    size_t diameter = 0;  
+    bool lifeExists = false;
     size_t satellitesCount = 0;
 
     in.getline(name, kBufferSize - 1, ' ');
-    in >> diameter >> population >> satellitesCount;
+    in >> diameter >> lifeExists >> satellitesCount;
 
     planet.SetName(name);
     planet.SetDiameter(diameter);
-    planet.SetPopulation(population);
+    planet.SetLifeExists(lifeExists);
     planet.SetSatellitesCount(satellitesCount);
     return in;
 }
 
 std::ofstream& operator<<(std::ofstream& out, Planet planet) {
-    out << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetPopulation() << ' ' << planet.GetSatellitesCount() << '\n';
+    out << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
     return out;
+}
+
+Planet& operator=(Planet& planet) {
+    
+    return;
+}
+
+void Planet::InitId() {
+    ++(this->totalCount);
+    this->id = this->totalCount;
 }
 
 void Planet::InitName(const char* name, size_t nameLength) {
@@ -37,20 +68,8 @@ void Planet::InitName(const char* name, size_t nameLength) {
     strlcpy(this->name, name, this->nameLength);
 }
 
-Planet::Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount)
-    : id(0), diameter(diameter), population(population), satellitesCount(satellitesCount) {
-    size_t nameLength = strlen(name) + 1;
-    this->InitName(name, nameLength);
-}
-
-Planet::Planet(size_t id, const char* name, size_t diameter, size_t population, size_t satellitesCount)
-    : id(id), diameter(diameter), population(population), satellitesCount(satellitesCount) {
-    size_t nameLength = strlen(name) + 1;
-    this->InitName(name, nameLength);
-}
-
-Planet::~Planet() {
-    delete[] this->name;
+size_t Planet::GetId() {
+    return this->id;
 }
 
 char* Planet::GetName() {
@@ -61,8 +80,8 @@ size_t Planet::GetDiameter() {
     return this->diameter;
 }
 
-size_t Planet::GetPopulation() {
-    return this->population;
+bool Planet::GetLifeExists() {
+    return this->lifeExists;
 }
 
 size_t Planet::GetSatellitesCount() {
@@ -83,8 +102,8 @@ void Planet::SetDiameter(size_t diameter) {
     this->diameter = diameter;
 }
 
-void Planet::SetPopulation(size_t population) {
-    this->population = population;
+void Planet::SetLifeExists(bool lifeExists) {
+    this->lifeExists = lifeExists;
 }
 
 void Planet::SetSatellitesCount(size_t satellitesCount) {
@@ -92,6 +111,6 @@ void Planet::SetSatellitesCount(size_t satellitesCount) {
 }
 
 void Planet::Print() {
-    std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->population
+    std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->lifeExists
               << "; Спутники: " << this->satellitesCount << ";\n";
 }
