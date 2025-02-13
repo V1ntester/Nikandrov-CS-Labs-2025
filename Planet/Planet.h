@@ -3,6 +3,7 @@
 
 #include <cstddef>
 
+namespace Space {
 class Planet {
  private:
     static size_t totalCount;
@@ -21,7 +22,7 @@ class Planet {
     Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount);
     ~Planet();
 
-   Planet& operator=(Planet& planet);
+    Planet& operator=(Planet& planet);
 
     size_t GetId();
     char* GetName();
@@ -36,5 +37,6 @@ class Planet {
 
     void Print();
 };
+}  // namespace Space
 
 #endif

@@ -10,6 +10,7 @@ namespace {
 const size_t kBufferSize = 256;
 }
 
+namespace Space {
 Planet::Planet() {
     this->InitId();
 
@@ -33,7 +34,7 @@ Planet::~Planet() {
 
 std::ifstream& operator>>(std::ifstream& in, Planet planet) {
     char name[kBufferSize]{'\0'};
-    size_t diameter = 0;  
+    size_t diameter = 0;
     bool lifeExists = false;
     size_t satellitesCount = 0;
 
@@ -52,9 +53,14 @@ std::ofstream& operator<<(std::ofstream& out, Planet planet) {
     return out;
 }
 
-Planet& operator=(Planet& planet) {
-    
-    return;
+Planet& Planet::operator=(Planet& planet) {
+    size_t nameLength = strlen(planet.GetName());
+    this->InitName(planet.GetName(), nameLength);
+    this->diameter = planet.GetDiameter();
+    this->lifeExists = planet.GetLifeExists();
+    this->satellitesCount = GetSatellitesCount();
+
+    return *this;
 }
 
 void Planet::InitId() {
@@ -91,7 +97,7 @@ size_t Planet::GetSatellitesCount() {
 void Planet::SetName(const char* name) {
     size_t newNameLength = strlen(name) + 1;
 
-    if (!this->nameLength && this->nameLength != newNameLength) {
+    if (this->nameLength != newNameLength) {
         delete[] this->name;
     }
 
@@ -114,3 +120,4 @@ void Planet::Print() {
     std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->lifeExists
               << "; Спутники: " << this->satellitesCount << ";\n";
 }
+}  // namespace Space
