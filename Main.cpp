@@ -1,4 +1,3 @@
-#include <cstring>
 #include <iostream>
 #include "MyAnimalArt/MyAnimalArt.h"
 #include "MyMath/MyMath.h"
