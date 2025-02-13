@@ -2,8 +2,10 @@
 #define PLANET_H
 
 #include <cstddef>
+#include <fstream>
 
 namespace Space {
+
 class Planet {
  private:
     static size_t totalCount;
@@ -37,6 +39,9 @@ class Planet {
 
     void Print();
 };
-}  // namespace Space
+};  // namespace Space
+
+std::ifstream& operator>>(std::ifstream& in, Space::Planet& planet);
+std::ofstream& operator<<(std::ofstream& out, Space::Planet& planet);
 
 #endif

@@ -5,13 +5,13 @@
 
 namespace DataBase {
 void AddToDataBase(Space::Planet planet, char* path) {
-    std::fstream stream;
+    std::ofstream stream;
     stream.open(path);
 
     if (!stream.is_open()) {
         return;
     }
 
-    stream >> planet;
+    stream << planet;
 }
 }  // namespace DataBase
