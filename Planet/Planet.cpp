@@ -32,27 +32,6 @@ Planet::~Planet() {
     std::cout << "Удаление ID " << this->id << '\n';
 }
 
-std::ifstream& operator>>(std::ifstream& in, Planet planet) {
-    char name[kBufferSize]{'\0'};
-    size_t diameter = 0;
-    bool lifeExists = false;
-    size_t satellitesCount = 0;
-
-    in.getline(name, kBufferSize - 1, ' ');
-    in >> diameter >> lifeExists >> satellitesCount;
-
-    planet.SetName(name);
-    planet.SetDiameter(diameter);
-    planet.SetLifeExists(lifeExists);
-    planet.SetSatellitesCount(satellitesCount);
-    return in;
-}
-
-std::ofstream& operator<<(std::ofstream& out, Planet planet) {
-    out << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
-    return out;
-}
-
 Planet& Planet::operator=(const Planet& planet) {
     size_t nameLength = strlen(planet.name);
     this->InitName(planet.name, nameLength);
@@ -121,3 +100,24 @@ void Planet::Print() {
               << "; Спутники: " << this->satellitesCount << ";\n";
 }
 }  // namespace Space
+
+std::ofstream& operator<<(std::ofstream& out, Space::Planet& planet) {
+    out << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
+    return out;
+}
+
+std::ifstream& operator>>(std::ifstream& stream, Space::Planet planet) {
+    char name[kBufferSize]{'\0'};
+    size_t diameter = 0;
+    bool lifeExists = false;
+    size_t satellitesCount = 0;
+
+    stream.getline(name, kBufferSize - 1, ' ');
+    stream >> diameter >> lifeExists >> satellitesCount;
+
+    planet.SetName(name);
+    planet.SetDiameter(diameter);
+    planet.SetLifeExists(lifeExists);
+    planet.SetSatellitesCount(satellitesCount);
+    return stream;
+}
