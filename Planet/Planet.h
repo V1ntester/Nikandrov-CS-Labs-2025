@@ -45,7 +45,7 @@ class Planet {
 
 };  // namespace Space
 
-std::ifstream& operator>>(std::ifstream& in, Space::Planet& planet);
-std::ofstream& operator<<(std::ofstream& out, Space::Planet& planet);
+std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
+std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
 
 #endif

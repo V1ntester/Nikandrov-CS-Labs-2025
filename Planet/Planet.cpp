@@ -112,9 +112,9 @@ void Planet::Print() {
 }
 }  // namespace Space
 
-std::ofstream& operator<<(std::ofstream& out, Space::Planet& planet) {
-    out << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
-    return out;
+std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet) {
+    stream << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
+    return stream;
 }
 
 std::ifstream& operator>>(std::ifstream& stream, Space::Planet planet) {
