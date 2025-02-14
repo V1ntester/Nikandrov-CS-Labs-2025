@@ -7,9 +7,11 @@
 // }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    Space::Planet earth("Earth", 1, 1, 1);
+    Space::Planet earth("Earth", 1, true, 1);
 
     earth.Print();
+
+    Space::Planet mercury("Mercury", 1, false, 0);
 
     return 0;
 }

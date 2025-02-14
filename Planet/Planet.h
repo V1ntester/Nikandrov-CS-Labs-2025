@@ -26,12 +26,15 @@ class Planet {
 
     Planet& operator=(const Planet& planet);
 
+    size_t GetTotalCount();
     size_t GetId();
     char* GetName();
     size_t GetNameLength();
     size_t GetDiameter();
     bool GetLifeExists();
     size_t GetSatellitesCount();
+
+    void SetTotalCount(size_t totalCount);
     void SetName(const char* name);
     void SetDiameter(size_t diameter);
     void SetLifeExists(bool lifeExists);
@@ -39,9 +42,10 @@ class Planet {
 
     void Print();
 };
+
 };  // namespace Space
 
-std::ifstream& operator>>(std::ifstream& in, Space::Planet& planet);
-std::ofstream& operator<<(std::ofstream& out, Space::Planet& planet);
+std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
+std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
 
 #endif

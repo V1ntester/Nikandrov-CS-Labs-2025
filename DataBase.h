@@ -4,9 +4,9 @@
 
 namespace DataBase {
         void ReadDataBaseFromFile();
-        void WriteDataBaseToFile();
+        void WriteDataBaseToFile(Space::Planet planet, char* path);
         void SortDataBase();
-        void AddToDataBase(Space::Planet planet, char* path);
+        void AddToDataBase();
         void DeleteFromDataBase();
         void PrintDataBase();
  };

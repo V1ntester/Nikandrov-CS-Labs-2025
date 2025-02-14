@@ -4,7 +4,7 @@
 #include "Planet/Planet.h"
 
 namespace DataBase {
-void AddToDataBase(Space::Planet planet, char* path) {
+void WriteToDataBase(Space::Planet planet, char* path) {
     std::ofstream stream;
     stream.open(path);
 
