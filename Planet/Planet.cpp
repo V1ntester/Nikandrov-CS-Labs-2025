@@ -20,6 +20,15 @@ Planet::Planet() {
     std::cout << "Создание ID " << this->id << '\n';
 };
 
+Planet::Planet(Planet& planet)
+    : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
+        this->InitId();
+        size_t nameLength = strlen(planet.name) + 1;
+        this->InitName(planet.name, nameLength);
+    
+        std::cout << "Создание ID " << this->id << '\n';
+    }
+
 Planet::Planet(const char* name, size_t diameter, size_t lifeExists, size_t satellitesCount)
     : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
     this->InitId();
