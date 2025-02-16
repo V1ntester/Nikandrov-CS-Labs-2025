@@ -1,7 +1,7 @@
 #include "DataBase.h"
 #include <cstddef>
 #include <fstream>
-#include "Planet.h"
+#include "Planet/Planet.h"
 
 DataBase::DataBase(const char* path) {
     this->stream.open(path, std::ios::app);
@@ -14,13 +14,13 @@ DataBase::~DataBase() {
 }
 
 void DataBase::ReadDataBaseFromFile() {
-    while (!stream.eof()) {
-        Space::Planet planet;
+    // while (!stream.eof()) {
+        Space::Planet planet("dsds", 1, 1, 0);
         
-        stream >> planet;
+        stream << planet;
 
-        this->data.Push(planet);
-    }
+    //     this->data.Push(planet);
+    // }
 }
 
 void DataBase::WriteDataBaseToFile() {

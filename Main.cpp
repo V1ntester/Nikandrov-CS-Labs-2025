@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include "DataBase.h"
 #include "Planet/Planet.h"
 #include "List.h"
 
@@ -8,17 +9,11 @@
 // }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    Space::Planet earth("Earth", 1, true, 1);
+    DataBase dataBase("Planet.txt");
 
-    earth.Print();
+    dataBase.ReadDataBaseFromFile();
 
-    Space::Planet mercury("Mercury", 1, false, 0);
-
-    List<int> list;
-
-    list.Push(2);
-
-    std::cout << list[0] << '\n';
+    dataBase.PrintDataBase();
 
     return 0;
 }

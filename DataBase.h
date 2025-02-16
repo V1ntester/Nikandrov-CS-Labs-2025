@@ -3,7 +3,7 @@
 #include <cstddef>
 #include "List.h"
 #include <fstream>
-#include "Planet.h"
+#include "Planet/Planet.h"
 
 class DataBase {
  private:
