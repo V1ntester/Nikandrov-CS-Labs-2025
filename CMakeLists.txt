@@ -24,7 +24,7 @@ add_executable(${project} ${SOURCES} ${HEADERS})
 target_compile_options(${project} PRIVATE -Wall -Wextra -Werror -Wpedantic)
 
 if(ENABLE_DEBUG)
-    target_compile_options(main PRIVATE -g)
+    target_compile_options(${project} PRIVATE -g)
 endif()
 
 target_link_libraries(${project} Planet)

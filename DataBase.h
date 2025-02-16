@@ -7,7 +7,7 @@
 
 class DataBase {
  private:
-    List<Space::Planet> data;
+    List<Space::Planet*> data;
     std::fstream stream;
 
  public:
