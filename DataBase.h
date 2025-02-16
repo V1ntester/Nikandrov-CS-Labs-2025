@@ -1,21 +1,24 @@
-#include <cstddef>
-#include <fstream>
-#include "Planet/Planet.h"
+#pragma once
 
-// namespace DataBase {
-template<typename typeName>
+#include <cstddef>
+#include "List.h"
+#include <fstream>
+#include "Planet.h"
+
 class DataBase {
  private:
-    typeName* Data = nullptr;
-    char* path
+    List<Space::Planet> data;
     std::fstream stream;
 
  public:
+    DataBase(const char* path);
+
+    ~DataBase();
+
     void ReadDataBaseFromFile();
-    void WriteDataBaseToFile(typeName type);
+    void WriteDataBaseToFile();
     void SortDataBase();
     void AddToDataBase();
     void DeleteFromDataBase();
     void PrintDataBase();
 };
-//};  // namespace DataBase

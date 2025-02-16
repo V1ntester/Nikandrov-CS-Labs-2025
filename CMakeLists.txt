@@ -10,6 +10,7 @@ set(SOURCES
 
 set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/DataBase.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/List.h
 )
 
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/Planet)
