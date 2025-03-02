@@ -129,14 +129,16 @@ std::fstream& operator<<(std::fstream& stream, Space::Planet& planet) {
     return stream;
 }
 
-std::fstream& operator>>(std::fstream& stream, Space::Planet planet) {
+std::fstream& operator>>(std::fstream& stream, Space::Planet& planet) {
     char name[kBufferSize]{'\0'};
     size_t diameter = 0;
     bool lifeExists = false;
     size_t satellitesCount = 0;
 
-    stream.getline(name, kBufferSize - 1, ' ');
+    stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
+
+    stream.ignore(kBufferSize, '\n');
 
     planet.SetName(name);
     planet.SetDiameter(diameter);
