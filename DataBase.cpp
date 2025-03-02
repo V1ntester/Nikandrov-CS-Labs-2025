@@ -43,7 +43,7 @@ void DataBase::WriteDataBaseToFile() {
     this->stream.open(this->path, std::ios::in | std::ios::out | std::ios::trunc);
 
     for (size_t i = 0; i < this->data.GetLength(); i++) {
-        this->stream << this->data[i];
+        this->stream << *this->data[i];
     }
 }
 
@@ -57,7 +57,7 @@ void DataBase::AddToDataBase(const char* name, size_t diameter, bool lifeExists,
     this->data.Push(planet);
 }
 
-void DataBase::DeleteFromDataBase(size_t index) {
+void DataBase::DeleteFromDataBase() {
 
 }
 

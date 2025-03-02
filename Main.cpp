@@ -5,14 +5,15 @@
 #include "List.h"
 
 namespace {
-    const char* path = "Planets.txt";
+    const char path[] = "Planet.txt";
 }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     DataBase dataBase(path);
 
-    //dataBase.ReadDataBaseFromFile();
-    dataBase.AddToDataBase("Test", 10, 0, 1);
+    dataBase.ReadDataBaseFromFile();
+    dataBase.AddToDataBase("Test1", 1, false, 1);
+    dataBase.AddToDataBase("Test2", 1, false, 1);
     dataBase.WriteDataBaseToFile();
 
     dataBase.PrintDataBase();
