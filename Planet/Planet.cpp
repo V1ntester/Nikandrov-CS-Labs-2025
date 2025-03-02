@@ -123,27 +123,6 @@ void Planet::Print() {
 }
 }  // namespace Space
 
-std::fstream& operator<<(std::fstream& stream, Space::Planet& planet) {
-    stream << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
-    return stream;
-}
-
-std::fstream& operator>>(std::fstream& stream, Space::Planet& planet) {
-    char name[kBufferSize]{'\0'};
-    size_t diameter = 0;
-    bool lifeExists = false;
-    size_t satellitesCount = 0;
-
-    stream >> name;
-    stream >> diameter >> lifeExists >> satellitesCount;
-
-    planet.SetName(name);
-    planet.SetDiameter(diameter);
-    planet.SetLifeExists(lifeExists);
-    planet.SetSatellitesCount(satellitesCount);
-    return stream;
-}
-
 std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet) {
     stream << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
     return stream;
@@ -157,6 +136,8 @@ std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet) {
 
     stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
+
+    stream.ignore(kBufferSize, '\n');
 
     planet.SetName(name);
     planet.SetDiameter(diameter);
