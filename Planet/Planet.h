@@ -22,7 +22,7 @@ class Planet {
  public:
     Planet();
     Planet(Planet& planet);
-    Planet(const char* name, size_t diameter, size_t population, size_t satellitesCount);
+    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
     ~Planet();
 
     Planet& operator=(const Planet& planet);
@@ -47,7 +47,7 @@ class Planet {
 };  // namespace Space
 
 std::fstream& operator<<(std::fstream& stream, Space::Planet& planet);
-std::fstream& operator>>(std::fstream& stream, Space::Planet planet);
+std::fstream& operator>>(std::fstream& stream, Space::Planet& planet);
 std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
 std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
 

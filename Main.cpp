@@ -4,14 +4,16 @@
 #include "Planet/Planet.h"
 #include "List.h"
 
-// namespace {
-//     const char* path = "Planets.txt";
-// }
+namespace {
+    const char* path = "Planets.txt";
+}
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    DataBase dataBase("Planet.txt");
+    DataBase dataBase(path);
 
-    dataBase.ReadDataBaseFromFile();
+    //dataBase.ReadDataBaseFromFile();
+    dataBase.AddToDataBase("Test", 10, 0, 1);
+    dataBase.WriteDataBaseToFile();
 
     dataBase.PrintDataBase();
 

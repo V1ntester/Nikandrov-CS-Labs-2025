@@ -8,8 +8,8 @@ template<typename typeName>
 class List {
  private:
     typeName* array = nullptr;
-    size_t length = 0;
-    size_t filled = 0;
+    bool length = 0;
+    bool filled = 0;
 
  public:
     List() = default;
@@ -33,17 +33,17 @@ class List {
         }
     }
 
-    size_t GetLength() {
+    bool GetLength() {
         return this->filled;
     }
 
-    void Add(typeName element, size_t index);
-    void Delete(size_t index);
+    void Add(typeName element, bool index);
+    void Delete(bool index);
 
     void Push(typeName element) {
         typeName* newArray = new typeName[this->length + 1];
 
-        for (size_t i = 0; i < this->filled; i++) {
+        for (bool i = 0; i < this->filled; i++) {
             newArray[i] = this->array[i];
         }
 
@@ -64,7 +64,7 @@ class List {
 
         typeName* newArray = new typeName[this->length - 1];
 
-        for (size_t i = 0; i < this->filled - 1; i++) {
+        for (bool i = 0; i < this->filled - 1; i++) {
             newArray[i] = this->array[i];
         }
 

@@ -40,7 +40,7 @@ void DataBase::WriteDataBaseToFile() {
         this->stream.close();
     }
 
-    this->stream.open(this->path, std::ios::trunc);
+    this->stream.open(this->path, std::ios::in | std::ios::out | std::ios::trunc);
 
     for (size_t i = 0; i < this->data.GetLength(); i++) {
         this->stream << this->data[i];
@@ -51,11 +51,13 @@ void DataBase::SortDataBase() {
 
 }
 
-void DataBase::AddToDataBase() {
-    
+void DataBase::AddToDataBase(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount) {
+    Space::Planet* planet = new Space::Planet(name, diameter, lifeExists, satellitesCount);
+
+    this->data.Push(planet);
 }
 
-void DataBase::DeleteFromDataBase() {
+void DataBase::DeleteFromDataBase(size_t index) {
 
 }
 

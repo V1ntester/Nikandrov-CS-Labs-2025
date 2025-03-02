@@ -19,7 +19,7 @@ class DataBase {
     void ReadDataBaseFromFile();
     void WriteDataBaseToFile();
     void SortDataBase();
-    void AddToDataBase();
-    void DeleteFromDataBase();
+    void AddToDataBase(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
+    void DeleteFromDataBase(size_t index);
     void PrintDataBase();
 };
