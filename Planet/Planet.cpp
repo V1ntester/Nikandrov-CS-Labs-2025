@@ -45,7 +45,7 @@ Planet::~Planet() {
 }
 
 Planet& Planet::operator=(const Planet& planet) {
-    size_t nameLength = strlen(planet.name);
+    size_t nameLength = strlen(planet.name) + 1;
     this->InitName(planet.name, nameLength);
     this->diameter = planet.diameter;
     this->lifeExists = planet.lifeExists;
@@ -62,7 +62,10 @@ void Planet::InitId() {
 void Planet::InitName(const char* name, size_t nameLength) {
     this->nameLength = nameLength;
     this->name = new char[this->nameLength];
-    strlcpy(this->name, name, this->nameLength);
+
+    for (size_t i  = 0; i < this->nameLength; i++) {
+        this->name[i] = name[i];
+    }
 }
 
 size_t Planet::GetTotalCount() {
@@ -153,8 +156,10 @@ std::ifstream& operator>>(std::ifstream& stream, Space::Planet planet) {
     bool lifeExists = false;
     size_t satellitesCount = 0;
 
-    stream.getline(name, kBufferSize - 1, ' ');
+    stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
+
+    stream.ignore(kBufferSize, '\n');
 
     planet.SetName(name);
     planet.SetDiameter(diameter);
