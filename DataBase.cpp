@@ -23,10 +23,10 @@ void DataBase::ReadDataBaseFromFile() {
     std::ifstream stream;
     stream.open(this->path, std::ios::in | std::ios::app);
 
-    while (!stream.eof()) {
-        Space::Planet* planet = new Space::Planet();
+    Space::Planet planetBuffer;
 
-        stream >> *planet;
+    while (stream >> planetBuffer) {
+        Space::Planet* planet = new Space::Planet(planetBuffer);
 
         this->data.Push(planet);
     }
