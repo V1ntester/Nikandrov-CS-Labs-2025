@@ -14,7 +14,7 @@ namespace Space {
 
 size_t Planet::totalCount = 0;
 
-Planet::Planet(bool service) {
+Planet::Planet(bool service) : service(service) {
     if (!this->service) {
         this->InitId();
 
@@ -22,7 +22,8 @@ Planet::Planet(bool service) {
     }
 };
 
-Planet::Planet(Planet& planet, bool service) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
+Planet::Planet(Planet& planet, bool service)
+    : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount), service(service) {
     size_t nameLength = strlen(planet.name) + 1;
     this->InitName(planet.name, nameLength);
 
@@ -34,7 +35,7 @@ Planet::Planet(Planet& planet, bool service) : diameter(planet.diameter), lifeEx
 }
 
 Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount, bool service)
-    : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
+    : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount), service(service) {
     size_t nameLength = strlen(name) + 1;
     this->InitName(name, nameLength);
 
@@ -49,7 +50,7 @@ Planet::~Planet() {
     delete[] this->name;
 
     if (!service) {
-        std::cout << "Удаление ID " << this->id << '\n';        
+        std::cout << "Удаление ID " << this->id << '\n';
     }
 }
 
