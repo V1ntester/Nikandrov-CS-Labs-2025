@@ -23,7 +23,7 @@ void DataBase::ReadDataBaseFromFile() {
     std::ifstream stream;
     stream.open(this->path, std::ios::in | std::ios::app);
 
-    Space::Planet planetBuffer;
+    Space::Planet planetBuffer(true);
 
     while (stream >> planetBuffer) {
         Space::Planet* planet = new Space::Planet(planetBuffer);

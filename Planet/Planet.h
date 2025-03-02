@@ -9,6 +9,7 @@ namespace Space {
 class Planet {
  private:
     static size_t totalCount;
+    bool service = false;
     size_t id = 0;
     char* name = nullptr;
     size_t nameLength = 0;
@@ -20,9 +21,9 @@ class Planet {
     void InitName(const char* name, size_t nameLength);
 
  public:
-    Planet();
-    Planet(Planet& planet);
-    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
+    Planet(bool service = false);
+    Planet(Planet& planet, bool service = false);
+    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount, bool service = false);
     ~Planet();
 
     Planet& operator=(const Planet& planet);
