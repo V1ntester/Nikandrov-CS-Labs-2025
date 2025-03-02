@@ -12,8 +12,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     DataBase dataBase(path);
 
     dataBase.ReadDataBaseFromFile();
-    dataBase.AddToDataBase("Test1", 1, false, 1);
-    dataBase.AddToDataBase("Test2", 1, false, 1);
+    //dataBase.AddToDataBase("Earth", 1, true, 1);
+    //dataBase.AddToDataBase("Mercury", 1, false, 1);
     dataBase.WriteDataBaseToFile();
 
     dataBase.PrintDataBase();
