@@ -54,7 +54,7 @@ Planet& Planet::operator=(const Planet& planet) {
 }
 
 void Planet::InitId() {
-    ++(this->totalCount);
+    ++this->totalCount;
     this->id = this->totalCount;
 }
 
