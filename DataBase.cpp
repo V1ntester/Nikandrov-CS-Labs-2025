@@ -23,15 +23,15 @@ void DataBase::ReadDataBaseFromFile() {
     std::ifstream stream;
     stream.open(this->path, std::ios::in | std::ios::app);
 
-    //while (!this->stream.eof()) {
+    while (!stream.eof()) {
         Space::Planet* planet = new Space::Planet();
 
         stream >> *planet;
-        
-        //this->stream >> *planet;
 
         this->data.Push(planet);
-    //}
+    }
+
+    stream.close();
 }
 
 void DataBase::WriteDataBaseToFile() {
@@ -41,6 +41,8 @@ void DataBase::WriteDataBaseToFile() {
     for (size_t i = 0; i < this->data.GetLength(); i++) {
         stream << *this->data[i];
     }
+
+    stream.close();
 }
 
 void DataBase::SortDataBase() {
