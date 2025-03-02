@@ -9,7 +9,6 @@ class DataBase {
  private:
     List<Space::Planet*> data;
     char* path = nullptr;
-    std::fstream stream;
 
  public:
     DataBase(const char* path);
