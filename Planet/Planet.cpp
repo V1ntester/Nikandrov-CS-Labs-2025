@@ -20,14 +20,13 @@ Planet::Planet() {
     std::cout << "Создание ID " << this->id << '\n';
 };
 
-Planet::Planet(Planet& planet)
-    : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
-        this->InitId();
-        size_t nameLength = strlen(planet.name) + 1;
-        this->InitName(planet.name, nameLength);
-    
-        std::cout << "Создание ID " << this->id << '\n';
-    }
+Planet::Planet(Planet& planet) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
+    this->InitId();
+    size_t nameLength = strlen(planet.name) + 1;
+    this->InitName(planet.name, nameLength);
+
+    std::cout << "Создание ID " << this->id << '\n';
+}
 
 Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount)
     : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
@@ -63,7 +62,7 @@ void Planet::InitName(const char* name, size_t nameLength) {
     this->nameLength = nameLength;
     this->name = new char[this->nameLength];
 
-    for (size_t i  = 0; i < this->nameLength; i++) {
+    for (size_t i = 0; i < this->nameLength; i++) {
         this->name[i] = name[i];
     }
 }
@@ -150,7 +149,7 @@ std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet) {
     return stream;
 }
 
-std::ifstream& operator>>(std::ifstream& stream, Space::Planet planet) {
+std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet) {
     char name[kBufferSize]{'\0'};
     size_t diameter = 0;
     bool lifeExists = false;
