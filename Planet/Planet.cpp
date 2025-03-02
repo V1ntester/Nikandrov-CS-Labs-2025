@@ -138,8 +138,6 @@ std::fstream& operator>>(std::fstream& stream, Space::Planet& planet) {
     stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
 
-    stream.ignore(kBufferSize, '\n');
-
     planet.SetName(name);
     planet.SetDiameter(diameter);
     planet.SetLifeExists(lifeExists);
@@ -160,8 +158,6 @@ std::ifstream& operator>>(std::ifstream& stream, Space::Planet planet) {
 
     stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
-
-    stream.ignore(kBufferSize, '\n');
 
     planet.SetName(name);
     planet.SetDiameter(diameter);
