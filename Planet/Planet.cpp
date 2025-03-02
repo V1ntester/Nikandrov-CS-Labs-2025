@@ -14,33 +14,43 @@ namespace Space {
 
 size_t Planet::totalCount = 0;
 
-Planet::Planet() {
-    this->InitId();
+Planet::Planet(bool service) {
+    if (!this->service) {
+        this->InitId();
 
-    std::cout << "Создание ID " << this->id << '\n';
+        std::cout << "Создание ID " << this->id << '\n';
+    }
 };
 
-Planet::Planet(Planet& planet) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
-    this->InitId();
+Planet::Planet(Planet& planet, bool service) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
     size_t nameLength = strlen(planet.name) + 1;
     this->InitName(planet.name, nameLength);
 
-    std::cout << "Создание ID " << this->id << '\n';
+    if (!this->service) {
+        this->InitId();
+
+        std::cout << "Создание ID " << this->id << '\n';
+    }
 }
 
-Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount)
+Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount, bool service)
     : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
-    this->InitId();
     size_t nameLength = strlen(name) + 1;
     this->InitName(name, nameLength);
 
-    std::cout << "Создание ID " << this->id << '\n';
+    if (!this->service) {
+        this->InitId();
+
+        std::cout << "Создание ID " << this->id << '\n';
+    }
 }
 
 Planet::~Planet() {
     delete[] this->name;
 
-    std::cout << "Удаление ID " << this->id << '\n';
+    if (!service) {
+        std::cout << "Удаление ID " << this->id << '\n';        
+    }
 }
 
 Planet& Planet::operator=(const Planet& planet) {
