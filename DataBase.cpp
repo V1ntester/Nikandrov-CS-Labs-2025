@@ -19,13 +19,13 @@ DataBase::~DataBase() {
 
 void DataBase::ReadDataBaseFromFile() {
     //while (!stream.eof()) {
-        Space::Planet* planet = new Space::Planet;
+        // Space::Planet* planet = new Space::Planet;
         
         //stream >> *planet;
 
-        this->data.Push(planet);
+        // this->data.Push(planet);
 
-        planet->Print();
+        // planet->Print();
     //}
 }
 
@@ -38,7 +38,7 @@ void DataBase::SortDataBase() {
 }
 
 void DataBase::AddToDataBase() {
-
+    
 }
 
 void DataBase::DeleteFromDataBase() {
