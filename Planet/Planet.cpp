@@ -14,44 +14,35 @@ namespace Space {
 
 size_t Planet::totalCount = 0;
 
-Planet::Planet(bool service) : service(service) {
-    if (!this->service) {
-        this->InitId();
+Planet::Planet() {
+    this->InitId();
 
-        std::cout << "Создание ID " << this->id << '\n';
-    }
+    std::cout << "Создание ID " << this->id << '\n';
 };
 
-Planet::Planet(Planet& planet, bool service)
-    : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount), service(service) {
+Planet::Planet(Planet& planet) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
     size_t nameLength = strlen(planet.name) + 1;
     this->InitName(planet.name, nameLength);
 
-    if (!this->service) {
-        this->InitId();
+    this->InitId();
 
-        std::cout << "Создание ID " << this->id << '\n';
-    }
+    std::cout << "Создание ID " << this->id << '\n';
 }
 
-Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount, bool service)
-    : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount), service(service) {
+Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount)
+    : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
     size_t nameLength = strlen(name) + 1;
     this->InitName(name, nameLength);
 
-    if (!this->service) {
-        this->InitId();
+    this->InitId();
 
-        std::cout << "Создание ID " << this->id << '\n';
-    }
+    std::cout << "Создание ID " << this->id << '\n';
 }
 
 Planet::~Planet() {
     delete[] this->name;
 
-    if (!service) {
-        std::cout << "Удаление ID " << this->id << '\n';
-    }
+    std::cout << "Удаление ID " << this->id << '\n';
 }
 
 Planet& Planet::operator=(const Planet& planet) {
@@ -62,6 +53,19 @@ Planet& Planet::operator=(const Planet& planet) {
     this->satellitesCount = planet.satellitesCount;
 
     return *this;
+}
+
+bool Planet::operator==(const Planet& planet) const {
+    return (strcmp(this->name, planet.name) == 0) && (this->diameter == planet.diameter) && (this->lifeExists == planet.lifeExists) &&
+           (this->satellitesCount == planet.satellitesCount);
+}
+
+bool Planet::operator>(const Planet& planet) const {
+    return this->diameter > planet.diameter;
+}
+
+bool Planet::operator<(const Planet& planet) const {
+    return this->diameter < planet.diameter;
 }
 
 void Planet::InitId() {
@@ -100,10 +104,6 @@ bool Planet::GetLifeExists() {
 
 size_t Planet::GetSatellitesCount() {
     return this->satellitesCount;
-}
-
-void Planet::SetTotalCount(size_t totalCount) {
-    this->totalCount = totalCount;
 }
 
 void Planet::SetName(const char* name) {

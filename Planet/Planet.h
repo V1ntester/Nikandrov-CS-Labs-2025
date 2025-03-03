@@ -2,6 +2,7 @@
 #define PLANET_H
 
 #include <cstddef>
+#include <cstring>
 #include <fstream>
 
 namespace Space {
@@ -9,7 +10,6 @@ namespace Space {
 class Planet {
  private:
     static size_t totalCount;
-    bool service = false;
     size_t id = 0;
     char* name = nullptr;
     size_t nameLength = 0;
@@ -21,12 +21,16 @@ class Planet {
     void InitName(const char* name, size_t nameLength);
 
  public:
-    Planet(bool service = false);
-    Planet(Planet& planet, bool service = false);
-    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount, bool service = false);
+    Planet();
+    Planet(Planet& planet);
+    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
     ~Planet();
 
     Planet& operator=(const Planet& planet);
+
+    bool operator==(const Planet& planet) const;
+    bool operator>(const Planet& planet) const;
+    bool operator<(const Planet& planet) const;
 
     size_t GetTotalCount();
     size_t GetId();
@@ -36,7 +40,6 @@ class Planet {
     bool GetLifeExists();
     size_t GetSatellitesCount();
 
-    void SetTotalCount(size_t totalCount);
     void SetName(const char* name);
     void SetDiameter(size_t diameter);
     void SetLifeExists(bool lifeExists);
