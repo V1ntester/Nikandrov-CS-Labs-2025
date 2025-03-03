@@ -9,7 +9,6 @@ namespace Space {
 class Planet {
  private:
     static size_t totalCount;
-    bool service = false;
     size_t id = 0;
     char* name = nullptr;
     size_t nameLength = 0;
