@@ -13,7 +13,7 @@ class List {
 
  public:
     List() = default;
-    
+
     ~List() {
         if (this->array) {
             delete[] this->array;
@@ -33,12 +33,28 @@ class List {
         }
     }
 
-    size_t GetLength() {
-        return this->filled;
-    }
+    size_t GetLength() { return this->filled; }
 
     // void Add(typeName element, size_t index);
-    // void Delete(size_t index);
+
+    void Delete(size_t index) {
+        typeName* newArray = new typeName[this->length - 1];
+
+        for (size_t i = 0; i < index; i++) {
+            newArray[i] = this->array[i];
+        }
+
+        for (size_t i = index + 1; i < this->filled; i++) {
+            newArray[i - 1] = this->array[i];
+        }
+
+        delete[] this->array;
+
+        this->array = newArray;
+
+        --length;
+        --filled;
+    }
 
     void Push(typeName element) {
         typeName* newArray = new typeName[this->length + 1];

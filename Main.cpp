@@ -1,22 +1,22 @@
 #include <cstring>
-#include <iostream>
 #include "DataBase.h"
-#include "Planet/Planet.h"
-#include "List.h"
+#include "Handler.h"
 
 namespace {
-    const char path[] = "Planet.txt";
+const char path[] = "DataBase.txt";
 }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     DataBase dataBase(path);
 
-    dataBase.ReadDataBaseFromFile();
-    //dataBase.AddToDataBase("Earth", 1, true, 1);
-    //dataBase.AddToDataBase("Mercury", 1, false, 1);
-    dataBase.WriteDataBaseToFile();
+    bool isInteractive = false;
 
-    dataBase.PrintDataBase();
+    if (argc == 2 && strcmp(argv[1], "i") == 0) {
+        isInteractive = true;
+    }
+
+    Handler handler(dataBase, isInteractive);
+    handler.Init();
 
     return 0;
 }

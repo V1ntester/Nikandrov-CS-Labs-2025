@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstddef>
-#include "List.h"
 #include <fstream>
+#include "List.h"
 #include "Planet/Planet.h"
 
 class DataBase {
@@ -15,10 +15,12 @@ class DataBase {
 
     ~DataBase();
 
-    void ReadDataBaseFromFile();
-    void WriteDataBaseToFile();
-    void SortDataBase();
-    void AddToDataBase(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
-    void DeleteFromDataBase();
-    void PrintDataBase();
+    size_t GetLength();
+
+    void ReadFromFile();
+    void WriteToFile();
+    void Sort();
+    void Add(Space::Planet* planet);
+    void Delete(size_t index);
+    void Print();
 };

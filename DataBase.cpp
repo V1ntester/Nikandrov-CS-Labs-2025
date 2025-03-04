@@ -19,14 +19,22 @@ DataBase::~DataBase() {
     }
 }
 
-void DataBase::ReadDataBaseFromFile() {
+size_t DataBase::GetLength() {
+    return this->data.GetLength();
+}
+
+void DataBase::ReadFromFile() {
     std::ifstream stream;
     stream.open(this->path, std::ios::in | std::ios::app);
 
-    Space::Planet planetBuffer(true);
+    size_t linesCount = 0;
 
-    while (stream >> planetBuffer) {
-        Space::Planet* planet = new Space::Planet(planetBuffer);
+    stream >> linesCount;
+
+    for (size_t i = 0; i < linesCount; i++) {
+        Space::Planet* planet = new Space::Planet();
+
+        stream >> *planet;
 
         this->data.Push(planet);
     }
@@ -34,9 +42,11 @@ void DataBase::ReadDataBaseFromFile() {
     stream.close();
 }
 
-void DataBase::WriteDataBaseToFile() {
+void DataBase::WriteToFile() {
     std::ofstream stream;
     stream.open(this->path, std::ios::out | std::ios::trunc);
+
+    stream << this->data.GetLength() << '\n';
 
     for (size_t i = 0; i < this->data.GetLength(); i++) {
         stream << *this->data[i];
@@ -45,21 +55,25 @@ void DataBase::WriteDataBaseToFile() {
     stream.close();
 }
 
-void DataBase::SortDataBase() {
-
+void DataBase::Sort() {
+    for (size_t i = 0; i < this->data.GetLength(); i++) {
+        for (size_t j = 0; j < this->data.GetLength(); j++) {}
+    }
 }
 
-void DataBase::AddToDataBase(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount) {
-    Space::Planet* planet = new Space::Planet(name, diameter, lifeExists, satellitesCount);
-
+void DataBase::Add(Space::Planet* planet) {
     this->data.Push(planet);
 }
 
-void DataBase::DeleteFromDataBase() {
+void DataBase::Delete(size_t index) {
+    if (index >= this->data.GetLength()) {
+        return;
+    }
 
+    this->data.Delete(index);
 }
 
-void DataBase::PrintDataBase() {
+void DataBase::Print() {
     for (size_t i = 0; i < this->data.GetLength(); i++) {
         this->data[i]->Print();
     }
