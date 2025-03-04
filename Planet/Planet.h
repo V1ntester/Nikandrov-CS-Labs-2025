@@ -11,6 +11,7 @@ class Planet {
  private:
     static size_t totalCount;
     size_t id = 0;
+    
     char* name = nullptr;
     size_t nameLength = 0;
     size_t diameter = 0;
