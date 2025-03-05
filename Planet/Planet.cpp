@@ -14,6 +14,20 @@ namespace Space {
 
 size_t Planet::totalCount = 0;
 
+void Planet::InitId() {
+    ++this->totalCount;
+    this->id = this->totalCount;
+}
+
+void Planet::InitName(const char* name, size_t nameLength) {
+    this->nameLength = nameLength;
+    this->name = new char[this->nameLength];
+
+    for (size_t i = 0; i < this->nameLength; i++) {
+        this->name[i] = name[i];
+    }
+}
+
 Planet::Planet() {
     this->InitId();
 
@@ -68,41 +82,27 @@ bool Planet::operator<(const Planet& planet) const {
     return this->diameter < planet.diameter;
 }
 
-void Planet::InitId() {
-    ++this->totalCount;
-    this->id = this->totalCount;
-}
-
-void Planet::InitName(const char* name, size_t nameLength) {
-    this->nameLength = nameLength;
-    this->name = new char[this->nameLength];
-
-    for (size_t i = 0; i < this->nameLength; i++) {
-        this->name[i] = name[i];
-    }
-}
-
-size_t Planet::GetTotalCount() {
+size_t Planet::GetTotalCount() const {
     return this->totalCount;
 }
 
-size_t Planet::GetId() {
+size_t Planet::GetId() const {
     return this->id;
 }
 
-char* Planet::GetName() {
+char* Planet::GetName() const {
     return this->name;
 }
 
-size_t Planet::GetDiameter() {
+size_t Planet::GetDiameter() const {
     return this->diameter;
 }
 
-bool Planet::GetLifeExists() {
+bool Planet::GetLifeExists() const {
     return this->lifeExists;
 }
 
-size_t Planet::GetSatellitesCount() {
+size_t Planet::GetSatellitesCount() const {
     return this->satellitesCount;
 }
 
