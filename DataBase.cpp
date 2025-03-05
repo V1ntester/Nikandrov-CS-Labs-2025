@@ -64,7 +64,20 @@ void DataBase::WriteToFile() {
 }
 
 void DataBase::Sort() {
-    //for (size_t )
+    for (size_t i = 0; i < this->GetLength(); i++) {
+        bool isSwaped = false;
+
+        for (size_t j = 0; j < this->GetLength() - 1; j++) {
+            if (*(this->data[j]) < *(this->data[j + 1])) {
+                isSwaped = true;
+                Swap(this->data[j], this->data[j + 1]);
+            }
+        }
+
+        if(isSwaped) {
+            break;
+        }
+    }
 }
 
 void DataBase::Add(Space::Planet* planet) {

@@ -33,13 +33,13 @@ class Planet {
     bool operator>(const Planet& planet) const;
     bool operator<(const Planet& planet) const;
 
-    size_t GetTotalCount();
-    size_t GetId();
-    char* GetName();
-    size_t GetNameLength();
-    size_t GetDiameter();
-    bool GetLifeExists();
-    size_t GetSatellitesCount();
+    size_t GetTotalCount() const;
+    size_t GetId() const;
+    char* GetName() const;
+    size_t GetNameLength() const;
+    size_t GetDiameter() const;
+    bool GetLifeExists() const;
+    size_t GetSatellitesCount() const;
 
     void SetName(const char* name);
     void SetDiameter(size_t diameter);

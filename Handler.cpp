@@ -27,11 +27,6 @@ void NavigationItemsPrint() {
 }
 }  // namespace
 
-Handler::Handler(DataBase& dataBase, bool isInteractive) : isInteractive(isInteractive), dataBase(dataBase) {
-}
-
-Handler::~Handler() = default;
-
 void Handler::InteractiveModeInit() {
     char userAnswer = ' ';
 
@@ -134,6 +129,11 @@ void Handler::DeleteFromDataBase() {
 void Handler::PrintDataBase() {
     this->dataBase.Print();
 }
+
+Handler::Handler(DataBase& dataBase, bool isInteractive) : isInteractive(isInteractive), dataBase(dataBase) {
+}
+
+Handler::~Handler() = default;
 
 void Handler::Init() {
     this->isInteractive ? this->InteractiveModeInit() : this->DemoModeInit();

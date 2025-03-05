@@ -20,7 +20,7 @@ class List {
         }
     };
 
-    typeName& operator[](unsigned index) {
+    typeName& operator[](unsigned index) const {
         if (index < this->filled) {
             return this->array[index];
         } else {
@@ -28,7 +28,7 @@ class List {
         }
     }
 
-    size_t GetLength() { return this->filled; }
+    size_t GetLength() const { return this->filled; }
 
     // void Add(typeName element, size_t index);
 
