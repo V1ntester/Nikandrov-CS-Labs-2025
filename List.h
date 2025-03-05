@@ -20,16 +20,11 @@ class List {
         }
     };
 
-    typeName operator[](unsigned index) {
-        try {
-            if (index < this->filled) {
-                return this->array[index];
-            } else {
-                throw std::out_of_range("Index out of range");
-            }
-        } catch (const std::exception& e) {
-            std::cerr << e.what() << '\n';
-            return typeName();
+    typeName& operator[](unsigned index) {
+        if (index < this->filled) {
+            return this->array[index];
+        } else {
+            throw std::out_of_range("Index out of range");
         }
     }
 

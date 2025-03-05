@@ -4,6 +4,14 @@
 #include <fstream>
 #include "Planet/Planet.h"
 
+namespace {
+void Swap(Space::Planet*& firstPlanet, Space::Planet*& secondPlanet) {
+    Space::Planet* temp = firstPlanet;
+    firstPlanet = secondPlanet;
+    secondPlanet = temp;
+}
+}  // namespace
+
 DataBase::DataBase(const char* path) {
     size_t pathLength = strlen(path) + 1;
     this->path = new char[pathLength];
@@ -56,9 +64,7 @@ void DataBase::WriteToFile() {
 }
 
 void DataBase::Sort() {
-    for (size_t i = 0; i < this->data.GetLength(); i++) {
-        for (size_t j = 0; j < this->data.GetLength(); j++) {}
-    }
+    //for (size_t )
 }
 
 void DataBase::Add(Space::Planet* planet) {
@@ -69,6 +75,8 @@ void DataBase::Delete(size_t index) {
     if (index >= this->data.GetLength()) {
         return;
     }
+
+    delete data[index];
 
     this->data.Delete(index);
 }

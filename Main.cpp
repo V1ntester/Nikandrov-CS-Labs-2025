@@ -2,6 +2,8 @@
 #include "DataBase.h"
 #include "Handler.h"
 
+#include "Planet/Planet.h"
+
 namespace {
 const char path[] = "DataBase.txt";
 }

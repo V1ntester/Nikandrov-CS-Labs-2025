@@ -40,6 +40,8 @@ void Handler::InteractiveModeInit() {
 
         std::cin >> userAnswer;
 
+        std::cout << '\n';
+
         switch (userAnswer) {
             case 'a':
                 this->ReadDataBaseFromFile();
@@ -60,11 +62,14 @@ void Handler::InteractiveModeInit() {
                 this->PrintDataBase();
                 break;
             case 'q':
+                std::cout << "Meow!\n";
                 break;
             default:
                 std::cout << "Действие не найдено\n\n";
                 break;
         }
+
+        std::cout << '\n';
     }
 }
 
