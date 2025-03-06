@@ -74,12 +74,16 @@ bool Planet::operator==(const Planet& planet) const {
            (this->satellitesCount == planet.satellitesCount);
 }
 
-bool Planet::operator>(const Planet& planet) const {
-    return this->diameter > planet.diameter;
+bool Planet::operator<(const Planet& planet) const {
+    if (*this == planet) {
+        return false;
+    }
+
+    return this->diameter < planet.diameter;
 }
 
-bool Planet::operator<(const Planet& planet) const {
-    return this->diameter < planet.diameter;
+bool Planet::operator>(const Planet& planet) const {
+    return planet < *this;
 }
 
 size_t Planet::GetTotalCount() const {
@@ -132,10 +136,9 @@ void Planet::Print() {
     std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->lifeExists
               << "; Спутники: " << this->satellitesCount << ";\n";
 }
-}  // namespace Space
 
 std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet) {
-    stream << planet.GetName() << ' ' << planet.GetDiameter() << ' ' << planet.GetLifeExists() << ' ' << planet.GetSatellitesCount() << '\n';
+    stream << planet.name << ' ' << planet.diameter << ' ' << planet.lifeExists << ' ' << planet.satellitesCount << '\n';
     return stream;
 }
 
@@ -149,8 +152,10 @@ std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet) {
     stream >> diameter >> lifeExists >> satellitesCount;
 
     planet.SetName(name);
-    planet.SetDiameter(diameter);
-    planet.SetLifeExists(lifeExists);
-    planet.SetSatellitesCount(satellitesCount);
+    planet.diameter = diameter;
+    planet.lifeExists = lifeExists;
+    planet.satellitesCount = satellitesCount;
     return stream;
 }
+
+}  // namespace Space
