@@ -7,7 +7,7 @@
 
 class DataBase {
  private:
-    List<Space::Planet*> data;
+    List<Planet*> data;
     char* path = nullptr;
 
  public:
@@ -20,7 +20,7 @@ class DataBase {
     void ReadFromFile();
     void WriteToFile();
     void Sort();
-    void Add(Space::Planet* planet);
+    void Add(Planet* planet);
     void Delete(size_t index);
     void Print();
 };

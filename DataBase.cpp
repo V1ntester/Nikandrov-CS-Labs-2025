@@ -5,8 +5,8 @@
 #include "Planet/Planet.h"
 
 namespace {
-void Swap(Space::Planet*& firstPlanet, Space::Planet*& secondPlanet) {
-    Space::Planet* temp = firstPlanet;
+void Swap(Planet*& firstPlanet, Planet*& secondPlanet) {
+    Planet* temp = firstPlanet;
     firstPlanet = secondPlanet;
     secondPlanet = temp;
 }
@@ -40,7 +40,7 @@ void DataBase::ReadFromFile() {
     stream >> linesCount;
 
     for (size_t i = 0; i < linesCount; i++) {
-        Space::Planet* planet = new Space::Planet();
+        Planet* planet = new Planet();
 
         stream >> *planet;
 
@@ -80,7 +80,7 @@ void DataBase::Sort() {
     }
 }
 
-void DataBase::Add(Space::Planet* planet) {
+void DataBase::Add(Planet* planet) {
     this->data.Push(planet);
 }
 

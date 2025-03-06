@@ -4,8 +4,6 @@
 #include <cstddef>
 #include <fstream>
 
-namespace Space {
-
 class Planet {
  private:
     static size_t totalCount;
@@ -36,10 +34,8 @@ class Planet {
 
     void Print();
 
-    friend std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
-    friend std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
+    friend std::ofstream& operator<<(std::ofstream& stream, Planet& planet);
+    friend std::ifstream& operator>>(std::ifstream& stream, Planet& planet);
 };
-
-};  // namespace Space
 
 #endif
