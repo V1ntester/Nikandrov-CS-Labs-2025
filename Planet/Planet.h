@@ -11,7 +11,7 @@ class Planet {
  private:
     static size_t totalCount;
     size_t id = 0;
-
+    
     char* name = nullptr;
     size_t nameLength = 0;
     size_t diameter = 0;
@@ -36,7 +36,6 @@ class Planet {
     size_t GetTotalCount() const;
     size_t GetId() const;
     char* GetName() const;
-    size_t GetNameLength() const;
     size_t GetDiameter() const;
     bool GetLifeExists() const;
     size_t GetSatellitesCount() const;
@@ -47,11 +46,14 @@ class Planet {
     void SetSatellitesCount(size_t satellitesCount);
 
     void Print();
+
+   friend std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
+   friend std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
 };
 
 };  // namespace Space
 
-std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
-std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
+// std::ofstream& operator<<(std::ofstream& stream, Space::Planet& planet);
+// std::ifstream& operator>>(std::ifstream& stream, Space::Planet& planet);
 
 #endif
