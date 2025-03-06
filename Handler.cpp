@@ -1,6 +1,7 @@
 #include "Handler.h"
 
 #include <iostream>
+#include <cstring>
 #include "DataBase.h"
 
 namespace {
@@ -35,8 +36,6 @@ void Handler::InteractiveModeInit() {
 
         std::cin >> userAnswer;
 
-        std::cout << '\n';
-
         switch (userAnswer) {
             case 'a':
                 this->ReadDataBaseFromFile();
@@ -57,7 +56,7 @@ void Handler::InteractiveModeInit() {
                 this->PrintDataBase();
                 break;
             case 'q':
-                std::cout << "Meow!\n";
+                std::cout << "\nMeow!\n";
                 break;
             default:
                 std::cout << "Действие не найдено\n\n";
@@ -73,14 +72,17 @@ void Handler::DemoModeInit() {
 
 void Handler::ReadDataBaseFromFile() {
     this->dataBase.ReadFromFile();
+    std::cout << "Чтение выполнено\n";
 }
 
 void Handler::WriteDataBaseToFile() {
     this->dataBase.WriteToFile();
+    std::cout << "Запись выполнена\n";
 }
 
 void Handler::SortDataBase() {
     this->dataBase.Sort();
+    std::cout << "Сортировка выполнена\n";
 }
 
 void Handler::AddToDataBase() {
@@ -111,6 +113,7 @@ void Handler::AddToDataBase() {
     Space::Planet* planet = new Space::Planet(planetName, diameter, lifeExists, satellitesCount);
 
     this->dataBase.Add(planet);
+    std::cout << "Объект добавлен\n";
 }
 
 void Handler::DeleteFromDataBase() {
@@ -124,6 +127,7 @@ void Handler::DeleteFromDataBase() {
     }
 
     dataBase.Delete(index);
+    std::cout << "Объект удалён\n";
 }
 
 void Handler::PrintDataBase() {
