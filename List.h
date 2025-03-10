@@ -14,6 +14,16 @@ class List {
  public:
     List() = default;
 
+    List(const List& list) {
+        typeName* array = new newArray[length];
+
+        for (size_t i = 0; i < list.filled; i++) {
+            array[i] = list.array[i];
+        }
+
+        this->array = array;
+    }
+
     ~List() {
         if (this->array) {
             delete[] this->array;
