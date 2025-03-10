@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <fstream>
 
-class Airport {
+class Planet {
  private:
     static size_t totalCount;
     size_t id = 0;
@@ -21,21 +21,21 @@ class Airport {
     void NameSet(const char* name);
 
  public:
-    Airport();
-    Airport(Airport& planet);
-    Airport(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
-    ~Airport();
+    Planet();
+    Planet(Planet& planet);
+    Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount);
+    ~Planet();
 
-    Airport& operator=(const Airport& planet);
+    Planet& operator=(const Planet& planet);
 
-    bool operator==(const Airport& planet) const;
-    bool operator>(const Airport& planet) const;
-    bool operator<(const Airport& planet) const;
+    bool operator==(const Planet& planet) const;
+    bool operator>(const Planet& planet) const;
+    bool operator<(const Planet& planet) const;
 
     void Print();
 
-    friend std::ofstream& operator<<(std::ofstream& stream, Airport& planet);
-    friend std::ifstream& operator>>(std::ifstream& stream, Airport& planet);
+    friend std::ofstream& operator<<(std::ofstream& stream, Planet& planet);
+    friend std::ifstream& operator>>(std::ifstream& stream, Planet& planet);
 };
 
 #endif
