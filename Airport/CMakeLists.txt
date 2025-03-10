@@ -18,4 +18,8 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 
 add_executable(${project} ${SOURCE_LIST})
 
-target_link_libraries(${project} Planet)
+if(ENABLE_DEBUG)
+    target_compile_options(${project} PRIVATE -g)
+endif()
+
+target_link_libraries(${project} Airport)

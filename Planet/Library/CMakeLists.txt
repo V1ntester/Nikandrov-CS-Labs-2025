@@ -19,4 +19,8 @@ set(SOURCE_LIST
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 
+if(ENABLE_DEBUG)
+    target_compile_options(${project} PRIVATE -g)
+endif()
+
 add_library(${project} STATIC ${SOURCE_LIST})
