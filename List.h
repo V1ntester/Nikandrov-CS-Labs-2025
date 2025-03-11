@@ -15,7 +15,7 @@ class List {
     List() = default;
 
     List(const List& list) {
-        typeName* array = new newArray[length];
+        typeName* array = new typeName[length];
 
         for (size_t i = 0; i < list.filled; i++) {
             array[i] = list.array[i];
@@ -29,6 +29,25 @@ class List {
             delete[] this->array;
         }
     };
+
+    List& operator=(const List& list) {
+        if (this->array) {
+            delete [] this->array;
+        }
+
+        typeName* array = new typeName[length];
+
+        for (size_t i = 0; i < list.filled; i++) {
+            array[i] = list.array[i];
+        }
+
+        this->array = array;
+
+        this->length = list.length;
+        this->filled = list.filled;
+
+        return *this;
+    }
 
     typeName& operator[](unsigned index) const {
         if (index < this->filled) {

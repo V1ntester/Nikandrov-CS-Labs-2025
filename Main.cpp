@@ -9,7 +9,7 @@ const char path[] = "DataBase.txt";
 }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    DataBase dataBase(path);
+    DataBase dataBase(path); 
 
     bool isInteractive = false;
 
