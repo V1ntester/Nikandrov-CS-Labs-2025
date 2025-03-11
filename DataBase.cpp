@@ -21,9 +21,9 @@ DataBase::DataBase(const char* path) {
     }
 }
 
-DataBase::DataBase(const DataBase& dataBase) {
+// DataBase::DataBase(const DataBase& dataBase) {
 
-}
+// }
 
 DataBase::~DataBase() {
     for (size_t i = 0; i < this->data.GetLength(); i++) {
@@ -31,13 +31,13 @@ DataBase::~DataBase() {
     }
 }
 
-DataBase& DataBase::operator=(const DataBase& dataBase) {
-    // if (this->path) {
-    //     delete [] this->path;
-    // }
+// DataBase& DataBase::operator=(const DataBase& dataBase) {
+//     // if (this->path) {
+//     //     delete [] this->path;
+//     // }
 
-    // size_t newPathLength = 
-}
+//     // size_t newPathLength = 
+// }
 
 size_t DataBase::GetLength() {
     return this->data.GetLength();

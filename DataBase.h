@@ -12,11 +12,11 @@ class DataBase {
 
  public:
     DataBase(const char* path);
-    DataBase(const DataBase& dataBase);
+   //  DataBase(const DataBase& dataBase);
 
     ~DataBase();
 
-    DataBase& operator=(const DataBase& dataBase); 
+   //  DataBase& operator=(const DataBase& dataBase); 
 
     size_t GetLength();
 
