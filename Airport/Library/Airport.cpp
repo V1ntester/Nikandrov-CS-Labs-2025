@@ -91,10 +91,6 @@ bool Airport::operator==(const Airport& airport) const {
 }
 
 bool Airport::operator<(const Airport& airport) const {
-    if (*this == airport) {
-        return false;
-    }
-
     return this->runwaysCount < airport.runwaysCount;
 }
 

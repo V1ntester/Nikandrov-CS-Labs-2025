@@ -83,10 +83,6 @@ bool Planet::operator==(const Planet& planet) const {
 }
 
 bool Planet::operator<(const Planet& planet) const {
-    if (*this == planet) {
-        return false;
-    }
-
     return this->diameter < planet.diameter;
 }
 
