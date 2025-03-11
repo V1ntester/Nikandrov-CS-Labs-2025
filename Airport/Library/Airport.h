@@ -11,7 +11,7 @@ class Airport {
 
     char* name = nullptr;
     size_t nameLength = 0;
-    char code[4] {'\0'};
+    char code[4]{'\0'};
     size_t runwaysCount = 0;
 
     void IdInit();

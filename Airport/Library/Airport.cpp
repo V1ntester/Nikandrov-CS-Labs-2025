@@ -10,7 +10,7 @@ using std::size_t;
 namespace {
 const size_t kCodeLength = 4;
 const size_t kBufferSize = 256;
-}
+}  // namespace
 
 size_t Airport::totalCount = 0;
 
@@ -60,8 +60,7 @@ Airport::Airport(Airport& airport) : runwaysCount(airport.runwaysCount) {
     std::cout << "Создание ID " << this->id << '\n';
 }
 
-Airport::Airport(const char* name, const char* code, size_t runwaysCount)
-    : runwaysCount(runwaysCount) {
+Airport::Airport(const char* name, const char* code, size_t runwaysCount) : runwaysCount(runwaysCount) {
     size_t nameLength = strlen(name) + 1;
     this->NameInit(name, nameLength);
     this->CodeSet(code);
@@ -109,7 +108,7 @@ std::ofstream& operator<<(std::ofstream& stream, Airport& airport) {
 
 std::ifstream& operator>>(std::ifstream& stream, Airport& airport) {
     char name[kBufferSize]{'\0'};
-    char code[4] {'\0'};
+    char code[4]{'\0'};
     size_t runwaysCount = 0;
 
     stream >> name;
