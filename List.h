@@ -8,7 +8,7 @@ template<typename typeName>
 class List {
  private:
     typeName* array = nullptr;
-    
+
     size_t length = 0;
     size_t filled = 0;
 
@@ -36,7 +36,7 @@ class List {
             newArray[i] = list.array[i];
         }
 
-        delete [] this->array;
+        delete[] this->array;
 
         this->array = newArray;
 
@@ -114,7 +114,7 @@ class List {
     void Clear() {
         typeName* newArray = nullptr;
 
-        delete [] this->array;
+        delete[] this->array;
 
         this->array = newArray;
 

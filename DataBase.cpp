@@ -42,7 +42,7 @@ DataBase& DataBase::operator=(const DataBase& dataBase) {
 
     strlcpy(newPath, path, pathLength);
 
-    delete [] this->path;
+    delete[] this->path;
 
     this->path = newPath;
 

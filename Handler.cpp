@@ -1,7 +1,7 @@
 #include "Handler.h"
 
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "DataBase.h"
 
 namespace {

@@ -16,7 +16,7 @@ class DataBase {
 
     ~DataBase();
 
-    DataBase& operator=(const DataBase& dataBase); 
+    DataBase& operator=(const DataBase& dataBase);
 
     size_t GetLength();
 
