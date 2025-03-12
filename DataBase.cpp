@@ -25,7 +25,7 @@ DataBase::DataBase(const DataBase& dataBase) : data(dataBase.data) {
     size_t pathLength = strlen(dataBase.path) + 1;
     this->path = new char[pathLength];
 
-    strlcpy(this->path, dataBase.path, pathLength);
+    strncpy(this->path, dataBase.path, pathLength);
 }
 
 DataBase::~DataBase() {
@@ -40,7 +40,7 @@ DataBase& DataBase::operator=(const DataBase& dataBase) {
     size_t pathLength = strlen(dataBase.path) + 1;
     char* newPath = new char[pathLength];
 
-    strlcpy(newPath, path, pathLength);
+    strncpy(newPath, path, pathLength);
 
     delete[] this->path;
 

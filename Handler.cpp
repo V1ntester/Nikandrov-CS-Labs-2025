@@ -106,7 +106,7 @@ void Handler::AddToDataBase() {
         std::cout << "Введите кол-во спутников: ";
         std::cin >> satellitesCount;
     } else {
-        strlcpy(planetName, kPlanetNameDemonstration, strlen(kPlanetNameDemonstration) + 1);
+        strncpy(planetName, kPlanetNameDemonstration, strlen(kPlanetNameDemonstration) + 1);
         diameter = kDiameterDemonstration;
         lifeExists = kLifeExistsDemonstration;
         satellitesCount = kSatellitesCountDemonstration;
