@@ -29,4 +29,13 @@ if(ENABLE_DEBUG)
     target_compile_options(${project} PRIVATE -g)
 endif()
 
+add_custom_target(
+    clang-format
+    COMMAND clang-format
+    --dry-run
+    -Werror
+    ${SOURCES}
+    ${HEADERS}
+)
+
 target_link_libraries(${project} Planet)
