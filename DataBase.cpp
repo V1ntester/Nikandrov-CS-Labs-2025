@@ -21,13 +21,11 @@ DataBase::DataBase(const char* path) {
     }
 }
 
-DataBase::DataBase(const DataBase& dataBase) {
-    this->data = List<Planet*>(dataBase.data);
-
+DataBase::DataBase(const DataBase& dataBase) : data(dataBase.data) {
     size_t pathLength = strlen(dataBase.path) + 1;
-    for (size_t i = 0; i < pathLength; i++) {
-        this->path[i] = path[i];
-    }
+    this->path = new char[pathLength];
+
+    strlcpy(this->path, dataBase.path, pathLength);
 }
 
 DataBase::~DataBase() {
@@ -37,16 +35,16 @@ DataBase::~DataBase() {
 }
 
 DataBase& DataBase::operator=(const DataBase& dataBase) {
-    this->data = List<Planet*>(dataBase.data);
-
-    if (this->path) {
-        delete [] this->path;
-    }
+    this->data = dataBase.data;
 
     size_t pathLength = strlen(dataBase.path) + 1;
-    for (size_t i = 0; i < pathLength; i++) {
-        this->path[i] = path[i];
-    }
+    char* newPath = new char[pathLength];
+
+    strlcpy(newPath, path, pathLength);
+
+    delete [] this->path;
+
+    this->path = newPath;
 
     return *this;
 }
@@ -55,7 +53,7 @@ size_t DataBase::GetLength() {
     return this->data.GetLength();
 }
 
-void DataBase::ReadFromFile() { 
+void DataBase::ReadFromFile() {
     std::ifstream stream;
     stream.open(this->path, std::ios::in | std::ios::app);
 
@@ -64,7 +62,6 @@ void DataBase::ReadFromFile() {
     stream >> linesCount;
 
     // for (size_t i = 0; i < this->data.GetLength(); i++) {
-    //     delete this->data[i];
     //     this->data.Delete(i);
     // }
 

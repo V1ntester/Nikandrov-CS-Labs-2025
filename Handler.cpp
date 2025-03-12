@@ -36,6 +36,8 @@ void Handler::InteractiveModeInit() {
 
         std::cin >> userAnswer;
 
+        std::cin.ignore();
+
         switch (userAnswer) {
             case 'a':
                 this->ReadDataBaseFromFile();

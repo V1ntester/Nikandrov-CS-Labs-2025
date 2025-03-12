@@ -14,14 +14,12 @@ class List {
  public:
     List() = default;
 
-    List(const List& list) {
-        typeName* array = new typeName[length];
+    List(const List<typeName>& list) {
+        this->array = new typeName[list.length];
 
         for (size_t i = 0; i < list.filled; i++) {
-            array[i] = list.array[i];
+            this->array[i] = list.array[i];
         }
-
-        this->array = array;
     }
 
     ~List() {
@@ -30,19 +28,16 @@ class List {
         }
     };
 
-    List& operator=(const List& list) {
-        if (this->array) {
-            delete [] this->array;
-        }
-
-        typeName* array = new typeName[length];
+    List& operator=(const List<typeName>& list) {
+        typeName* newArray = new typeName[list.length];
 
         for (size_t i = 0; i < list.filled; i++) {
-            array[i] = list.array[i];
+            newArray[i] = list.array[i];
         }
 
-        this->array = array;
+        delete [] this->array;
 
+        this->array = newArray;
         this->length = list.length;
         this->filled = list.filled;
 
