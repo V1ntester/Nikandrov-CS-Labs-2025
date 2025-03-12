@@ -57,9 +57,7 @@ class List {
         }
     }
 
-    size_t GetLength() const { return this->filled; }
-
-    // void Add(typeName element, size_t index);
+    size_t GetLength() const { return this->length; }
 
     void Delete(size_t index) {
         typeName* newArray = new typeName[this->length - 1];

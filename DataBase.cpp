@@ -21,9 +21,14 @@ DataBase::DataBase(const char* path) {
     }
 }
 
-// DataBase::DataBase(const DataBase& dataBase) {
+DataBase::DataBase(const DataBase& dataBase) {
+    this->data = List<Planet*>(dataBase.data);
 
-// }
+    size_t pathLength = strlen(dataBase.path) + 1;
+    for (size_t i = 0; i < pathLength; i++) {
+        this->path[i] = path[i];
+    }
+}
 
 DataBase::~DataBase() {
     for (size_t i = 0; i < this->data.GetLength(); i++) {
@@ -31,13 +36,20 @@ DataBase::~DataBase() {
     }
 }
 
-// DataBase& DataBase::operator=(const DataBase& dataBase) {
-//     // if (this->path) {
-//     //     delete [] this->path;
-//     // }
+DataBase& DataBase::operator=(const DataBase& dataBase) {
+    this->data = List<Planet*>(dataBase.data);
 
-//     // size_t newPathLength = 
-// }
+    if (this->path) {
+        delete [] this->path;
+    }
+
+    size_t pathLength = strlen(dataBase.path) + 1;
+    for (size_t i = 0; i < pathLength; i++) {
+        this->path[i] = path[i];
+    }
+
+    return *this;
+}
 
 size_t DataBase::GetLength() {
     return this->data.GetLength();
@@ -105,8 +117,6 @@ void DataBase::Delete(size_t index) {
     if (index >= this->data.GetLength()) {
         return;
     }
-
-    delete data[index];
 
     this->data.Delete(index);
 }
