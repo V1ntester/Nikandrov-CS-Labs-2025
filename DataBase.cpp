@@ -61,9 +61,11 @@ void DataBase::ReadFromFile() {
 
     stream >> linesCount;
 
-    // for (size_t i = 0; i < this->data.GetLength(); i++) {
-    //     this->data.Delete(i);
-    // }
+    for (size_t i = 0; i < this->data.GetLength(); i++) {
+        delete this->data[i];
+    }
+
+    this->data.Clear();
 
     for (size_t i = 0; i < linesCount; i++) {
         Planet* planet = new Planet();

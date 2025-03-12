@@ -8,6 +8,7 @@ template<typename typeName>
 class List {
  private:
     typeName* array = nullptr;
+    
     size_t length = 0;
     size_t filled = 0;
 
@@ -38,6 +39,7 @@ class List {
         delete [] this->array;
 
         this->array = newArray;
+
         this->length = list.length;
         this->filled = list.filled;
 
@@ -54,25 +56,6 @@ class List {
 
     size_t GetLength() const { return this->length; }
 
-    void Delete(size_t index) {
-        typeName* newArray = new typeName[this->length - 1];
-
-        for (size_t i = 0; i < index; i++) {
-            newArray[i] = this->array[i];
-        }
-
-        for (size_t i = index + 1; i < this->filled; i++) {
-            newArray[i - 1] = this->array[i];
-        }
-
-        delete[] this->array;
-
-        this->array = newArray;
-
-        --length;
-        --filled;
-    }
-
     void Push(typeName element) {
         typeName* newArray = new typeName[this->length + 1];
 
@@ -86,8 +69,8 @@ class List {
 
         this->array = newArray;
 
-        ++length;
-        ++filled;
+        ++this->length;
+        ++this->filled;
     }
 
     void Pop() {
@@ -104,7 +87,38 @@ class List {
         delete[] this->array;
 
         this->array = newArray;
+
         --this->length;
         --this->filled;
+    }
+
+    void Delete(size_t index) {
+        typeName* newArray = new typeName[this->length - 1];
+
+        for (size_t i = 0; i < index; i++) {
+            newArray[i] = this->array[i];
+        }
+
+        for (size_t i = index + 1; i < this->filled; i++) {
+            newArray[i - 1] = this->array[i];
+        }
+
+        delete[] this->array;
+
+        this->array = newArray;
+
+        --this->length;
+        --this->filled;
+    }
+
+    void Clear() {
+        typeName* newArray = nullptr;
+
+        delete [] this->array;
+
+        this->array = newArray;
+
+        this->length = 0;
+        this->filled = 0;
     }
 };
