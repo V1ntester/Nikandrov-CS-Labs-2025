@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace {
-    const size_t kAllocateElementsStep = 5;
+    const size_t kAllocateElementsStep = 10;
 }
 
 template<typename typeName>
