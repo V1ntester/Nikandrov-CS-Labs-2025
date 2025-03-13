@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace {
-    const size_t kAllocateElementsStep = 10;
+const size_t kAllocateElementsStep = 10;
 }
 
 template<typename typeName>
@@ -70,9 +70,9 @@ class List {
 
             delete[] this->array;
 
-            this->array = newArray;       
-    
-            this->length+=kAllocateElementsStep;
+            this->array = newArray;
+
+            this->length += kAllocateElementsStep;
         }
 
         this->array[filled] = element;
@@ -96,7 +96,7 @@ class List {
 
             this->array = newArray;
 
-            this->length-=kAllocateElementsStep;            
+            this->length -= kAllocateElementsStep;
         }
 
         --this->filled;
@@ -122,10 +122,10 @@ class List {
 
             this->array = newArray;
 
-            this->length-=kAllocateElementsStep;
+            this->length -= kAllocateElementsStep;
         }
 
-        --this->filled;            
+        --this->filled;
     }
 
     void Clear() {
