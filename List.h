@@ -4,6 +4,10 @@
 #include <exception>
 #include <iostream>
 
+namespace {
+    const size_t kAllocateElementsStep = 5;
+}
+
 template<typename typeName>
 class List {
  private:
@@ -54,22 +58,25 @@ class List {
         }
     }
 
-    size_t GetLength() const { return this->length; }
+    size_t GetLength() const { return this->filled; }
 
     void Push(typeName element) {
-        typeName* newArray = new typeName[this->length + 1];
+        if (this->filled == this->length) {
+            typeName* newArray = new typeName[this->length + kAllocateElementsStep];
 
-        for (size_t i = 0; i < this->filled; i++) {
-            newArray[i] = this->array[i];
+            for (size_t i = 0; i < this->filled; i++) {
+                newArray[i] = this->array[i];
+            }
+
+            delete[] this->array;
+
+            this->array = newArray;       
+    
+            this->length+=kAllocateElementsStep;
         }
 
-        newArray[filled] = element;
+        this->array[filled] = element;
 
-        delete[] this->array;
-
-        this->array = newArray;
-
-        ++this->length;
         ++this->filled;
     }
 
@@ -78,37 +85,47 @@ class List {
             return;
         }
 
-        typeName* newArray = new typeName[this->length - 1];
+        if (this->filled + kAllocateElementsStep <= this->length) {
+            typeName* newArray = new typeName[this->length - kAllocateElementsStep];
 
-        for (size_t i = 0; i < this->filled - 1; i++) {
-            newArray[i] = this->array[i];
+            for (size_t i = 0; i < this->filled - 1; i++) {
+                newArray[i] = this->array[i];
+            }
+
+            delete[] this->array;
+
+            this->array = newArray;
+
+            this->length-=kAllocateElementsStep;            
         }
 
-        delete[] this->array;
-
-        this->array = newArray;
-
-        --this->length;
         --this->filled;
     }
 
     void Delete(size_t index) {
-        typeName* newArray = new typeName[this->length - 1];
-
-        for (size_t i = 0; i < index; i++) {
-            newArray[i] = this->array[i];
+        if (!this->filled) {
+            return;
         }
 
-        for (size_t i = index + 1; i < this->filled; i++) {
-            newArray[i - 1] = this->array[i];
+        if (this->filled + kAllocateElementsStep <= this->length) {
+            typeName* newArray = new typeName[this->length - kAllocateElementsStep];
+
+            for (size_t i = 0; i < index; i++) {
+                newArray[i] = this->array[i];
+            }
+
+            for (size_t i = index + 1; i < this->filled; i++) {
+                newArray[i - 1] = this->array[i];
+            }
+
+            delete[] this->array;
+
+            this->array = newArray;
+
+            this->length-=kAllocateElementsStep;
         }
 
-        delete[] this->array;
-
-        this->array = newArray;
-
-        --this->length;
-        --this->filled;
+        --this->filled;            
     }
 
     void Clear() {

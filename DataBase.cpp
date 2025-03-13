@@ -4,14 +4,6 @@
 #include <fstream>
 #include "Planet/Planet.h"
 
-namespace {
-void Swap(Planet*& firstPlanet, Planet*& secondPlanet) {
-    Planet* temp = firstPlanet;
-    firstPlanet = secondPlanet;
-    secondPlanet = temp;
-}
-}  // namespace
-
 DataBase::DataBase(const char* path) {
     size_t pathLength = strlen(path) + 1;
     this->path = new char[pathLength];
@@ -98,7 +90,7 @@ void DataBase::Sort() {
         for (size_t j = 0; j < this->GetLength() - 1; j++) {
             if (*(this->data[j]) < *(this->data[j + 1])) {
                 isSwaped = true;
-                Swap(this->data[j], this->data[j + 1]);
+                std::swap(this->data[j], this->data[j + 1]);
             }
         }
 
