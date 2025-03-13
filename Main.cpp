@@ -1,13 +1,8 @@
 #include <cstring>
-#include "DataBase.h"
 #include "Handler.h"
 
-namespace {
-const char path[] = "DataBase.txt";
-}
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    DataBase dataBase(path);
 
     bool isInteractive = false;
 
@@ -15,7 +10,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
         isInteractive = true;
     }
 
-    Handler handler(dataBase, isInteractive);
+    Handler handler(isInteractive);
     handler.Init();
 
     return 0;
