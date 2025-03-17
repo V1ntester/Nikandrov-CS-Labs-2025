@@ -2,13 +2,15 @@
 
 #include <cmath>
 #include <cstddef>
-#include <string>
+#include <cstring>
 #include <iostream>
 #include <sstream>
 
 namespace {
 const size_t kDecimalBase = 10;
 const size_t kDecimalPlacesLenght = 4;
+
+const size_t kBufferSize = 256;
 
 int FindGreatestCommonDivisor(int firstValue, int secondValue) {
     firstValue = std::abs(firstValue);
@@ -59,15 +61,17 @@ Fraction::Fraction(const char* value) {
     int integerPart = 0;
     char* token = strtok(sourceString, " ");
 
-    if (strcmp(token, sourceString) != 0) {
+    if (strcmp(token, value) != 0) {
         std::istringstream integerPartStream(token);
 
         integerPartStream >> integerPart;
+
+        token = strtok(nullptr, "/");
+    } else {
+        token = strtok(sourceString, "/");
     }
 
-    token = strtok(nullptr, "/");
-
-    if (strcmp(token, sourceString) != 0) {
+    if (strcmp(token, value) != 0) {
         std::istringstream numeratorPartStream(value);
 
         numeratorPartStream >> this->numerator;
@@ -77,6 +81,10 @@ Fraction::Fraction(const char* value) {
         std::istringstream denominatorPartStream(value);
 
         denominatorPartStream >> this->denominator;
+    } else {
+        std::istringstream integerPartStream(token);
+
+        integerPartStream >> integerPart;
     }
 
     delete[] sourceString;
@@ -138,7 +146,7 @@ Fraction operator+(const double& value, const Fraction& fraction) {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
-    if (fraction.numerator > fraction.denominator) {
+    if (fraction.numerator >= fraction.denominator) {
         return stream << fraction.numerator / fraction.denominator << ' ' << fraction.numerator % fraction.denominator << '/' << fraction.denominator;
     } else {
         return stream << fraction.numerator << '/' << fraction.denominator;
@@ -146,13 +154,11 @@ std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
 }
 
 std::istream& operator>>(std::istream& stream, Fraction& fraction) {
-    char buffer[256] {'\0'};
+    char buffer[kBufferSize] {'\0'};
 
-    std::getline(stream, buffer, '\n');
+    stream.getline(buffer, kBufferSize);
 
-    Fraction inputFraction(buffer);
-
-    fraction.Simplify();
+    fraction = buffer;
 
     return stream;
 }
