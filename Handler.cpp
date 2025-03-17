@@ -15,6 +15,7 @@ void Handler::InteractiveModeInit() {
 void Handler::DemoModeInit() {
     Fraction fractionZ;
 
+    std::cout << "Введите дробь: ";
     std::cin >> fractionZ;
 
     std::cout << "z=" << fractionZ << std::endl;
