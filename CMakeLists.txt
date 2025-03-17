@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(project "lab_3")
+set(project "lab_4")
 project(${project})
 
 set(SOURCES
@@ -12,7 +12,7 @@ set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Handler.h
 )
 
-add_subdirectory(Fraction)
+add_subdirectory(Stack)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
@@ -33,4 +33,4 @@ add_custom_target(
     ${HEADERS}
 )
 
-target_link_libraries(${project} Fraction)
+target_link_libraries(${project} Stack)
