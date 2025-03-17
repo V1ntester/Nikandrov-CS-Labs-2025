@@ -40,7 +40,7 @@ void Handler::InteractiveModeInit() {
 
     Multipliers(value, stack);
 
-    std::cout << "Делители " << value <<": ";
+    std::cout << "Делители " << value << ": ";
 
     Stack<int> reverseStack;
 
@@ -51,7 +51,7 @@ void Handler::InteractiveModeInit() {
     }
 
     std::cout << "\n";
-    std::cout << "Делители " << value <<": ";
+    std::cout << "Делители " << value << ": ";
 
     while (!reverseStack.Empty()) {
         std::cout << reverseStack.Top() << ' ';
@@ -68,7 +68,7 @@ void Handler::DemoModeInit() {
 
     Multipliers(value, stack);
 
-    std::cout << "Делители " << value <<": ";
+    std::cout << "Делители " << value << ": ";
 
     Stack<int> reverseStack;
 
@@ -79,7 +79,7 @@ void Handler::DemoModeInit() {
     }
 
     std::cout << "\n";
-    std::cout << "Делители " << value <<": ";
+    std::cout << "Делители " << value << ": ";
 
     while (!reverseStack.Empty()) {
         std::cout << reverseStack.Top() << ' ';
