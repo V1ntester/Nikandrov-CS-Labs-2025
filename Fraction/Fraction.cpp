@@ -35,6 +35,11 @@ void Fraction::Swap(Fraction& fraction) {
 }
 
 void Fraction::Simplify() {
+    if (this->numerator < 0 && this->denominator < 0) {
+        this->numerator*=(-1);
+        this->denominator*=(-1);
+    }
+
     int greatestCommonDivisor = FindGreatestCommonDivisor(this->numerator, this->denominator);
 
     if (greatestCommonDivisor > 1) {
@@ -72,13 +77,13 @@ Fraction::Fraction(const char* value) {
     }
 
     if (strcmp(token, value) != 0) {
-        std::istringstream numeratorPartStream(value);
+        std::istringstream numeratorPartStream(token);
 
         numeratorPartStream >> this->numerator;
 
-        value = strtok(nullptr, "/");
+        token = strtok(nullptr, "/");
 
-        std::istringstream denominatorPartStream(value);
+        std::istringstream denominatorPartStream(token);
 
         denominatorPartStream >> this->denominator;
     } else {
@@ -154,7 +159,7 @@ std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
 }
 
 std::istream& operator>>(std::istream& stream, Fraction& fraction) {
-    char buffer[kBufferSize] {'\0'};
+    char buffer[kBufferSize]{'\0'};
 
     stream.getline(buffer, kBufferSize);
 
