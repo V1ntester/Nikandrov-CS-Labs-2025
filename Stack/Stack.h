@@ -39,15 +39,17 @@ class Stack {
         Node* currentNode = stack.top;
         Node** tempNodeList = nullptr;
 
-        while (currentNode->nextNode) {
+        while (currentNode && currentNode->nextNode) {
             if (filled == length) {
                 Node** newTempNodeList = new Node*[length += kAllocateElementsStep];
 
-                for (size_t i = 0; i < length; i++) {
-                    newTempNodeList[i] = tempNodeList[i];
-                }
+                if (tempNodeList) {
+                    for (size_t i = 0; i < filled; i++) {
+                        newTempNodeList[i] = tempNodeList[i];
+                    }
 
-                delete[] tempNodeList;
+                    delete[] tempNodeList;                    
+                }
 
                 tempNodeList = newTempNodeList;
 
@@ -59,7 +61,9 @@ class Stack {
             ++filled;
         }
 
-        this->Push(currentNode->value);
+        if (currentNode) {
+            this->Push(currentNode->value);            
+        }
 
         for (size_t i = filled - 2; i <= 0; i--) {
             currentNode = tempNodeList[i];

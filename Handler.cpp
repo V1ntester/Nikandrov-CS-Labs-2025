@@ -4,49 +4,89 @@
 #include <iostream>
 #include "Stack/Stack.h"
 
-// namespace {
-// const int kEvenPrimeDivisior = 2;
+namespace {
+const int kEvenPrimeDivisior = 2;
 
-// void Multipliers(int value, Stack<int> stack) {
-//     while (!value % kEvenPrimeDivisior) {
-//         stack.Push(static_cast<int>(kEvenPrimeDivisior));
-//         value /= static_cast<int>(kEvenPrimeDivisior);
-//     }
+const int kTestValue = 340;
 
-//     for (size_t i = kEvenPrimeDivisior + 1; i < static_cast<size_t>(sqrt(value)) + 1; i++) {
-//         if (!value % i) {
-//             stack.Push(static_cast<int>(i));
-//             value /= static_cast<int>(i);
-//         }
-//     }
-// }
-// }  // namespace
+void Multipliers(int sourceValue, Stack<int>& stack) {
+    if (sourceValue < 0) {
+        stack.Push(-1);
+    }
+
+    int value = std::abs(sourceValue);
+
+    while (!(value % kEvenPrimeDivisior)) {
+        stack.Push(kEvenPrimeDivisior);
+        value /= kEvenPrimeDivisior;
+    }
+
+    for (size_t i = kEvenPrimeDivisior + 1; i < static_cast<size_t>(std::sqrt(std::abs(sourceValue))) + kEvenPrimeDivisior + 1; i++) {
+        if (!(value % i)) {
+            stack.Push(static_cast<int>(i));
+            value /= static_cast<int>(i);
+        }
+    }
+}
+}  // namespace
 
 void Handler::InteractiveModeInit() {
-    // int value = 0;
+    int value = 0;
 
-    // std::cout << "Введите значение: ";
-    // std::cin >> value;
-
-    // Stack<int> stack;
-
-    // Multipliers(value, stack);
-
-    // std::cout << "Делители: ";
-
-    // while (!stack.Empty()) {
-    //     std::cout << stack.Top() << ' ';
-    //     stack.Pop();
-    // }
-
-    // std::cout << '\n';
+    std::cout << "Введите значение: ";
+    std::cin >> value;
 
     Stack<int> stack;
-    stack.Push(1);
+
+    Multipliers(value, stack);
+
+    std::cout << "Делители " << value <<": ";
+
+    Stack<int> reverseStack;
+
+    while (!stack.Empty()) {
+        std::cout << stack.Top() << ' ';
+        reverseStack.Push(stack.Top());
+        stack.Pop();
+    }
+
+    std::cout << "\n";
+    std::cout << "Делители " << value <<": ";
+
+    while (!reverseStack.Empty()) {
+        std::cout << reverseStack.Top() << ' ';
+        reverseStack.Pop();
+    }
+
+    std::cout << "\n";
 }
 
 void Handler::DemoModeInit() {
+    int value = kTestValue;
+
     Stack<int> stack;
+
+    Multipliers(value, stack);
+
+    std::cout << "Делители " << value <<": ";
+
+    Stack<int> reverseStack;
+
+    while (!stack.Empty()) {
+        std::cout << stack.Top() << ' ';
+        reverseStack.Push(stack.Top());
+        stack.Pop();
+    }
+
+    std::cout << "\n";
+    std::cout << "Делители " << value <<": ";
+
+    while (!reverseStack.Empty()) {
+        std::cout << reverseStack.Top() << ' ';
+        reverseStack.Pop();
+    }
+
+    std::cout << "\n";
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {
