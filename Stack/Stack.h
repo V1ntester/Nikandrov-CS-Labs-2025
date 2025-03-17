@@ -10,15 +10,15 @@ const size_t kAllocateElementsStep = 10;
 }
 
 template<typename typeName, class Parent>
-class StackNode {
+class ListNode {
  private:
     typeName value;
-    StackNode* nextNode = nullptr;
+    ListNode* nextNode = nullptr;
 
-    StackNode(typeName value, StackNode* nextNode = nullptr) : value(value), nextNode(nextNode) {};
-    StackNode(const StackNode& node) = default;
+    ListNode(typeName value, ListNode* nextNode = nullptr) : value(value), nextNode(nextNode) {};
+    ListNode(const ListNode& node) = default;
 
-    StackNode& operator=(const StackNode node) {
+    ListNode& operator=(const ListNode node) {
         std::swap(this->value, node.value);
         std::swap(this->nextNode, node.nextNode);
     }
@@ -29,7 +29,7 @@ class StackNode {
 template<typename typeName>
 class Stack {
  private:
-    typedef class StackNode<typeName, Stack<typeName>> Node;
+    typedef class ListNode<typeName, Stack<typeName>> Node;
     Node* top = nullptr;
 
     void Copy(const Stack& stack) {
