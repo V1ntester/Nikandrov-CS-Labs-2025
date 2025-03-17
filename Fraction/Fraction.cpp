@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include <cstddef>
-#include <cstring>
+#include <string>
 #include <iostream>
 #include <sstream>
 
@@ -146,26 +146,11 @@ std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
 }
 
 std::istream& operator>>(std::istream& stream, Fraction& fraction) {
-    int integer = 0;
+    char buffer[256] {'\0'};
 
-    std::cout << "Введите целую часть: ";
+    std::getline(stream, buffer, '\n');
 
-    stream >> integer;
-
-    int numerator = 0;
-
-    std::cout << "Введите числитель: ";
-
-    stream >> numerator;
-
-    int denominator = 0;
-
-    std::cout << "Введите знаменатель: ";
-
-    stream >> denominator;
-
-    fraction.numerator = numerator + integer * denominator;
-    fraction.denominator = denominator;
+    Fraction inputFraction(buffer);
 
     fraction.Simplify();
 

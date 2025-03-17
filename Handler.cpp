@@ -13,7 +13,9 @@ void Handler::InteractiveModeInit() {
 
 // Test were taken from the lab manual
 void Handler::DemoModeInit() {
-    Fraction fractionZ(1, 1);
+    Fraction fractionZ;
+
+    std::cin >> fractionZ;
 
     std::cout << "z=" << fractionZ << std::endl;
 
