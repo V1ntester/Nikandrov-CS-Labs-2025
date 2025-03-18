@@ -150,11 +150,16 @@ Fraction operator+(const double& value, const Fraction& fraction) {
     return temp;
 }
 
-std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
+std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) 
+{
     if (fraction.numerator >= fraction.denominator) {
-        return stream << fraction.numerator / fraction.denominator << ' ' << fraction.numerator % fraction.denominator << '/' << fraction.denominator;
+        return stream << fraction.numerator / fraction.denominator << ' ' << (fraction.numerator < 0 || fraction.denominator < 0) ? fraction.numerator % fraction.denominator : fraction.numerator % fraction.denominator << '/' << fraction.denominator;
     } else {
-        return stream << fraction.numerator << '/' << fraction.denominator;
+        if (!fraction.numerator) {
+            return stream << fraction.numerator << '/' << fraction.denominator;
+        } else {
+            return stream << 0;
+        }
     }
 }
 
