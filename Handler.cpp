@@ -20,7 +20,7 @@ void Handler::DemoModeInit() {
 
     std::cout << "z=" << fractionZ << std::endl;
 
-    Fraction fractionOne(1, 1);
+    Fraction fractionOne(10, 14);
     Fraction fractionTwo;
 
     std::cout << "fr2=" << fractionTwo << std::endl;
@@ -35,7 +35,7 @@ void Handler::DemoModeInit() {
 
     std::cout << "x=" << fractionX << std::endl;
 
-    double doubleValue = -1.0;
+    double doubleValue = -1.25;
 
     Fraction fractionTestTwo = doubleValue;
 
