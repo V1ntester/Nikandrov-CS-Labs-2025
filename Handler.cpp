@@ -7,7 +7,7 @@
 namespace {
 const int kEvenPrimeDivisior = 2;
 
-//const int kTestValue = 340;
+// const int kTestValue = 340;
 
 void Multipliers(int sourceValue, Stack<int>& stack) {
     if (sourceValue < 0) {
