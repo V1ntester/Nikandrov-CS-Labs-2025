@@ -7,7 +7,7 @@
 namespace {
 const int kEvenPrimeDivisior = 2;
 
-const int kTestValue = 340;
+//const int kTestValue = 340;
 
 void Multipliers(int sourceValue, Stack<int>& stack) {
     if (sourceValue < 0) {
@@ -62,31 +62,21 @@ void Handler::InteractiveModeInit() {
 }
 
 void Handler::DemoModeInit() {
-    int value = kTestValue;
+    Stack<int> firstStack;
 
-    Stack<int> stack;
+    firstStack.Push(1);
+    firstStack.Push(2);
+    firstStack.Push(3);
 
-    Multipliers(value, stack);
+    Stack<int> secondStack(firstStack);
+    Stack<int> thirdStack = firstStack;
 
-    std::cout << "Делители " << value << ": ";
-
-    Stack<int> reverseStack;
-
-    while (!stack.Empty()) {
-        std::cout << stack.Top() << ' ';
-        reverseStack.Push(stack.Top());
-        stack.Pop();
+    while (!firstStack.Empty() && !secondStack.Empty() && !thirdStack.Empty()) {
+        std::cout << firstStack.Top() << ' ' << secondStack.Top() << ' ' << thirdStack.Top() << '\n';
+        firstStack.Pop();
+        secondStack.Pop();
+        thirdStack.Pop();
     }
-
-    std::cout << "\n";
-    std::cout << "Делители " << value << ": ";
-
-    while (!reverseStack.Empty()) {
-        std::cout << reverseStack.Top() << ' ';
-        reverseStack.Pop();
-    }
-
-    std::cout << "\n";
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {

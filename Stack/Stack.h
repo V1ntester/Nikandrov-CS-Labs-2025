@@ -33,47 +33,45 @@ class Stack {
     Node* top = nullptr;
 
     void Copy(const Stack& stack) {
+        if (stack.Empty()) {
+            return;
+        }
+
         size_t filled = 0;
         size_t length = 0;
 
         Node* currentNode = stack.top;
-        Node** tempNodeList = nullptr;
+        Node** nodeList = nullptr;
 
-        while (currentNode && currentNode->nextNode) {
+        while (currentNode) {
             if (filled == length) {
-                Node** newTempNodeList = new Node*[length += kAllocateElementsStep];
+                Node** newNodeList = new Node*[length += kAllocateElementsStep];
 
-                if (tempNodeList) {
+                if (nodeList) {
                     for (size_t i = 0; i < filled; i++) {
-                        newTempNodeList[i] = tempNodeList[i];
+                        newNodeList[i] = nodeList[i];
                     }
 
-                    delete[] tempNodeList;                    
+                    delete[] nodeList;
                 }
 
-                tempNodeList = newTempNodeList;
+                nodeList = newNodeList;
 
                 length += 10;
             }
 
-            tempNodeList[filled] = currentNode;
+            nodeList[filled] = currentNode;
 
             ++filled;
+
+            currentNode->nextNode ? currentNode = currentNode->nextNode : currentNode = nullptr;
         }
 
-        if (currentNode) {
-            this->Push(currentNode->value);            
+        for (int i = filled - 1; i > -1; i--) {
+            this->Push(nodeList[i]->value);
         }
 
-        for (size_t i = filled - 2; i <= 0; i--) {
-            currentNode = tempNodeList[i];
-
-            currentNode->nextNode = tempNodeList[i - 1];
-
-            this->Push(currentNode->value);
-        }
-
-        delete[] tempNodeList;
+        delete[] nodeList;
     }
 
  public:
@@ -87,13 +85,13 @@ class Stack {
         }
     }
 
-    Stack& operator=(const Stack stack) {
+    Stack& operator=(const Stack& stack) {
         this->Copy(stack);
 
         return *this;
     }
 
-    bool Empty() { return this->top == nullptr; }
+    bool Empty() const { return this->top == nullptr; }
 
     void Push(typeName value) {
         Node* node = nullptr;
