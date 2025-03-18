@@ -3,6 +3,13 @@
 #include <iostream>
 #include "Fraction/Fraction.h"
 
+namespace {
+const int kFirstDemoModeTestValue = 10;
+const int kSecondDemoModeTestValue = 14;
+const double kThirdDemoModeTestValue = -1.25;
+const int kFourthDemoModeTestValue = 5;
+}  // namespace
+
 void Handler::InteractiveModeInit() {
     Fraction fraction;
 
@@ -11,74 +18,74 @@ void Handler::InteractiveModeInit() {
     std::cout << "{Ваша дробь} + 1.0: " << fraction + 1.0 << '\n';
 }
 
-// Test were taken from the lab manual
+// Test with bad variable names were taken from the lab manual.
 void Handler::DemoModeInit() {
-    Fraction fractionZ;
+    std::cout << "Введите дробь: \n";
 
-    std::cout << "Введите дробь: ";
-    std::cin >> fractionZ;
+    Fraction z;
 
-    std::cout << "z=" << fractionZ << std::endl;
+    std::cin >> z;
+    std::cout << "z=" << z << std::endl;
 
-    Fraction fractionOne(10, 14);
-    Fraction fractionTwo;
+    Fraction fr1(kFirstDemoModeTestValue, kSecondDemoModeTestValue);
+    Fraction fr2;
 
-    std::cout << "fr2=" << fractionTwo << std::endl;
-    std::cout << "fr1=" << fractionOne << std::endl;
+    std::cout << "fr2=" << fr2 << std::endl;
+    std::cout << "fr1=" << fr1 << std::endl;
 
-    Fraction fractionTestOne = "-1 4/8";
+    Fraction fr = "-1 4/8";
 
-    std::cout << "fr=" << fractionTestOne << std::endl;
+    std::cout << "fr=" << fr << std::endl;
 
-    Fraction fractionX(fractionZ);
-    Fraction fractionY;
+    Fraction x(z);
+    Fraction y;
 
-    std::cout << "x=" << fractionX << std::endl;
+    std::cout << "x=" << x << std::endl;
 
-    double doubleValue = -1.25;
+    double dbl = kThirdDemoModeTestValue;
 
-    Fraction fractionTestTwo = doubleValue;
+    Fraction f = dbl;
 
-    std::cout << "f=" << fractionTestTwo << std::endl;
+    std::cout << "f=" << f << std::endl;
 
-    fractionY = fractionX + fractionZ;
+    y = x + z;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY += fractionX;
-    fractionTestTwo += doubleValue / 1;
+    y += x;
+    f += dbl / 2;
 
-    std::cout << "f=" << fractionTestTwo << std::endl;
+    std::cout << "f=" << f << std::endl;
 
-    fractionY = fractionX + doubleValue;
+    y = x + dbl;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY = doubleValue + fractionY;
+    y = dbl + y;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY += doubleValue;
+    y += dbl;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    int integerValue = 1;
+    int i = kFourthDemoModeTestValue;
 
-    fractionY += integerValue;
+    y += i;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY = integerValue + fractionX;
+    y = i + x;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY = fractionX + integerValue;
+    y = x + i;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 
-    fractionY += doubleValue + integerValue + fractionX;
+    y += dbl + i + x;
 
-    std::cout << "y=" << fractionY << std::endl;
+    std::cout << "y=" << y << std::endl;
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {

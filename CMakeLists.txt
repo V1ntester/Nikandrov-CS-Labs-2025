@@ -15,7 +15,7 @@ set(HEADERS
 add_subdirectory(Fraction)
 
 set(CMAKE_CXX_STANDARD 20)
-#set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 
 add_executable(${project} ${SOURCES} ${HEADERS})
 target_compile_options(${project} PRIVATE -Wall -Wextra -Werror -Wpedantic)

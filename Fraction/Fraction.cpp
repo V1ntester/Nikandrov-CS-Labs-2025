@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cstddef>
 #include <cstring>
+#include <exception>
 #include <iostream>
 #include <sstream>
 
@@ -36,8 +37,8 @@ void Fraction::Swap(Fraction& fraction) {
 
 void Fraction::Simplify() {
     if (this->numerator < 0 && this->denominator < 0) {
-        this->numerator*=(-1);
-        this->denominator*=(-1);
+        this->numerator *= (-1);
+        this->denominator *= (-1);
     }
 
     int greatestCommonDivisor = FindGreatestCommonDivisor(this->numerator, this->denominator);
@@ -63,38 +64,39 @@ Fraction::Fraction(const char* value) {
     char* sourceString = new char[sourceStringLength];
     strncpy(sourceString, value, sourceStringLength);
 
-    int integerPart = 0;
+    std::istringstream stream(value);
+
+    int integer = 0;
+    int numerator = 0;
+    int denominator = 1;
+    char delimiter = '\0';
+
     char* token = strtok(sourceString, " ");
 
-    if (strcmp(token, value) != 0) {
-        std::istringstream integerPartStream(token);
+    if (strcmp(token, value) == 0) {
+        stream >> integer;
 
-        integerPartStream >> integerPart;
+        if (stream >> delimiter && delimiter == '/') {
+            std::swap(numerator, integer);
 
-        token = strtok(nullptr, "/");
+            stream >> denominator;
+        }
     } else {
-        token = strtok(sourceString, "/");
-    }
-
-    if (strcmp(token, value) != 0) {
-        std::istringstream numeratorPartStream(token);
-
-        numeratorPartStream >> this->numerator;
-
-        token = strtok(nullptr, "/");
-
-        std::istringstream denominatorPartStream(token);
-
-        denominatorPartStream >> this->denominator;
-    } else {
-        std::istringstream integerPartStream(token);
-
-        integerPartStream >> integerPart;
+        stream >> integer;
+        stream >> numerator;
+        stream >> delimiter;
+        stream >> denominator;
     }
 
     delete[] sourceString;
 
-    this->numerator += (integerPart * this->denominator);
+    if (denominator == 0) {
+        throw std::invalid_argument("Invalid denominator");
+    }
+
+    this->numerator = integer < 0 ? numerator * (-1) : numerator;
+    this->denominator = denominator;
+    this->numerator += (integer * denominator);
 
     this->Simplify();
 }
@@ -117,7 +119,7 @@ Fraction& Fraction::operator+=(const Fraction& fraction) {
     if (this->denominator == fraction.denominator) {
         this->numerator += fraction.numerator;
     } else {
-        this->numerator += fraction.denominator * this->denominator;
+        this->numerator = this->numerator * fraction.denominator + fraction.numerator * this->denominator;
         this->denominator *= fraction.denominator;
     }
 
@@ -150,17 +152,19 @@ Fraction operator+(const double& value, const Fraction& fraction) {
     return temp;
 }
 
-std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) 
-{
-    if (fraction.numerator >= fraction.denominator) {
-        return stream << fraction.numerator / fraction.denominator << ' ' << (fraction.numerator < 0 || fraction.denominator < 0) ? fraction.numerator % fraction.denominator : fraction.numerator % fraction.denominator << '/' << fraction.denominator;
-    } else {
-        if (!fraction.numerator) {
-            return stream << fraction.numerator << '/' << fraction.denominator;
-        } else {
-            return stream << 0;
+std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
+    if (std::abs(fraction.numerator) >= std::abs(fraction.denominator)) {
+        stream << fraction.numerator / fraction.denominator << ' ';
+
+        if (std::abs(fraction.numerator) % std::abs(fraction.denominator) != 0) {
+            fraction.numerator != 0 ? stream << std::abs(fraction.numerator) % std::abs(fraction.denominator) << '/' << std::abs(fraction.denominator)
+                                    : stream << 0;
         }
+    } else {
+        fraction.numerator != 0 ? stream << fraction.numerator << '/' << fraction.denominator : stream << 0;
     }
+
+    return stream;
 }
 
 std::istream& operator>>(std::istream& stream, Fraction& fraction) {
