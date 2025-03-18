@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(project "Airport")
+set(project "Patient")
 project(${project})
 
 set(SOURCES 
-    ${CMAKE_CURRENT_SOURCE_DIR}/Airport.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Patient.cpp
 )
 
 set(HEADERS 
-    ${CMAKE_CURRENT_SOURCE_DIR}/Airport.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Patient.h
 )
 
 set(SOURCE_LIST 

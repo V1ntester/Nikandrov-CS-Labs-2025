@@ -22,4 +22,4 @@ if(ENABLE_DEBUG)
     target_compile_options(${project} PRIVATE -g)
 endif()
 
-target_link_libraries(${project} Airport)
+target_link_libraries(${project} Patient)
