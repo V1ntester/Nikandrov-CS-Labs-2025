@@ -64,34 +64,44 @@ Fraction::Fraction(const char* value) {
     char* sourceString = new char[sourceStringLength];
     strncpy(sourceString, value, sourceStringLength);
 
-    std::istringstream stream(value);
-
     int integer = 0;
     int numerator = 0;
     int denominator = 1;
     char delimiter = '\0';
 
-    char* token = strtok(sourceString, " ");
+    try {
+        std::istringstream stream(value);
 
-    if (strcmp(token, value) == 0) {
-        stream >> integer;
+        char* token = strtok(sourceString, " ");
 
-        if (stream >> delimiter && delimiter == '/') {
-            std::swap(numerator, integer);
+        if (strcmp(token, value) == 0) {
+            stream >> integer;
 
+            if (stream >> delimiter && delimiter == '/') {
+                std::swap(numerator, integer);
+
+                stream >> denominator;
+            }
+        } else {
+            stream >> integer;
+            stream >> numerator;
+            stream >> delimiter;
             stream >> denominator;
         }
-    } else {
-        stream >> integer;
-        stream >> numerator;
-        stream >> delimiter;
-        stream >> denominator;
-    }
 
-    delete[] sourceString;
+        delete[] sourceString;
 
-    if (denominator == 0) {
-        throw std::invalid_argument("Invalid denominator");
+        if (denominator == 0) {
+            throw std::invalid_argument("Invalid denominator");
+        }
+
+    } catch (const std::invalid_argument& exception) {
+        std::cout << exception.what() << '\n';
+
+        this->numerator = 0;
+        this->denominator = 0;
+
+        return;
     }
 
     this->numerator = integer < 0 ? numerator * (-1) : numerator;
