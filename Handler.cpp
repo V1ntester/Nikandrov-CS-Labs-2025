@@ -71,6 +71,10 @@ void Handler::DemoModeInit() {
     Stack<int> secondStack(firstStack);
     Stack<int> thirdStack = firstStack;
 
+    std::cout << "First stack: " << firstStack << '\n';
+
+    std::cout << '\n';
+
     while (!firstStack.Empty() && !secondStack.Empty() && !thirdStack.Empty()) {
         std::cout << firstStack.Top() << ' ' << secondStack.Top() << ' ' << thirdStack.Top() << '\n';
         firstStack.Pop();

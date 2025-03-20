@@ -15,7 +15,7 @@ class ListNode {
     typeName value;
     ListNode* nextNode = nullptr;
 
-    ListNode(typeName value, ListNode* nextNode = nullptr) : value(value), nextNode(nextNode) {};
+    ListNode(const typeName& value, ListNode* nextNode = nullptr) : value(value), nextNode(nextNode) {};
     ListNode(const ListNode& node) = default;
 
     ListNode& operator=(const ListNode node) {
@@ -93,7 +93,7 @@ class Stack {
 
     bool Empty() const { return this->top == nullptr; }
 
-    void Push(typeName value) {
+    void Push(const typeName& value) {
         Node* node = nullptr;
 
         if (this->Empty()) {
@@ -118,6 +118,26 @@ class Stack {
     }
 
     typeName Top() const { return this->top->value; }
+
+    friend std::ostream& operator<<(std::ostream& stream, const Stack& stack) {
+        if (!stack.top) {
+            return stream;
+        }
+
+        Node* currentNode = stack.top;
+
+        while (currentNode) {
+            stream << currentNode->value;
+
+            if (currentNode->nextNode) {
+                stream << ' ';
+            }
+
+            currentNode = currentNode->nextNode;
+        }
+
+        return stream;
+    }
 };
 
 #endif
