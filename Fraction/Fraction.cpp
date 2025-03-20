@@ -99,7 +99,7 @@ Fraction::Fraction(const char* value) {
         std::cout << exception.what() << '\n';
 
         this->numerator = 0;
-        this->denominator = 0;
+        this->denominator = 1;
 
         return;
     }
