@@ -2,16 +2,16 @@
 
 #include <cstring>
 #include <iostream>
-#include "Collections/Vector.h"
 #include "Collections/Set.h"
+#include "Collections/Vector.h"
 
 namespace {
-    const size_t kStringLength = 6;
+const size_t kStringLength = 6;
 }
 
 void Handler::InteractiveModeInit() {
     Set<char*> set;
-    
+
     char* firstString = new char[kStringLength];
     char* secondString = new char[kStringLength];
 
@@ -20,15 +20,15 @@ void Handler::InteractiveModeInit() {
 
     set.Add(firstString);
     set.Add(secondString);
-    
+
     Set<char*> setClone(set);
 
     std::cout << set << '\n';
     std::cout << setClone << '\n';
     std::cout << setClone.isElement(firstString) << '\n';
 
-    delete [] firstString;
-    delete [] secondString;
+    delete[] firstString;
+    delete[] secondString;
 }
 
 void Handler::DemoModeInit() {

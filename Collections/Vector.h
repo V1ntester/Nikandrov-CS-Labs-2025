@@ -70,7 +70,6 @@ bool Vector<char*>::EqualElements(char* firstElement, char* secondElement) const
     return strcmp(firstElement, secondElement) == 0;
 }
 
-
 template<>
 bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, bool reverse) const {
     if (!reverse) {
@@ -79,7 +78,6 @@ bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, boo
 
     return strcmp(firstElement, secondElement) < 0;
 }
-
 
 template<typename TypeName>
 void Vector<TypeName>::Resize(size_t length) {

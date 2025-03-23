@@ -32,7 +32,7 @@ class Set : protected Vector<TypeName> {
     bool isElement(TypeName value) const;
 
     template<typename FriendTypeName>
-    friend std::ostream& operator<<(std::ostream& stream, const Set<FriendTypeName>& set); 
+    friend std::ostream& operator<<(std::ostream& stream, const Set<FriendTypeName>& set);
 
     template<typename FriendTypeName>
     friend Set<FriendTypeName> operator+(const Set<FriendTypeName>& firstSet, const Set<FriendTypeName>& secondSet);
@@ -141,19 +141,19 @@ bool Set<TypeName>::isElement(TypeName value) const {
 
     while (low <= high) {
         size_t mid = low + (high - low) / 2;
-        
+
         if (this->EqualElements((*this)[mid], value)) {
             return true;
         }
 
         if (this->CompareElements((*this)[mid], value, true)) {
-            low = mid+1;
+            low = mid + 1;
         } else {
             if (low == high) {
                 return false;
             }
 
-            high = mid-1;
+            high = mid - 1;
         }
     }
 
@@ -183,7 +183,7 @@ template<typename TypeName>
 Set<TypeName> operator+(const Set<TypeName>& firstSet, const Set<TypeName>& secondSet) {
     Set<TypeName> temp = firstSet;
 
-    temp+=secondSet;
+    temp += secondSet;
 
     return temp;
 }
@@ -192,7 +192,7 @@ template<typename TypeName>
 Set<TypeName> operator-(const Set<TypeName>& firstSet, const Set<TypeName>& secondSet) {
     Set<TypeName> temp = firstSet;
 
-    temp-=secondSet;
+    temp -= secondSet;
 
     return temp;
 }
@@ -201,10 +201,9 @@ template<typename TypeName>
 Set<TypeName> operator*(const Set<TypeName>& firstSet, const Set<TypeName>& secondSet) {
     Set<TypeName> temp = firstSet;
 
-    temp*=secondSet;
+    temp *= secondSet;
 
     return temp;
 }
-
 
 #endif
