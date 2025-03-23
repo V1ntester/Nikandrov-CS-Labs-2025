@@ -62,14 +62,14 @@ void Handler::InteractiveModeInit() {
 }
 
 void Handler::DemoModeInit() {
-    Stack<int> firstStack;
+    Stack<const char*> firstStack;
 
-    firstStack.Push(1);
-    firstStack.Push(2);
-    firstStack.Push(3);
+    firstStack.Push("pam");
+    firstStack.Push("pum");
+    firstStack.Push("pim");
 
-    Stack<int> secondStack(firstStack);
-    Stack<int> thirdStack = firstStack;
+    Stack<const char*> secondStack(firstStack);
+    Stack<const char*> thirdStack = firstStack;
 
     std::cout << "First stack: " << firstStack << '\n';
 
