@@ -1,11 +1,34 @@
 #include "Handler.h"
 
-#include <cmath>
+#include <cstring>
 #include <iostream>
 #include "Collections/Vector.h"
 #include "Collections/Set.h"
 
+namespace {
+    const size_t kStringLength = 6;
+}
+
 void Handler::InteractiveModeInit() {
+    Set<char*> set;
+    
+    char* firstString = new char[kStringLength];
+    char* secondString = new char[kStringLength];
+
+    strncpy(firstString, "aaacc", kStringLength);
+    strncpy(secondString, "aaaaa", kStringLength);
+
+    set.Add(firstString);
+    set.Add(secondString);
+    
+    Set<char*> setClone(set);
+
+    std::cout << set << '\n';
+    std::cout << setClone << '\n';
+    std::cout << setClone.isElement(firstString) << '\n';
+
+    delete [] firstString;
+    delete [] secondString;
 }
 
 void Handler::DemoModeInit() {
