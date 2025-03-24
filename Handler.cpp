@@ -69,7 +69,8 @@ void Handler::DemoModeInit() {
     firstStack.Push("pim");
 
     Stack<const char*> secondStack(firstStack);
-    Stack<const char*> thirdStack = firstStack;
+    Stack<const char*> thirdStack;
+    thirdStack = firstStack;
 
     std::cout << "First stack: " << firstStack << '\n';
 
