@@ -22,10 +22,8 @@ class Patient {
     size_t age = 0;
 
     void IdInit();
-    void NameInit(const char* name, size_t nameLength);
-
-    void NameSet(const char* name);
-    void CodeSet(const char* personalFileCode);
+    void NameInit(const char* name);
+    void CodeInit(const char* personalFileCode);
 
  public:
     Patient();

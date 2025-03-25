@@ -17,23 +17,22 @@ void Planet::IdInit() {
     this->id = this->totalCount;
 }
 
-void Planet::NameInit(const char* name, size_t nameLength) {
-    this->nameLength = nameLength;
-    this->name = new char[this->nameLength];
-
-    for (size_t i = 0; i < this->nameLength; i++) {
-        this->name[i] = name[i];
-    }
-}
-
-void Planet::NameSet(const char* name) {
+void Planet::NameInit(const char* name) {
     size_t newNameLength = strlen(name) + 1;
 
     if (this->nameLength != newNameLength) {
-        delete[] this->name;
-    }
+        char* newName = new char[newNameLength];
 
-    this->NameInit(name, newNameLength);
+        strncpy(newName, name, newNameLength);
+
+        delete[] this->name;
+
+        this->name = newName;
+
+        this->nameLength = newNameLength;
+    } else {
+        strncpy(this->name, name, newNameLength);
+    }
 }
 
 Planet::Planet() {
@@ -43,8 +42,7 @@ Planet::Planet() {
 };
 
 Planet::Planet(Planet& planet) : diameter(planet.diameter), lifeExists(planet.lifeExists), satellitesCount(planet.satellitesCount) {
-    size_t nameLength = strlen(planet.name) + 1;
-    this->NameInit(planet.name, nameLength);
+    this->NameInit(planet.name);
 
     this->IdInit();
 
@@ -53,8 +51,7 @@ Planet::Planet(Planet& planet) : diameter(planet.diameter), lifeExists(planet.li
 
 Planet::Planet(const char* name, size_t diameter, bool lifeExists, size_t satellitesCount)
     : diameter(diameter), lifeExists(lifeExists), satellitesCount(satellitesCount) {
-    size_t nameLength = strlen(name) + 1;
-    this->NameInit(name, nameLength);
+    this->NameInit(name);
 
     this->IdInit();
 
@@ -68,8 +65,7 @@ Planet::~Planet() {
 }
 
 Planet& Planet::operator=(const Planet& planet) {
-    size_t nameLength = strlen(planet.name) + 1;
-    this->NameInit(planet.name, nameLength);
+    this->NameInit(planet.name);
     this->diameter = planet.diameter;
     this->lifeExists = planet.lifeExists;
     this->satellitesCount = planet.satellitesCount;
@@ -109,7 +105,7 @@ std::ifstream& operator>>(std::ifstream& stream, Planet& planet) {
     stream >> name;
     stream >> diameter >> lifeExists >> satellitesCount;
 
-    planet.NameSet(name);
+    planet.NameInit(name);
     planet.diameter = diameter;
     planet.lifeExists = lifeExists;
     planet.satellitesCount = satellitesCount;

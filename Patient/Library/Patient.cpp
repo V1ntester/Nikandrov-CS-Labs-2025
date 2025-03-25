@@ -18,26 +18,25 @@ void Patient::IdInit() {
     this->id = this->totalCount;
 }
 
-void Patient::NameInit(const char* name, size_t nameLength) {
-    this->nameLength = nameLength;
-    this->name = new char[this->nameLength];
-
-    for (size_t i = 0; i < this->nameLength; i++) {
-        this->name[i] = name[i];
-    }
-}
-
-void Patient::NameSet(const char* name) {
+void Patient::NameInit(const char* name) {
     size_t newNameLength = strlen(name) + 1;
 
     if (this->nameLength != newNameLength) {
-        delete[] this->name;
-    }
+        char* newName = new char[newNameLength];
+        
+        strncpy(newName, name, newNameLength);   
 
-    this->NameInit(name, newNameLength);
+        delete[] this->name;
+
+        this->name = newName;
+
+        this->nameLength = newNameLength;
+    } else {
+        strncpy(this->name, name, newNameLength);   
+    }
 }
 
-void Patient::CodeSet(const char* personalFileCode) {
+void Patient::CodeInit(const char* personalFileCode) {
     for (size_t i = 0; i < kPersonalFileCodeLength; i++) {
         this->personalFileCode[i] = personalFileCode[i];
     }
@@ -45,15 +44,14 @@ void Patient::CodeSet(const char* personalFileCode) {
 
 Patient::Patient() : personalFileCode(new char[kPersonalFileCodeLength]) {
     this->IdInit();
-    this->CodeSet("000\0");
+    this->CodeInit("000\0");
 
     std::cout << "Создание ID " << this->id << '\n';
 };
 
 Patient::Patient(Patient& patient) : age(patient.age) {
-    size_t nameLength = strlen(patient.name) + 1;
-    this->NameInit(patient.name, nameLength);
-    this->CodeSet(patient.personalFileCode);
+    this->NameInit(patient.name);
+    this->CodeInit(patient.personalFileCode);
 
     this->IdInit();
 
@@ -61,9 +59,8 @@ Patient::Patient(Patient& patient) : age(patient.age) {
 }
 
 Patient::Patient(const char* name, const char* personalFileCode, bool sex, size_t age) : sex(sex), age(age) {
-    size_t nameLength = strlen(name) + 1;
-    this->NameInit(name, nameLength);
-    this->CodeSet(personalFileCode);
+    this->NameInit(name);
+    this->CodeInit(personalFileCode);
 
     this->IdInit();
 
@@ -78,9 +75,8 @@ Patient::~Patient() {
 }
 
 Patient& Patient::operator=(const Patient& patient) {
-    size_t nameLength = strlen(patient.name) + 1;
-    this->NameInit(patient.name, nameLength);
-    this->CodeSet(patient.personalFileCode);
+    this->NameInit(patient.name);
+    this->CodeInit(patient.personalFileCode);
     this->sex = patient.sex;
     this->age = patient.age;
 
@@ -119,8 +115,8 @@ std::ifstream& operator>>(std::ifstream& stream, Patient& patient) {
     stream >> personalFileCode;
     stream >> age;
 
-    patient.NameSet(name);
-    patient.CodeSet(personalFileCode);
+    patient.NameInit(name);
+    patient.CodeInit(personalFileCode);
     patient.age = age;
     return stream;
 }

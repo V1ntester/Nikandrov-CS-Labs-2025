@@ -16,9 +16,7 @@ class Planet {
     size_t satellitesCount = 0;
 
     void IdInit();
-    void NameInit(const char* name, size_t nameLength);
-
-    void NameSet(const char* name);
+    void NameInit(const char* name);
 
  public:
     Planet();
