@@ -21,14 +21,16 @@ void Handler::InteractiveModeInit() {
     set.Add(firstString);
     set.Add(secondString);
 
+    delete[] secondString;
+
     Set<char*> setClone(set);
 
     std::cout << set << '\n';
     std::cout << setClone << '\n';
     std::cout << setClone.isElement(firstString) << '\n';
 
+    
     delete[] firstString;
-    delete[] secondString;
 }
 
 void Handler::DemoModeInit() {
@@ -58,64 +60,64 @@ void Handler::DemoModeInit() {
 
     std::cout << "Вектор v1: " << vector1 << '\n';
 
-    // Set<char*> set("Yes");
-    // Set<char*> set1;
-    // Set<char*> set2;
+    Set<const char*> set("Yes");
+    Set<const char*> set1;
+    Set<const char*> set2;
 
-    // set.Add("Привет!");
-    // set.Add("No");
+    set.Add("Привет!");
+    set.Add("No");
 
-    // const char* string = "Hello!";
+    const char* string = "Hello!";
 
-    // set.Add(string);
+    set.Add(string);
 
-    // std::cout << "Множество s: " << set << '\n';
+    std::cout << "Множество s: " << set << '\n';
 
-    // set1.Add("Cat");
-    // set1.Add("No");
-    // set1.Add("Привет");
+    set1.Add("Cat");
+    set1.Add("No");
+    set1.Add("Привет");
 
-    // std::cout << "Множество s1: " << set1 << '\n';
+    std::cout << "Множество s1: " << set1 << '\n';
 
-    // set2 = set1 - set;
+    set2 = set1 - set;
 
-    // std::cout << "Множество s2=s1-s: " << set2 << '\n';
-    // std::cout << "Множество s1: " << set1 << '\n';
-    // std::cout << "Множество s: " << set << '\n';
+    std::cout << "Множество s2=s1-s: " << set2 << "\n\n";
+    std::cout << "Множество s1: " << set1 << '\n';
+    std::cout << "Множество s: " << set << '\n';
 
-    // set2 = set1 + set;
+    set2 = set1 + set;
 
-    // std::cout << "Множество s2=s1+s: " << set2 << '\n';
-    // std::cout << "Множество s1: " << set1 << '\n';
-    // std::cout << "Множество s: " << set << '\n';
+    std::cout << "Множество s2=s1+s: " << set2 << "\n\n";
+    std::cout << "Множество s1: " << set1 << '\n';
+    std::cout << "Множество s: " << set << '\n';
 
-    // set2 = set1 * set;
+    set2 = set1 * set;
 
-    // std::cout << "Множество s2=s1*s: " << set2 << '\n';
-    // std::cout << "Множество s1: " << set1 << '\n';
-    // std::cout << "Множество s: " << set << '\n';
+    std::cout << "Множество s2=s1*s: " << set2 << "\n\n";
+    std::cout << "Множество s1: " << set1 << '\n';
+    std::cout << "Множество s: " << set << '\n';
 
-    // Set<char*> set3 = set2;
+    Set<const char*> set3 = set2;
 
-    // std::cout << "Множество s3=s2: " << set3 << '\n';
+    std::cout << "Множество s3=s2: " << set3 << "\n\n";
 
-    // if(set3 == set2) {
-    //     std::cout << "Множество s3=s2\n";
-    // } else {
-    //     std::cout << "Множество s3!=s2\n";
-    // }
+    if(set3 == set2) {
+        std::cout << "Множество s3=s2\n";
+    } else {
+        std::cout << "Множество s3!=s2\n";
+    }
 
-    // if(set3 == set1) {
-    //     std::cout << "Множество s3=s1\n";
-    // } else {
-    //     std::cout << "Множество s3!=s1\n";
-    // }
+    if(set3 == set1) {
+        std::cout << "Множество s3=s1\n";
+    } else {
+        std::cout << "Множество s3!=s1\n";
+    }
 
-    // if(set1 == set3) {
-    //     std::cout << "Множество s1=s3\n";
-    // } else {
-    //     std::cout << "Множество s1!=s3\n";
-    // }
+    if(set1 == set3) {
+        std::cout << "Множество s1=s3\n";
+    } else {
+        std::cout << "Множество s1!=s3\n";
+    }
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {

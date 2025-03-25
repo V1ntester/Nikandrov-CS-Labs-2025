@@ -22,7 +22,7 @@ class Set : protected Vector<TypeName> {
     Set& operator-=(const Set& set);
     Set& operator*=(const Set& set);
 
-    bool operator==(const Set& set);
+    bool operator==(const Set& set) const;
 
     size_t GetLength() const;
 
@@ -91,7 +91,7 @@ Set<TypeName>& Set<TypeName>::operator-=(const Set<TypeName>& set) {
 
 template<typename TypeName>
 Set<TypeName>& Set<TypeName>::operator*=(const Set<TypeName>& set) {
-    for (size_t i = 0; i < set.GetLength(); i++) {
+    for (size_t i = 0; i < (*this).GetLength(); i++) {
         if (!set.isElement((*this)[i])) {
             this->Delete((*this)[i]);
         }
@@ -101,7 +101,7 @@ Set<TypeName>& Set<TypeName>::operator*=(const Set<TypeName>& set) {
 }
 
 template<typename TypeName>
-bool Set<TypeName>::operator==(const Set<TypeName>& set) {
+bool Set<TypeName>::operator==(const Set<TypeName>& set) const {
     return Vector<TypeName>::operator==(set);
 }
 
@@ -141,6 +141,7 @@ bool Set<TypeName>::isElement(TypeName value) const {
 
     while (low <= high) {
         size_t mid = low + (high - low) / 2;
+
 
         if (this->EqualElements((*this)[mid], value)) {
             return true;
