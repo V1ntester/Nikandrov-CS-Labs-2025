@@ -29,7 +29,6 @@ void Handler::InteractiveModeInit() {
     std::cout << setClone << '\n';
     std::cout << setClone.isElement(firstString) << '\n';
 
-    
     delete[] firstString;
 }
 
@@ -41,7 +40,7 @@ void Handler::DemoModeInit() {
     vector.Add("Привет!");
     vector.Add("Привет!");
     vector.Add("Привет!");
-    
+
     std::cout << "Вектор v: " << vector << '\n';
 
     vector.Add("Привет!");
@@ -101,19 +100,19 @@ void Handler::DemoModeInit() {
 
     std::cout << "Множество s3=s2: " << set3 << "\n\n";
 
-    if(set3 == set2) {
+    if (set3 == set2) {
         std::cout << "Множество s3=s2\n";
     } else {
         std::cout << "Множество s3!=s2\n";
     }
 
-    if(set3 == set1) {
+    if (set3 == set1) {
         std::cout << "Множество s3=s1\n";
     } else {
         std::cout << "Множество s3!=s1\n";
     }
 
-    if(set1 == set3) {
+    if (set1 == set3) {
         std::cout << "Множество s1=s3\n";
     } else {
         std::cout << "Множество s1!=s3\n";

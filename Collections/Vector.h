@@ -74,7 +74,7 @@ bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, boo
     if (!firstElement || !secondElement) {
         return false;
     }
-    
+
     if (!reverse) {
         return strcmp(firstElement, secondElement) > 0;
     }
@@ -104,7 +104,6 @@ template<>
 bool Vector<const char*>::EqualElements(const char* firstElement, const char* secondElement) const {
     return strcmp(firstElement, secondElement) == 0;
 }
-
 
 template<typename TypeName>
 void Vector<TypeName>::Resize(size_t length) {
@@ -213,7 +212,6 @@ template<typename TypeName>
 Vector<TypeName>::Vector(const Vector& vector) {
     this->Copy(vector);
 }
-
 
 template<typename TypeName>
 Vector<TypeName>::~Vector() {

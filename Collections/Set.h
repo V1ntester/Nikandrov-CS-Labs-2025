@@ -142,7 +142,6 @@ bool Set<TypeName>::isElement(TypeName value) const {
     while (low <= high) {
         size_t mid = low + (high - low) / 2;
 
-
         if (this->EqualElements((*this)[mid], value)) {
             return true;
         }
