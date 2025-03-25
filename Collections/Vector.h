@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstring>
 #include <stdexcept>
+#include <iostream>
 
 namespace {
 struct FindAnswer {
@@ -49,6 +50,9 @@ class Vector {
     void Delete(size_t index);
 
     auto Find(TypeName value) const;
+
+    template<typename FriendTypeName>
+    friend std::ostream& operator<<(std::ostream& stream, const Vector<FriendTypeName>& vector);
 };
 
 template<typename TypeName>
@@ -239,6 +243,25 @@ auto Vector<TypeName>::Find(TypeName value) const {
     }
 
     return FindAnswer(isSucess, index);
+}
+
+template<typename TypeName>
+std::ostream& operator<<(std::ostream& stream, const Vector<TypeName>& vector) {
+    size_t length = vector.GetLength();
+
+    stream << '[';
+
+    for (size_t i = 0; i < length; i++) {
+        stream << vector[i];
+
+        if (i != length - 1) {
+            std::cout << ", ";
+        }
+    }
+
+    stream << ']';
+
+    return stream;
 }
 
 #endif
