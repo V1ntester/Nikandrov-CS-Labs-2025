@@ -100,7 +100,7 @@ void DataBase::Sort() {
     }
 }
 
-void DataBase::Add(const char* planetName, size_t diameter, bool lifeExists, size_t satellitesCount) {
+void DataBase::Add(const char* planetName, int diameter, bool lifeExists, size_t satellitesCount) {
     Planet* planet = new Planet(planetName, diameter, lifeExists, satellitesCount);
 
     this->data.Push(planet);

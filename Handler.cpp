@@ -111,8 +111,9 @@ void Handler::AddToDataBase() {
         lifeExists = kLifeExistsDemonstration;
         satellitesCount = kSatellitesCountDemonstration;
     }
-    
+
     this->dataBase.Add(planetName, diameter, lifeExists, satellitesCount);
+    
     std::cout << "Объект добавлен\n";
 }
 
