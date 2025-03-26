@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <fstream>
+#include <iostream>
 #include "List.h"
 #include "Planet/Planet.h"
 
@@ -25,5 +26,6 @@ class DataBase {
     void Sort();
     void Add(const char* planetName, int diameter, bool lifeExists, size_t satellitesCount);
     void Delete(size_t index);
-    void Print();
+
+   friend std::ostream& operator<<(std::ostream& stream, DataBase& dataBase);
 };

@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <cstring>
 #include <fstream>
+#include <iostream>
 #include "Planet/Planet.h"
 
 DataBase::DataBase(const char* path) {
@@ -114,9 +115,9 @@ void DataBase::Delete(size_t index) {
     this->data.Delete(index);
 }
 
-void DataBase::Print() {
-    for (size_t i = 0; i < this->data.GetLength(); i++) {
+std::ostream& operator<<(std::ostream& stream, DataBase& dataBase) {
+    for (size_t i = 0; i < dataBase.data.GetLength(); i++) {
         std::cout << "Индекс: " << i << "; ";
-        this->data[i]->Print();
+        dataBase.data[i]->Print();
     }
 }
