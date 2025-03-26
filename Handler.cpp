@@ -25,6 +25,12 @@ void Handler::InteractiveModeInit() {
 
     Set<char*> setClone(set);
 
+    Set<char*> setTest;
+
+    setTest = set + setClone + set;
+
+    std::cout << setTest << '\n';
+
     std::cout << set << '\n';
     std::cout << setClone << '\n';
     std::cout << setClone.isElement(firstString) << '\n';

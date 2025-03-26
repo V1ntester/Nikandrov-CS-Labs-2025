@@ -16,7 +16,6 @@ class Set : protected Vector<TypeName> {
     Set& operator=(const Set& set);
 
     TypeName& operator[](unsigned index);
-    TypeName operator[](unsigned index) const;
 
     Set& operator+=(const Set& set);
     Set& operator-=(const Set& set);
@@ -67,14 +66,9 @@ TypeName& Set<TypeName>::operator[](unsigned index) {
 }
 
 template<typename TypeName>
-TypeName Set<TypeName>::operator[](unsigned index) const {
-    return Vector<TypeName>::operator[](index);
-}
-
-template<typename TypeName>
 Set<TypeName>& Set<TypeName>::operator+=(const Set<TypeName>& set) {
     for (size_t i = 0; i < set.GetLength(); i++) {
-        this->Add(set[i]);
+        this->Add(set.data[i]);
     }
 
     return *this;
@@ -83,7 +77,7 @@ Set<TypeName>& Set<TypeName>::operator+=(const Set<TypeName>& set) {
 template<typename TypeName>
 Set<TypeName>& Set<TypeName>::operator-=(const Set<TypeName>& set) {
     for (size_t i = 0; i < set.GetLength(); i++) {
-        this->Delete(set[i]);
+        this->Delete(set.data[i]);
     }
 
     return *this;
@@ -91,9 +85,9 @@ Set<TypeName>& Set<TypeName>::operator-=(const Set<TypeName>& set) {
 
 template<typename TypeName>
 Set<TypeName>& Set<TypeName>::operator*=(const Set<TypeName>& set) {
-    for (size_t i = 0; i < (*this).GetLength(); i++) {
-        if (!set.isElement((*this)[i])) {
-            this->Delete((*this)[i]);
+    for (size_t i = 0; i < this->GetLength(); i++) {
+        if (!set.isElement(this->data[i])) {
+            this->Delete(this->data[i]);
         }
     }
 
@@ -136,17 +130,21 @@ void Set<TypeName>::Delete(TypeName value) {
 
 template<typename TypeName>
 bool Set<TypeName>::isElement(TypeName value) const {
+    if (this->GetLength() == 0) {
+        return false;
+    }
+
     size_t low = 0;
     size_t high = this->GetLength() - 1;
 
     while (low <= high) {
         size_t mid = low + (high - low) / 2;
 
-        if (this->EqualElements((*this)[mid], value)) {
+        if (this->EqualElements(this->data[mid], value)) {
             return true;
         }
 
-        if (this->CompareElements((*this)[mid], value, true)) {
+        if (this->CompareElements(this->data[mid], value, true)) {
             low = mid + 1;
         } else {
             if (low == high) {
@@ -167,7 +165,7 @@ std::ostream& operator<<(std::ostream& stream, const Set<TypeName>& set) {
     stream << '{';
 
     for (size_t i = 0; i < length; i++) {
-        stream << set[i];
+        stream << set.data[i];
 
         if (i != length - 1) {
             std::cout << ", ";

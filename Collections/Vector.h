@@ -19,11 +19,11 @@ class Vector {
     size_t filled = 0;
     size_t length = 0;
 
-    TypeName* data = nullptr;
-
     void Resize(size_t length);
 
  protected:
+    TypeName* data = nullptr;
+
     bool EqualElements(TypeName firstElement, TypeName secondElement) const;
     bool CompareElements(TypeName firstElement, TypeName secondElement, bool reverse = false) const;
 
@@ -40,7 +40,6 @@ class Vector {
     Vector& operator=(const Vector& vector);
 
     TypeName& operator[](unsigned index);
-    TypeName operator[](unsigned index) const;
 
     bool operator==(const Vector<TypeName>& vector) const;
 
@@ -244,22 +243,13 @@ TypeName& Vector<TypeName>::operator[](unsigned index) {
 }
 
 template<typename TypeName>
-TypeName Vector<TypeName>::operator[](unsigned index) const {
-    if (!this->data || index >= filled) {
-        throw std::out_of_range("Index out of range");
-    }
-
-    return this->data[index];
-}
-
-template<typename TypeName>
 bool Vector<TypeName>::operator==(const Vector<TypeName>& vector) const {
     if (this->GetLength() != vector.GetLength()) {
         return false;
     }
 
     for (size_t i = 0; i < this->GetLength(); i++) {
-        auto [isSuccess, index] = this->Find((*this)[i]);
+        auto [isSuccess, index] = this->Find(this->data[i]);
 
         if (!isSuccess) {
             return false;
@@ -361,7 +351,7 @@ std::ostream& operator<<(std::ostream& stream, const Vector<TypeName>& vector) {
     stream << '[';
 
     for (size_t i = 0; i < length; i++) {
-        stream << vector[i];
+        stream << vector.data[i];
 
         if (i != length - 1) {
             std::cout << ", ";
