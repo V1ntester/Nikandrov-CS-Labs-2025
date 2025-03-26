@@ -132,7 +132,7 @@ void Handler::DeleteFromDataBase() {
 }
 
 void Handler::PrintDataBase() {
-    std::cout << this->dataBase << '\n';
+    std::cout << this->dataBase;
 }
 
 Handler::Handler(DataBase& dataBase, bool isInteractive) : isInteractive(isInteractive), dataBase(dataBase) {

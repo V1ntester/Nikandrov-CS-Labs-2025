@@ -120,4 +120,6 @@ std::ostream& operator<<(std::ostream& stream, DataBase& dataBase) {
         std::cout << "Индекс: " << i << "; ";
         dataBase.data[i]->Print();
     }
+
+    return stream;
 }
