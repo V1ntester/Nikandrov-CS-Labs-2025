@@ -24,6 +24,7 @@ class DataBase {
     void ReadFromFile();
     void WriteToFile();
     void Sort();
+    void Add();
     void Add(const char* planetName, int diameter, bool lifeExists, size_t satellitesCount);
     void Delete(size_t index);
 

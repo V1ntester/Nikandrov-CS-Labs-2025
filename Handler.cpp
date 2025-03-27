@@ -106,13 +106,8 @@ void Handler::AddToDataBase() {
         std::cout << "Введите кол-во спутников: ";
         std::cin >> satellitesCount;
     } else {
-        strncpy(planetName, kPlanetNameDemonstration, strlen(kPlanetNameDemonstration) + 1);
-        diameter = kDiameterDemonstration;
-        lifeExists = kLifeExistsDemonstration;
-        satellitesCount = kSatellitesCountDemonstration;
+        this->dataBase.Add(kPlanetNameDemonstration, kDiameterDemonstration, kLifeExistsDemonstration, kSatellitesCountDemonstration);
     }
-
-    this->dataBase.Add(planetName, diameter, lifeExists, satellitesCount);
     
     std::cout << "Объект добавлен\n";
 }
