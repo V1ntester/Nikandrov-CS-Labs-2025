@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Planet/Planet.h"
 
-DataBase::DataBase(const char* path) {
+DataBase::DataBase(const char* path, bool isInteractive) : isInteractive(isInteractive) {
     size_t pathLength = strlen(path) + 1;
     this->path = new char[pathLength];
 
@@ -101,13 +101,24 @@ void DataBase::Sort() {
     }
 }
 
-void DataBase::Add(const char* planetName, int diameter, bool lifeExists, size_t satellitesCount) {
-    Planet* planet = new Planet(planetName, diameter, lifeExists, satellitesCount);
+void DataBase::Add() {
+    Planet* planet = new Planet();
+
+    if (this->isInteractive) {
+        std::cin >> *planet;        
+    }
 
     this->data.Push(planet);
 }
 
-void DataBase::Delete(size_t index) {
+void DataBase::Delete() {
+    size_t index = 0;
+
+    if (this->isInteractive) {
+        std::cout << "Введите индекс элемента: ";
+        std::cin >> index;    
+    }
+
     if (index >= this->data.GetLength()) {
         return;
     }
@@ -117,8 +128,7 @@ void DataBase::Delete(size_t index) {
 
 std::ostream& operator<<(std::ostream& stream, DataBase& dataBase) {
     for (size_t i = 0; i < dataBase.data.GetLength(); i++) {
-        std::cout << "Индекс: " << i << "; ";
-        dataBase.data[i]->Print();
+        std::cout << "Индекс: " << i << "; " << *dataBase.data[i];
     }
 
     return stream;

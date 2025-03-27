@@ -8,11 +8,13 @@
 
 class DataBase {
  private:
+   bool isInteractive = false;
+
     List<Planet*> data;
     char* path = nullptr;
 
  public:
-    DataBase(const char* path);
+    DataBase(const char* path, bool isInteractive);
     DataBase(const DataBase& dataBase);
 
     ~DataBase();
@@ -25,8 +27,7 @@ class DataBase {
     void WriteToFile();
     void Sort();
     void Add();
-    void Add(const char* planetName, int diameter, bool lifeExists, size_t satellitesCount);
-    void Delete(size_t index);
+    void Delete();
 
    friend std::ostream& operator<<(std::ostream& stream, DataBase& dataBase);
 };

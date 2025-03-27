@@ -7,15 +7,15 @@ const char path[] = "DataBase.txt";
 }
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    DataBase dataBase(path);
-
     bool isInteractive = false;
 
     if (argc == 2 && strcmp(argv[1], "i") == 0) {
         isInteractive = true;
     }
 
+    DataBase dataBase(path, isInteractive);
     Handler handler(dataBase, isInteractive);
+    
     handler.Init();
 
     return 0;

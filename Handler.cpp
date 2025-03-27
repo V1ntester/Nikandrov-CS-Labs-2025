@@ -5,15 +5,7 @@
 #include "DataBase.h"
 
 namespace {
-const size_t kBufferSize = 256;
-
-const char kPlanetNameDemonstration[] = "TestPlanet";
-const int kDiameterDemonstration = 1000;
-const bool kLifeExistsDemonstration = false;
-const size_t kSatellitesCountDemonstration = 3;
-
-const size_t kIndexDemonstration = 0;
-
+    
 void NavigationItemsPrint() {
     std::cout << "Выберите одно из действий: \n";
     std::cout << "a — прочитать из файла\n";
@@ -74,55 +66,31 @@ void Handler::DemoModeInit() {
 
 void Handler::ReadDataBaseFromFile() {
     this->dataBase.ReadFromFile();
+
     std::cout << "Чтение выполнено\n";
 }
 
 void Handler::WriteDataBaseToFile() {
     this->dataBase.WriteToFile();
+
     std::cout << "Запись выполнена\n";
 }
 
 void Handler::SortDataBase() {
     this->dataBase.Sort();
+
     std::cout << "Сортировка выполнена\n";
 }
 
 void Handler::AddToDataBase() {
-    char planetName[kBufferSize]{'\0'};
-    int diameter = 0;
-    bool lifeExists = false;
-    size_t satellitesCount = 0;
-
-    if (isInteractive) {
-        std::cout << "Введите название планеты: ";
-        std::cin >> planetName;
-
-        std::cout << "Введите диаметр планеты: ";
-        std::cin >> diameter;
-
-        std::cout << "Введите наличие жизни: ";
-        std::cin >> lifeExists;
-
-        std::cout << "Введите кол-во спутников: ";
-        std::cin >> satellitesCount;
-    } else {
-        this->dataBase.Add(kPlanetNameDemonstration, kDiameterDemonstration, kLifeExistsDemonstration, kSatellitesCountDemonstration);
-    }
+    this->dataBase.Add();
     
     std::cout << "Объект добавлен\n";
 }
 
 void Handler::DeleteFromDataBase() {
-    size_t index = 0;
+    dataBase.Delete();
 
-    if (isInteractive) {
-        std::cout << "Введите индекс элемента: ";
-        std::cin >> index;
-    } else {
-        index = kIndexDemonstration;
-    }
-
-    dataBase.Delete(index);
     std::cout << "Объект удалён\n";
 }
 

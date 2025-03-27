@@ -3,7 +3,6 @@
 
 #include <cstddef>
 #include <fstream>
-#include <iostream>
 
 class Planet {
  private:
@@ -19,6 +18,9 @@ class Planet {
     void IdInit();
     void NameInit(const char* name);
 
+    void Print(std::ofstream& stream);
+    void Print(std::ostream& stream);
+
  public:
     Planet();
     Planet(Planet& planet);
@@ -31,10 +33,11 @@ class Planet {
     bool operator>(const Planet& planet) const;
     bool operator<(const Planet& planet) const;
 
-    void Print();
-
     friend std::ofstream& operator<<(std::ofstream& stream, Planet& planet);
     friend std::ifstream& operator>>(std::ifstream& stream, Planet& planet);
+
+    friend std::ostream& operator<<(std::ostream& stream, Planet& planet);
+    friend std::istream& operator>>(std::istream& stream, Planet& planet);
 };
 
 #endif

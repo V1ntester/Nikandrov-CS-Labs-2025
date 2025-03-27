@@ -103,29 +103,27 @@ class List {
     }
 
     void Delete(size_t index) {
-        if (!this->filled) {
+        if (!this->filled || index >= this->filled) {
             return;
         }
 
-        if (this->filled + kAllocateElementsStep <= this->length) {
-            typeName* newArray = new typeName[this->length - kAllocateElementsStep];
-
-            for (size_t i = 0; i < index; i++) {
-                newArray[i] = this->array[i];
-            }
-
-            for (size_t i = index + 1; i < this->filled; i++) {
-                newArray[i - 1] = this->array[i];
-            }
-
-            delete[] this->array;
-
-            this->array = newArray;
-
-            this->length -= kAllocateElementsStep;
+        for (size_t i = index; i < this->filled - 1; i++) {
+            this->array[i] = this->array[i + 1];
         }
 
         --this->filled;
+
+        if (this->filled + kAllocateElementsStep <= this->length - kAllocateElementsStep) {
+            typeName* newArray = new typeName[this->length - kAllocateElementsStep];
+
+            for (size_t i = 0; i < this->filled; i++) {
+                newArray[i] = this->array[i];
+            }
+
+            delete[] this->array;
+            this->array = newArray;
+            this->length -= kAllocateElementsStep;
+        }
     }
 
     void Clear() {
