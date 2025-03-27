@@ -15,7 +15,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
 
     DataBase dataBase(path, isInteractive);
     Handler handler(dataBase, isInteractive);
-    
+
     handler.Init();
 
     return 0;
