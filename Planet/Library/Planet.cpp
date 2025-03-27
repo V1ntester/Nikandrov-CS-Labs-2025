@@ -35,6 +35,15 @@ void Planet::NameInit(const char* name) {
     }
 }
 
+void Planet::Print(std::ofstream& stream) {
+    stream << this->name << ' ' << this->diameter << ' ' << this->lifeExists << ' ' << this->satellitesCount << '\n';
+}
+
+void Planet::Print(std::ostream& stream) {
+    stream << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->lifeExists
+           << "; Спутники: " << this->satellitesCount << ";\n";
+}
+
 Planet::Planet() {
     this->IdInit();
 
@@ -86,13 +95,9 @@ bool Planet::operator>(const Planet& planet) const {
     return planet < *this;
 }
 
-void Planet::Print() {
-    std::cout << "Название: " << this->name << "; Диаметр: " << this->diameter << "; Жизнь: " << this->lifeExists
-              << "; Спутники: " << this->satellitesCount << ";\n";
-}
-
 std::ofstream& operator<<(std::ofstream& stream, Planet& planet) {
-    stream << planet.name << ' ' << planet.diameter << ' ' << planet.lifeExists << ' ' << planet.satellitesCount << '\n';
+    planet.Print(stream);
+
     return stream;
 }
 
@@ -109,5 +114,37 @@ std::ifstream& operator>>(std::ifstream& stream, Planet& planet) {
     planet.diameter = diameter;
     planet.lifeExists = lifeExists;
     planet.satellitesCount = satellitesCount;
+    return stream;
+}
+
+std::ostream& operator<<(std::ostream& stream, Planet& planet) {
+    planet.Print(stream);
+
+    return stream;
+}
+
+std::istream& operator>>(std::istream& stream, Planet& planet) {
+    char planetName[kBufferSize]{'\0'};
+    int diameter = 0;
+    bool lifeExists = false;
+    size_t satellitesCount = 0;
+
+    std::cout << "Введите название планеты: ";
+    std::cin >> planetName;
+
+    std::cout << "Введите диаметр планеты: ";
+    std::cin >> diameter;
+
+    std::cout << "Введите наличие жизни: ";
+    std::cin >> lifeExists;
+
+    std::cout << "Введите кол-во спутников: ";
+    std::cin >> satellitesCount;
+
+    planet.NameInit(planetName);
+    planet.diameter = diameter;
+    planet.lifeExists = lifeExists;
+    planet.satellitesCount = satellitesCount;
+
     return stream;
 }
