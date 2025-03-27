@@ -5,7 +5,7 @@
 #include "DataBase.h"
 
 namespace {
-    
+
 void NavigationItemsPrint() {
     std::cout << "Выберите одно из действий: \n";
     std::cout << "a — прочитать из файла\n";
@@ -84,7 +84,7 @@ void Handler::SortDataBase() {
 
 void Handler::AddToDataBase() {
     this->dataBase.Add();
-    
+
     std::cout << "Объект добавлен\n";
 }
 

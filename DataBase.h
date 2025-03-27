@@ -8,7 +8,7 @@
 
 class DataBase {
  private:
-   bool isInteractive = false;
+    bool isInteractive = false;
 
     List<Planet*> data;
     char* path = nullptr;
@@ -29,5 +29,5 @@ class DataBase {
     void Add();
     void Delete();
 
-   friend std::ostream& operator<<(std::ostream& stream, DataBase& dataBase);
+    friend std::ostream& operator<<(std::ostream& stream, DataBase& dataBase);
 };

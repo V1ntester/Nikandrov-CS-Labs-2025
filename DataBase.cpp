@@ -105,7 +105,7 @@ void DataBase::Add() {
     Planet* planet = new Planet();
 
     if (this->isInteractive) {
-        std::cin >> *planet;        
+        std::cin >> *planet;
     }
 
     this->data.Push(planet);
@@ -116,7 +116,7 @@ void DataBase::Delete() {
 
     if (this->isInteractive) {
         std::cout << "Введите индекс элемента: ";
-        std::cin >> index;    
+        std::cin >> index;
     }
 
     if (index >= this->data.GetLength()) {
