@@ -6,18 +6,17 @@
 
 class Term {
  private:
-    int coefficient = 1;
+    int coefficient = 0;
     int degree = 1;
 
  public:
     Term();
-    Term(int coefficient);
-    Term(int coefficient, int degree);
+    Term(int coefficient, int degree = 1);
     Term(const Term& term);
 
     ~Term();
 
-    Term& operator=(const Term& term);
+    Term& operator=(Term term);
     Term& operator+=(const Term& term);
 
     Term operator+(const Term& term);
