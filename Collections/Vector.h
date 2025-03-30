@@ -6,12 +6,12 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace {
-struct FindAnswer {
-    bool isSuccess = false;
-    size_t index = 0;
-};
-}  // namespace
+    namespace {
+    struct FindAnswer {
+        bool isSuccess = false;
+        size_t index = 0;
+    };
+    }  // namespace
 
 template<typename TypeName>
 class Vector {
@@ -341,7 +341,7 @@ auto Vector<TypeName>::Find(TypeName value) const {
         }
     }
 
-    return FindAnswer(isSucess, index);
+    return FindAnswer{isSucess, index};
 }
 
 template<typename TypeName>
