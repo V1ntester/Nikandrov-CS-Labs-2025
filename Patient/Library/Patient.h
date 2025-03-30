@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <fstream>
+#include <iostream>
 
 namespace {
 const size_t kPersonalFileCodeLength = 4;
@@ -25,6 +26,9 @@ class Patient {
     void NameInit(const char* name);
     void CodeInit(const char* personalFileCode);
 
+    void Print(std::ofstream& stream);
+    void Print(std::ostream& stream);
+
  public:
     Patient();
     Patient(Patient& Patient);
@@ -37,10 +41,11 @@ class Patient {
     bool operator>(const Patient& patient) const;
     bool operator<(const Patient& patient) const;
 
-    void Print();
-
     friend std::ofstream& operator<<(std::ofstream& stream, Patient& patient);
     friend std::ifstream& operator>>(std::ifstream& stream, Patient& patient);
+
+    friend std::ostream& operator<<(std::ostream& stream, Patient& patient);
+    friend std::istream& operator>>(std::istream& stream, Patient& patient);
 };
 
 #endif

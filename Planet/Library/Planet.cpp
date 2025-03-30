@@ -130,16 +130,16 @@ std::istream& operator>>(std::istream& stream, Planet& planet) {
     size_t satellitesCount = 0;
 
     std::cout << "Введите название планеты: ";
-    std::cin >> planetName;
+    stream >> planetName;
 
     std::cout << "Введите диаметр планеты: ";
-    std::cin >> diameter;
+    stream >> diameter;
 
     std::cout << "Введите наличие жизни: ";
-    std::cin >> lifeExists;
+    stream >> lifeExists;
 
     std::cout << "Введите кол-во спутников: ";
-    std::cin >> satellitesCount;
+    stream >> satellitesCount;
 
     planet.NameInit(planetName);
     planet.diameter = diameter;

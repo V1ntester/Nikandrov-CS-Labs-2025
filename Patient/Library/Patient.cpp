@@ -23,8 +23,8 @@ void Patient::NameInit(const char* name) {
 
     if (this->nameLength != newNameLength) {
         char* newName = new char[newNameLength];
-        
-        strncpy(newName, name, newNameLength);   
+
+        strncpy(newName, name, newNameLength);
 
         delete[] this->name;
 
@@ -32,7 +32,7 @@ void Patient::NameInit(const char* name) {
 
         this->nameLength = newNameLength;
     } else {
-        strncpy(this->name, name, newNameLength);   
+        strncpy(this->name, name, newNameLength);
     }
 }
 
@@ -40,6 +40,15 @@ void Patient::CodeInit(const char* personalFileCode) {
     for (size_t i = 0; i < kPersonalFileCodeLength; i++) {
         this->personalFileCode[i] = personalFileCode[i];
     }
+}
+
+void Patient::Print(std::ofstream& stream) {
+    stream << this->name << ' ' << this->personalFileCode << ' ' << this->age << '\n';
+}
+
+void Patient::Print(std::ostream& stream) {
+    stream << "Название: " << this->name << "; Код личного дела: " << this->personalFileCode << "; Пол: " << (this->sex ? "Мужской" : "Женский")
+           << "; Возраст: " << this->age << ";\n";
 }
 
 Patient::Patient() : personalFileCode(new char[kPersonalFileCodeLength]) {
@@ -96,13 +105,9 @@ bool Patient::operator>(const Patient& patient) const {
     return patient < *this;
 }
 
-void Patient::Print() {
-    std::cout << "Название: " << this->name << "; Код личного дела: " << this->personalFileCode << "; Пол: " << (this->sex ? "Мужской" : "Женский")
-              << "; Возраст: " << this->age << ";\n";
-}
-
 std::ofstream& operator<<(std::ofstream& stream, Patient& patient) {
-    stream << patient.name << ' ' << patient.personalFileCode << ' ' << patient.age << '\n';
+    patient.Print(stream);
+
     return stream;
 }
 
@@ -110,13 +115,49 @@ std::ifstream& operator>>(std::ifstream& stream, Patient& patient) {
     char name[kBufferSize]{'\0'};
     char personalFileCode[kPersonalFileCodeLength]{'\0'};
     size_t age = 0;
+    bool sex = false;
 
     stream >> name;
     stream >> personalFileCode;
     stream >> age;
+    stream >> sex;
 
     patient.NameInit(name);
     patient.CodeInit(personalFileCode);
     patient.age = age;
+    patient.sex = sex;
+
+    return stream;
+}
+
+std::ostream& operator<<(std::ostream& stream, Patient& patient) {
+    patient.Print(stream);
+
+    return stream;
+}
+
+std::istream& operator>>(std::istream& stream, Patient& patient) {
+    char name[kBufferSize]{'\0'};
+    char personalFileCode[kPersonalFileCodeLength]{'\0'};
+    size_t age = 0;
+    bool sex = false;
+
+    std::cout << "Введите имя: ";
+    stream >> name;
+
+    std::cout << "Введите код: ";
+    stream >> personalFileCode;
+
+    std::cout << "Введите возраст: ";
+    stream >> age;
+
+    std::cout << "Введите пол (1 - мужской; 0 - женский): ";
+    stream >> sex;
+
+    patient.NameInit(name);
+    patient.CodeInit(personalFileCode);
+    patient.age = age;
+    patient.sex = sex;
+
     return stream;
 }

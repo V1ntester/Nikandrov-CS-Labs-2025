@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <fstream>
+#include <iostream>
 
 class Planet {
  private:
