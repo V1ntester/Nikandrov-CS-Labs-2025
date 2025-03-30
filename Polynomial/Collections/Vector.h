@@ -1,5 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 #include <cstddef>
 #include <cstring>
@@ -69,7 +68,7 @@ bool Vector<TypeName>::CompareElements(TypeName firstElement, TypeName secondEle
 }
 
 template<>
-bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, bool reverse) const {
+inline bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, bool reverse) const {
     if (!firstElement || !secondElement) {
         return false;
     }
@@ -82,7 +81,7 @@ bool Vector<char*>::CompareElements(char* firstElement, char* secondElement, boo
 }
 
 template<>
-bool Vector<const char*>::CompareElements(const char* firstElement, const char* secondElement, bool reverse) const {
+inline bool Vector<const char*>::CompareElements(const char* firstElement, const char* secondElement, bool reverse) const {
     if (!reverse) {
         return strcmp(firstElement, secondElement) > 0;
     }
@@ -91,7 +90,7 @@ bool Vector<const char*>::CompareElements(const char* firstElement, const char* 
 }
 
 template<>
-bool Vector<char*>::EqualElements(char* firstElement, char* secondElement) const {
+inline bool Vector<char*>::EqualElements(char* firstElement, char* secondElement) const {
     if (!firstElement || !secondElement) {
         return false;
     }
@@ -100,7 +99,7 @@ bool Vector<char*>::EqualElements(char* firstElement, char* secondElement) const
 }
 
 template<>
-bool Vector<const char*>::EqualElements(const char* firstElement, const char* secondElement) const {
+inline bool Vector<const char*>::EqualElements(const char* firstElement, const char* secondElement) const {
     return strcmp(firstElement, secondElement) == 0;
 }
 
@@ -124,7 +123,7 @@ void Vector<TypeName>::Resize(size_t length) {
 }
 
 template<>
-void Vector<char*>::Resize(size_t length) {
+inline void Vector<char*>::Resize(size_t length) {
     char** newData = new char*[length];
     size_t valuesToCopyCount = std::min(this->filled, length);
 
@@ -160,7 +159,7 @@ void Vector<TypeName>::Copy(const Vector& vector) {
 }
 
 template<>
-void Vector<char*>::Copy(const Vector& vector) {
+inline void Vector<char*>::Copy(const Vector& vector) {
     this->Resize(vector.length);
 
     if (vector.length > 0) {
@@ -218,7 +217,7 @@ Vector<TypeName>::~Vector() {
 }
 
 template<>
-Vector<char*>::~Vector() {
+inline Vector<char*>::~Vector() {
     for (size_t i = 0; i < this->filled; i++) {
         delete[] this->data[i];
     }
@@ -280,7 +279,7 @@ void Vector<TypeName>::Add(TypeName value) {
 }
 
 template<>
-void Vector<char*>::Add(char* value) {
+inline void Vector<char*>::Add(char* value) {
     if (this->filled == this->length) {
         if (length == 0) {
             this->Resize(1);
@@ -313,7 +312,7 @@ void Vector<TypeName>::Delete(size_t index) {
 }
 
 template<>
-void Vector<char*>::Delete(size_t index) {
+inline void Vector<char*>::Delete(size_t index) {
     delete[] this->data[index];
 
     for (size_t i = index; i < filled - 1; i++) {
@@ -341,7 +340,7 @@ auto Vector<TypeName>::Find(TypeName value) const {
         }
     }
 
-    return FindAnswer(isSucess, index);
+    return FindAnswer{isSucess, index};
 }
 
 template<typename TypeName>
@@ -362,5 +361,3 @@ std::ostream& operator<<(std::ostream& stream, const Vector<TypeName>& vector) {
 
     return stream;
 }
-
-#endif

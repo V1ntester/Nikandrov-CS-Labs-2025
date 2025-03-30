@@ -1,38 +1,50 @@
-#ifndef POLYNOMIAL_H
-#define POLYNOMIAL_H
+#pragma once
 
 #include <iostream>
 #include "Collections/Vector.h"
 
+class Polynomial;
+
 class Term {
  private:
     int coefficient = 0;
-    int degree = 1;
+    int degree = 0;
 
  public:
     Term();
-    Term(int coefficient, int degree = 1);
+    Term(int coefficient, int degree = 0);
     Term(const Term& term);
 
     ~Term();
 
     Term& operator=(Term term);
     Term& operator+=(const Term& term);
+    Term& operator*=(const Term& term);
 
     Term operator+(const Term& term);
+    Term operator*(const Term& term);
 
-    friend std::ostream& operator<<(std::ostream& stream, const Term& term);
+    bool operator<(const Term& term) const;
+    bool operator>(const Term& term) const;
+
+    friend std::ostream& operator<<(std::ostream& stream, Term term);
     friend std::istream& operator>>(std::istream& stream, Term& term);
 
     friend class Polynomial;
+    friend std::ostream& operator<<(std::ostream& stream, Polynomial polynomial);
 };
 
 class Polynomial {
  private:
     Vector<Term> poly;
-    int degree = 1;
+    int degree = 0;
 
-    bool order = false;
+    bool orderReverse = false;
+
+    void Add(const Term& term);
+
+    void Sort();
+    void Simplify();
 
  public:
     Polynomial();
@@ -42,15 +54,13 @@ class Polynomial {
 
     ~Polynomial();
 
-    Polynomial& operator=(const Polynomial& polynomial);
-    Polynomial& operator+=(const Polynomial& polynomial);
-    Polynomial& operator*=(const Polynomial& polynomial);
+    Polynomial& operator=(Polynomial polynomial);
+    Polynomial& operator+=(Polynomial& polynomial);
+    Polynomial& operator*=(Polynomial& polynomial);
 
-    friend Polynomial operator+(const Polynomial& firstPolynomial, const Polynomial& secondPolynomial);
-    friend Polynomial operator*(const Polynomial& firstPolynomial, const Polynomial& secondPolynomial);
+    friend Polynomial operator+(Polynomial& firstPolynomial, Polynomial& secondPolynomial);
+    friend Polynomial operator*(Polynomial& firstPolynomial, Polynomial& secondPolynomial);
 
-    friend std::ostream& operator<<(std::ostream& stream, const Polynomial& polynomial);
+    friend std::ostream& operator<<(std::ostream& stream, Polynomial polynomial);
     friend std::istream& operator>>(std::istream& stream, Polynomial& polynomial);
 };
-
-#endif

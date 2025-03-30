@@ -1,5 +1,4 @@
-#ifndef SET_H
-#define SET_H
+#pragma once
 
 #include <iostream>
 #include "Vector.h"
@@ -203,5 +202,3 @@ Set<TypeName> operator*(const Set<TypeName>& firstSet, const Set<TypeName>& seco
 
     return temp;
 }
-
-#endif
