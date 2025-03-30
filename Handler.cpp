@@ -6,7 +6,7 @@
 #include "Collections/Vector.h"
 
 namespace {
-const size_t kStringLength = 6;
+const size_t kStringLength = 7;
 }
 
 void Handler::InteractiveModeInit() {
@@ -15,8 +15,8 @@ void Handler::InteractiveModeInit() {
     char* firstString = new char[kStringLength];
     char* secondString = new char[kStringLength];
 
-    strncpy(firstString, "aaacc", kStringLength);
-    strncpy(secondString, "aaaaa", kStringLength);
+    strncpy(firstString, "aaaccc", kStringLength);
+    strncpy(secondString, "aaaada", kStringLength);
 
     set.Add(firstString);
     set.Add(secondString);
