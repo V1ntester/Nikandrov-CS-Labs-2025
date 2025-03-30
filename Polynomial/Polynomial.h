@@ -21,7 +21,7 @@ class Term {
 
     Term operator+(const Term& term);
 
-    friend std::ostream& operator<<(std::ostream& stream, Term& term);
+    friend std::ostream& operator<<(std::ostream& stream, const Term& term);
     friend std::istream& operator>>(std::istream& stream, Term& term);
 
     friend class Polynomial;

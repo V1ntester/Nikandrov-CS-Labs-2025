@@ -1,6 +1,7 @@
 #include "Polynomial.h"
 
 #include <stdexcept>
+#include <cstring>
 #include <iostream>
 
 Term::Term() = default;
@@ -44,5 +45,15 @@ Term Term::operator+(const Term& term) {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Term& term) {
+    stream << term.coefficient;
+
+    if (term.degree != 0) {
+        stream << "x^" << term.degree;
+    }
+
+    return stream;
+}
+
+std::istream& operator>>(std::istream& stream, Term& term) {
     
 }
