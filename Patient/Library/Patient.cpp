@@ -86,8 +86,8 @@ Patient::~Patient() {
 Patient& Patient::operator=(const Patient& patient) {
     this->NameInit(patient.name);
     this->CodeInit(patient.personalFileCode);
-    this->age = patient.age;
     this->sex = patient.sex;
+    this->age = patient.age;
 
     return *this;
 }
