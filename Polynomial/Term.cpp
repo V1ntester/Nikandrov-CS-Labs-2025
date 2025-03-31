@@ -132,22 +132,21 @@ std::istream& operator>>(std::istream& stream, Term& term) {
 
         stringStream >> term.coefficient;
     } else {
-    char* token = strtok(stringBuffer, "x^");
+        char* token = strtok(stringBuffer, "x^");
 
-    std::istringstream stringStream(token);
+        std::istringstream stringStream(token);
 
-    stringStream >> term.coefficient;
+        stringStream >> term.coefficient;
 
-    if (strcmp(stringBuffer, stringSourceValue) != 0) {
-        token = strtok(nullptr, "x^");
+        if (strcmp(stringBuffer, stringSourceValue) != 0) {
+            token = strtok(nullptr, "x^");
 
-        stringStream.clear();
-        stringStream.str(token);
+            stringStream.clear();
+            stringStream.str(token);
 
-        stringStream >> term.degree;
+            stringStream >> term.degree;
+        }
     }
-
-}
 
     return stream;
 }

@@ -15,7 +15,7 @@ void Handler::InteractiveModeInit() {
 
     // std::cout << '\n';
 
-    // std::cin.ignore();  
+    // std::cin.ignore();
 
     Polynomial firstPolynomial;
     Polynomial secondPolynomial;

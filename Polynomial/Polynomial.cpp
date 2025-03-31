@@ -174,7 +174,7 @@ std::istream& operator>>(std::istream& stream, Polynomial& polynomial) {
         }
     }
 
-    size_t termsCount = (stringBuffer[0] != '\0' &&  stringBuffer[0] != ' ' ? 1 : 0);
+    size_t termsCount = (stringBuffer[0] != '\0' && stringBuffer[0] != ' ' ? 1 : 0);
     std::istringstream stringStream(stringBuffer);
 
     for (size_t i = 0; i < strlen(stringBuffer); i++) {
@@ -189,7 +189,7 @@ std::istream& operator>>(std::istream& stream, Polynomial& polynomial) {
         stringStream >> term;
 
         if (term.coefficient != 0) {
-            polynomial.Add(term);            
+            polynomial.Add(term);
         }
     }
 
