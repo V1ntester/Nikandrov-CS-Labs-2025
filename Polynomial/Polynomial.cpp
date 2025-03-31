@@ -45,9 +45,15 @@ void Polynomial::Sort() {
 }
 
 void Polynomial::Simplify() {
+    size_t polyLength = this->poly.GetLength();
+
+    if (polyLength == 0) {
+        return;
+    }
+
     this->Sort();
 
-    for (size_t i = 0; i < this->poly.GetLength() - 1; i++) {
+    for (size_t i = 0; i < polyLength - 1; i++) {
         if (this->poly[i].degree != this->poly[i + 1].degree) {
             continue;
         }
@@ -56,6 +62,7 @@ void Polynomial::Simplify() {
 
         this->poly.Delete(i + 1);
 
+        --polyLength;
         --i;
     }
 }
@@ -140,8 +147,8 @@ std::ostream& operator<<(std::ostream& stream, Polynomial polynomial) {
     stream << polynomial.poly[0] << ' ';
 
     for (size_t i = 1; i < polyLength; i++) {
-        if (polynomial.poly[i].coefficient >= 0) {
-            stream << '+';
+        if (polynomial.poly[i].coefficient > 0) {
+            stream << "+ ";
         }
 
         stream << polynomial.poly[i] << ' ';
@@ -167,7 +174,7 @@ std::istream& operator>>(std::istream& stream, Polynomial& polynomial) {
         }
     }
 
-    size_t termsCount = (stringBuffer[0] != '\0' ? 1 : 0);
+    size_t termsCount = (stringBuffer[0] != '\0' &&  stringBuffer[0] != ' ' ? 1 : 0);
     std::istringstream stringStream(stringBuffer);
 
     for (size_t i = 0; i < strlen(stringBuffer); i++) {
@@ -181,7 +188,9 @@ std::istream& operator>>(std::istream& stream, Polynomial& polynomial) {
 
         stringStream >> term;
 
-        polynomial.Add(term);
+        if (term.coefficient != 0) {
+            polynomial.Add(term);            
+        }
     }
 
     polynomial.Simplify();

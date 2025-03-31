@@ -32,6 +32,7 @@ class Term {
 
     friend class Polynomial;
     friend std::ostream& operator<<(std::ostream& stream, Polynomial polynomial);
+    friend std::istream& operator>>(std::istream& stream, Polynomial& polynomial);
 };
 
 class Polynomial {

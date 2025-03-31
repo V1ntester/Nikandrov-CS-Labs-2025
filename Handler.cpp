@@ -4,28 +4,33 @@
 #include "Polynomial/Polynomial.h"
 
 void Handler::InteractiveModeInit() {
-    Term term;
+    // Term term;
 
-    std::cout << "Введите терм: ";
-    std::cin >> term;
+    // std::cout << "Введите терм: ";
+    // std::cin >> term;
 
-    std::cout << "Ваш терм: " << term << '\n';
-    std::cout << "Сумма двух термов: " << (term + term) << '\n';
-    std::cout << "Терм в квадрате: " << (term * term) << '\n';
+    // std::cout << "Ваш терм: " << term << '\n';
+    // std::cout << "Сумма двух термов: " << (term + term) << '\n';
+    // std::cout << "Терм в квадрате: " << (term * term) << '\n';
 
-    std::cout << '\n';
+    // std::cout << '\n';
 
-    std::cin.ignore();
+    // std::cin.ignore();  
 
-    Polynomial polynomial;
+    Polynomial firstPolynomial;
+    Polynomial secondPolynomial;
 
     // Example for test: 3x^2 - x^2 -    3x^2 + x ^2 + 5x^5   - 4x^3 +x^2 - 7
-    std::cout << "Введите полином: ";
-    std::cin >> polynomial;
+    std::cout << "Введите первый полином: ";
+    std::cin >> firstPolynomial;
 
-    std::cout << "Ваш полином: " << polynomial << '\n';
-    std::cout << "Сумма двух полиномов: " << (polynomial + polynomial) << '\n';
-    std::cout << "Полином в квадрате: " << (polynomial * polynomial) << '\n';
+    std::cout << "Введите второй полином: ";
+    std::cin >> secondPolynomial;
+
+    std::cout << "Первый полином: " << firstPolynomial << '\n';
+    std::cout << "Второй полином: " << secondPolynomial << '\n';
+    std::cout << "Сумма двух полиномов: " << firstPolynomial + secondPolynomial << '\n';
+    std::cout << "Произведение двух полиномов: " << firstPolynomial * secondPolynomial << '\n';
 }
 
 void Handler::DemoModeInit() {
