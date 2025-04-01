@@ -164,6 +164,18 @@ void Stack<TypeName>::Delete(size_t index) {
     if (!this->top) {
         return;
     }
+
+    size_t stackLength = 1;
+
+    ListNode* firstElement = this->top;   
+
+    while (firstElement->nextNode) {
+        firstElement = firstElement->nextNode;
+
+        ++stackLength;
+    }
+
+    
 }
 
 template<typename TypeName>
