@@ -11,7 +11,10 @@ Employee::Employee(const char* name, size_t salary, double efficiency, double te
     std::cout << "Employee()\n";
 }
 
-Employee::Employee(const Employee& employee) : Person(employee.name, employee.salary, employee.efficiency, employee.teamWork), stressResistance(employee.stressResistance), initiative(employee.initiative) {
+Employee::Employee(const Employee& employee)
+    : Person(employee.name, employee.salary, employee.efficiency, employee.teamWork),
+      stressResistance(employee.stressResistance),
+      initiative(employee.initiative) {
     std::cout << "Employee()\n";
 }
 

@@ -11,7 +11,10 @@ Engineer::Engineer(const char* name, size_t salary, double efficiency, double te
     std::cout << "Engineer()\n";
 }
 
-Engineer::Engineer(const Engineer& engineer) : Person(engineer.name, engineer.salary, engineer.efficiency, engineer.teamWork), analyticalThinking(engineer.analyticalThinking), communicationSkills(engineer.communicationSkills) {
+Engineer::Engineer(const Engineer& engineer)
+    : Person(engineer.name, engineer.salary, engineer.efficiency, engineer.teamWork),
+      analyticalThinking(engineer.analyticalThinking),
+      communicationSkills(engineer.communicationSkills) {
     std::cout << "Engineer()\n";
 }
 

@@ -12,6 +12,7 @@ set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Handler.h
 )
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Stack)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Persons)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -33,4 +34,5 @@ add_custom_target(
     ${HEADERS}
 )
 
+target_link_libraries(${project} Stack)
 target_link_libraries(${project} Persons)

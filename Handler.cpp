@@ -1,7 +1,9 @@
 #include "Handler.h"
 
-#include <iostream>
 #include "Persons/Worker.h"
+#include "Persons/Employee.h"
+#include "Persons/Engineer.h"
+
 
 void Handler::InteractiveModeInit() {
     Worker worker("Volodya", 0, 0, 0, 0, 0);

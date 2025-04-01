@@ -11,7 +11,8 @@ Worker::Worker(const char* name, size_t salary, double efficiency, double teamWo
     std::cout << "Worker()\n";
 }
 
-Worker::Worker(const Worker& worker) : Person(worker.name, worker.salary, worker.efficiency, worker.teamWork), stamina(worker.stamina), discipline(worker.discipline) {
+Worker::Worker(const Worker& worker)
+    : Person(worker.name, worker.salary, worker.efficiency, worker.teamWork), stamina(worker.stamina), discipline(worker.discipline) {
     std::cout << "Worker()\n";
 }
 
