@@ -204,6 +204,7 @@ void Stack<TypeName>::Delete(size_t index) {
 
     while (currentNode) {
         currentNode = currentNode->nextNode;
+        
         ++stackLength;
     }
 
