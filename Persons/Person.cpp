@@ -4,6 +4,10 @@
 #include <cstring>
 #include <iostream>
 
+namespace {
+const size_t kNameBufferSize = 256;
+}
+
 void Person::SetName(const char* name) {
     size_t nameLength = strlen(name) + 1;
 
@@ -50,4 +54,30 @@ Person& Person::operator=(const Person& person) {
     this->teamWork = person.teamWork;
 
     return *this;
+}
+
+std::ostream& operator<<(std::ostream& stream, const Person& person) {
+    person.Show(stream);
+
+    return stream;
+}
+
+std::istream& operator>>(std::istream& stream, Person& person) {
+    char namebuffer[kNameBufferSize]{'\0'};
+
+    std::cout << "Введите имя: ";
+    stream >> namebuffer;
+
+    person.SetName(namebuffer);
+
+    std::cout << "Введите зарплату: ";
+    stream >> person.salary;
+
+    std::cout << "Введите работоспособность: ";
+    stream >> person.efficiency;
+
+    std::cout << "Введите работу в команде: ";
+    stream >> person.teamWork;
+
+    return stream;
 }

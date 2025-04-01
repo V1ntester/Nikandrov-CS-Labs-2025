@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Person.h"
 
 class Engineer : public Person {
@@ -12,7 +13,9 @@ class Engineer : public Person {
 
     ~Engineer() override;
 
-    void Show() const override;
+    void Show(std::ostream& stream = std::cout) const override;
 
     Engineer& operator=(const Engineer& engineer);
+
+    friend std::istream& operator>>(std::istream& stream, Engineer& engineer);
 };

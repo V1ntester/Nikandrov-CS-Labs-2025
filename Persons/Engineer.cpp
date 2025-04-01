@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+namespace {
+const size_t kNameBufferSize = 256;
+}
+
 Engineer::Engineer() {
     std::cout << "Engineer()\n";
 }
@@ -22,13 +26,39 @@ Engineer::~Engineer() {
     std::cout << "~Engineer()\n";
 }
 
-void Engineer::Show() const {
-    std::cout << "Имя: " << this->name << "; ";
-    std::cout << "Зарплата: " << this->salary << "; ";
-    std::cout << "Работоспособность: " << this->efficiency << "; ";
-    std::cout << "Работа в команде: " << this->teamWork << "; ";
-    std::cout << "Аналитическое мышление: " << this->analyticalThinking << "; ";
-    std::cout << "Коммуникабельность: " << this->communicationSkills << ";\n";
+void Engineer::Show(std::ostream& stream) const {
+    stream << "Имя: " << this->name << "; ";
+    stream << "Зарплата: " << this->salary << "; ";
+    stream << "Работоспособность: " << this->efficiency << "; ";
+    stream << "Работа в команде: " << this->teamWork << "; ";
+    stream << "Аналитическое мышление: " << this->analyticalThinking << "; ";
+    stream << "Коммуникабельность: " << this->communicationSkills << ";";
 }
 
 Engineer& Engineer::operator=(const Engineer& engineer) = default;
+
+std::istream& operator>>(std::istream& stream, Engineer& engineer) {
+    char namebuffer[kNameBufferSize]{'\0'};
+
+    std::cout << "Введите имя: ";
+    stream >> namebuffer;
+
+    engineer.SetName(namebuffer);
+
+    std::cout << "Введите зарплату: ";
+    stream >> engineer.salary;
+
+    std::cout << "Введите работоспособность: ";
+    stream >> engineer.efficiency;
+
+    std::cout << "Введите работу в команде: ";
+    stream >> engineer.teamWork;
+
+    std::cout << "Введите аналитическое мышление: ";
+    stream >> engineer.analyticalThinking;
+
+    std::cout << "Введите коммуникабельность: ";
+    stream >> engineer.communicationSkills;
+
+    return stream;
+}

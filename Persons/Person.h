@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 
 class Person {
  protected:
@@ -20,7 +21,10 @@ class Person {
 
     virtual ~Person();
 
-    virtual void Show() const = 0;
+    virtual void Show(std::ostream& stream) const = 0;
 
     Person& operator=(const Person& person);
+
+    friend std::ostream& operator<<(std::ostream& stream, const Person& person);
+    friend std::istream& operator>>(std::istream& stream, Person& person);
 };

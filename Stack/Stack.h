@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include <iostream>
-#include <queue>
+#include <stdexcept>
 
 namespace {
 const size_t kAllocateElementsStep = 10;
@@ -14,8 +14,11 @@ class ListNode {
     TypeName value;
     ListNode* nextNode = nullptr;
 
+ public:
     ListNode(const TypeName& value, ListNode* nextNode = nullptr);
     ListNode(const ListNode& node);
+
+    ~ListNode();
 
     ListNode& operator=(const ListNode node);
 
@@ -26,13 +29,13 @@ template<typename TypeName>
 class Stack {
  private:
     typedef class ListNode<TypeName, Stack<TypeName>> Node;
+
     Node* top = nullptr;
 
     void Copy(const Stack& stack);
 
  public:
     Stack();
-
     Stack(const Stack& stack);
 
     ~Stack();
@@ -44,18 +47,48 @@ class Stack {
     void Push(const TypeName& value);
     void Pop();
     void Delete(size_t index);
+    void Clear();
 
     TypeName Top() const;
 
-    friend std::ostream& operator<<(std::ostream& stream, const Stack& stack);
+    void Print() const;
+
+    friend std::ostream& operator<<(std::ostream& stream, const Stack& stack) {
+        if (!stack.top) {
+            return stream;
+        }
+
+        Node* currentNode = stack.top;
+
+        while (currentNode) {
+            if (std::is_pointer_v<TypeName>) {
+                stream << *(currentNode->value);
+            } else {
+                stream << currentNode->value;
+            }
+
+            stream << '\n';
+
+            currentNode = currentNode->nextNode;
+        }
+
+        return stream;
+    }
 };
 
 template<typename TypeName, class Parent>
-ListNode<TypeName, Parent>::ListNode(const TypeName& value, ListNode* nextNode = nullptr) : value(value), nextNode(nextNode) {
+ListNode<TypeName, Parent>::ListNode(const TypeName& value, ListNode* nextNode) : value(value), nextNode(nextNode) {
 }
 
 template<typename TypeName, class Parent>
 ListNode<TypeName, Parent>::ListNode(const ListNode& node) = default;
+
+template<typename TypeName, class Parent>
+ListNode<TypeName, Parent>::~ListNode() {
+    if (this->value) {
+        delete this->value;
+    }
+}
 
 template<typename TypeName, class Parent>
 ListNode<TypeName, Parent>& ListNode<TypeName, Parent>::operator=(const ListNode node) {
@@ -148,7 +181,7 @@ void Stack<TypeName>::Push(const TypeName& value) {
 
 template<typename TypeName>
 void Stack<TypeName>::Pop() {
-    if (!this->top) {
+    if (this->Empty()) {
         return;
     }
 
@@ -161,21 +194,61 @@ void Stack<TypeName>::Pop() {
 
 template<typename TypeName>
 void Stack<TypeName>::Delete(size_t index) {
-    if (!this->top) {
+    if (this->Empty()) {
         return;
     }
 
-    size_t stackLength = 1;
+    size_t stackLength = 0;
 
-    ListNode* firstElement = this->top;   
+    Node* currentNode = this->top;
 
-    while (firstElement->nextNode) {
-        firstElement = firstElement->nextNode;
-
+    while (currentNode) {
+        currentNode = currentNode->nextNode;
         ++stackLength;
     }
 
-    
+    try {
+        if (index >= stackLength) {
+            throw std::invalid_argument("Index out range");
+        }
+    } catch (const std::invalid_argument& exception) {
+        std::cerr << exception.what();
+
+        return;
+    }
+
+    if (index == stackLength - 1) {
+        this->Pop();
+    } else if (index == 0) {
+        Node* previousNode = this->top;
+
+        while (previousNode->nextNode && previousNode->nextNode->nextNode) {
+            previousNode = previousNode->nextNode;
+        }
+
+        delete previousNode->nextNode;
+
+        previousNode->nextNode = nullptr;
+    } else {
+        Node* previousNode = this->top;
+
+        for (size_t i = 0; i < stackLength - index - 1; i++) {
+            previousNode = previousNode->nextNode;
+        }
+
+        Node* nodeToDelete = previousNode->nextNode;
+
+        previousNode->nextNode = nodeToDelete->nextNode;
+
+        delete nodeToDelete;
+    }
+}
+
+template<typename TypeName>
+void Stack<TypeName>::Clear() {
+    while (!this->Empty()) {
+        this->Pop();
+    }
 }
 
 template<typename TypeName>
@@ -184,24 +257,6 @@ TypeName Stack<TypeName>::Top() const {
 }
 
 template<typename TypeName>
-std::ostream& operator<<(std::ostream& stream, const Stack<TypeName>& stack) {
-    typedef class ListNode<TypeName, Stack<TypeName>> Node;
-
-    if (!stack.top) {
-        return stream;
-    }
-
-    Node* currentNode = stack.top;
-
-    while (currentNode) {
-        stream << currentNode->value;
-
-        if (currentNode->nextNode) {
-            stream << ' ';
-        }
-
-        currentNode = currentNode->nextNode;
-    }
-
-    return stream;
+void Stack<TypeName>::Print() const {
+    std::cout << '\n' << *this << '\n';
 }
