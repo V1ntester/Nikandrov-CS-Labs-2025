@@ -43,7 +43,7 @@ class Polynomial {
     bool orderReverse = false;
 
     void Add(const Term& term);
-   
+
     void UpdateDegree();
     void Sort();
     void Simplify();

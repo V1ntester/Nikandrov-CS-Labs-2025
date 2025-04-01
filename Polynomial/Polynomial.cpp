@@ -80,7 +80,7 @@ void Polynomial::Simplify() {
 
         this->poly.Delete(i);
 
-        if(this->poly[i - 1].coefficient == 0) {
+        if (this->poly[i - 1].coefficient == 0) {
             this->poly.Delete(i - 1);
         }
 
