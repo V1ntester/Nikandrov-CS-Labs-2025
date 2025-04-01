@@ -43,12 +43,14 @@ class Polynomial {
     bool orderReverse = false;
 
     void Add(const Term& term);
-
+   
+    void UpdateDegree();
     void Sort();
     void Simplify();
 
  public:
     Polynomial();
+    Polynomial(bool order);
     Polynomial(int coefficient);
     Polynomial(const Term& term);
     Polynomial(const Polynomial& polynomial);

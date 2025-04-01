@@ -16,6 +16,26 @@ void Polynomial::Add(const Term& term) {
     }
 }
 
+void Polynomial::UpdateDegree() {
+    size_t polyLength = this->poly.GetLength();
+
+    if (polyLength == 0) {
+        this->degree = 0;
+
+        return;
+    }
+
+    int maxDegree = this->poly[0].degree;
+
+    for (size_t i = 1; i < polyLength; i++) {
+        if (maxDegree < this->poly[i].degree) {
+            maxDegree = this->poly[i].degree;
+        }
+    }
+
+    this->degree = maxDegree;
+}
+
 void Polynomial::Sort() {
     size_t polyLength = this->poly.GetLength();
 
@@ -45,29 +65,35 @@ void Polynomial::Sort() {
 }
 
 void Polynomial::Simplify() {
-    size_t polyLength = this->poly.GetLength();
-
-    if (polyLength == 0) {
+    if (this->poly.GetLength() == 0) {
         return;
     }
 
     this->Sort();
 
-    for (size_t i = 0; i < polyLength - 1; i++) {
-        if (this->poly[i].degree != this->poly[i + 1].degree) {
+    for (size_t i = 1; i < this->poly.GetLength(); i++) {
+        if (this->poly[i - 1].degree != this->poly[i].degree) {
             continue;
         }
 
-        this->poly[i].coefficient += this->poly[i + 1].coefficient;
+        this->poly[i - 1].coefficient += this->poly[i].coefficient;
 
-        this->poly.Delete(i + 1);
+        this->poly.Delete(i);
 
-        --polyLength;
+        if(this->poly[i - 1].coefficient == 0) {
+            this->poly.Delete(i - 1);
+        }
+
         --i;
     }
+
+    this->UpdateDegree();
 }
 
 Polynomial::Polynomial() = default;
+
+Polynomial::Polynomial(bool orderReverse) : orderReverse(orderReverse) {
+}
 
 Polynomial::Polynomial(int coefficient) {
     Term term(coefficient);
@@ -141,6 +167,8 @@ std::ostream& operator<<(std::ostream& stream, Polynomial polynomial) {
     size_t polyLength = polynomial.poly.GetLength();
 
     if (polyLength == 0) {
+        stream << '0';
+
         return stream;
     }
 

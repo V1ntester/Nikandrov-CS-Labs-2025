@@ -100,15 +100,20 @@ std::istream& operator>>(std::istream& stream, Term& term) {
 
     strncpy(stringSourceValue, stringBuffer, kStringBufferSize);
 
-    if (stringSourceValue[0] == 'x' && stringSourceValue[1] == '\0') {
-        term.coefficient = 1;
-        term.degree = 1;
-    } else if (stringSourceValue[0] == '+' && stringSourceValue[1] == 'x' && stringSourceValue[2] == '\0') {
+    if (stringSourceValue[0] == 'x' && stringSourceValue[1] == '\0' || stringSourceValue[0] == '+' && stringSourceValue[1] == 'x' && stringSourceValue[2] == '\0') {
         term.coefficient = 1;
         term.degree = 1;
     } else if (stringSourceValue[0] == '-' && stringSourceValue[1] == 'x' && stringSourceValue[2] == '\0') {
         term.coefficient = -1;
         term.degree = 1;
+    } else if ( stringSourceValue[0] == 'x' && stringSourceValue[1] == '^') {
+        term.coefficient = 1;
+
+        char* token = strtok(stringBuffer, "x^");
+
+        std::istringstream stringStream(token);
+
+        stringStream >> term.degree;
     } else if (stringSourceValue[0] == '+' && stringSourceValue[1] == 'x' && stringSourceValue[2] == '^') {
         term.coefficient = 1;
 
@@ -125,12 +130,14 @@ std::istream& operator>>(std::istream& stream, Term& term) {
         std::istringstream stringStream(token);
 
         stringStream >> term.degree;
-    } else if (stringSourceValue[0] == -'x' && stringSourceValue[1] == '^') {
-        char* token = strtok(stringBuffer, "x^");
+    } else if (stringSourceValue[strlen(stringSourceValue) - 1] == 'x' && stringSourceValue[strlen(stringSourceValue)] == '\0') {
+        char* token = strtok(stringBuffer, "x");
 
         std::istringstream stringStream(token);
 
         stringStream >> term.coefficient;
+
+        term.degree = 1;
     } else {
         char* token = strtok(stringBuffer, "x^");
 

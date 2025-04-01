@@ -20,7 +20,9 @@ void Handler::InteractiveModeInit() {
     Polynomial firstPolynomial;
     Polynomial secondPolynomial;
 
-    // Example for test: 3x^2 - x^2 -    3x^2 + x ^2 + 5x^5   - 4x^3 +x^2 - 7
+    // Examples for test: 3x^2 - x^2 -    3x^2 + x ^2 + 5x^5   - 4x^3 +x^2 - 7
+    // -1x + 0x^6 -1x^6 +x^6 + x      
+    // -0 +0 -0x^0 +1x^1
     std::cout << "Введите первый полином: ";
     std::cin >> firstPolynomial;
 
