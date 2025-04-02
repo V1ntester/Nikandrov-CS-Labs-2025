@@ -163,6 +163,8 @@ Polynomial operator*(Polynomial& firstPolynomial, Polynomial& secondPolynomial) 
     return temp;
 }
 
+//-0  +0    -2x^1   +1x^1
+
 std::ostream& operator<<(std::ostream& stream, Polynomial polynomial) {
     size_t polyLength = polynomial.poly.GetLength();
 
