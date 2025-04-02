@@ -3,9 +3,9 @@
 #include <cmath>
 #include <cstddef>
 #include <cstring>
-#include <exception>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 namespace {
 const size_t kDecimalBase = 10;

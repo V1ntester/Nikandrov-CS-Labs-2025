@@ -1,5 +1,4 @@
-#ifndef FRACTION_H
-#define FRACTION_H
+#pragma once
 
 #include <iostream>
 
@@ -33,5 +32,3 @@ class Fraction {
     friend std::ostream& operator<<(std::ostream& stream, const Fraction& fraction);
     friend std::istream& operator>>(std::istream& stream, Fraction& fraction);
 };
-
-#endif
