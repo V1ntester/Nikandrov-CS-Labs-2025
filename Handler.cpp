@@ -10,7 +10,7 @@ const int kEvenPrimeDivisior = 2;
 // const int kTestValue = 340;
 
 void Multipliers(int sourceValue, Stack<int>& stack) {
-    if (sourceValue < 0) {
+    if (sourceValue < 0 && sourceValue != -1) {
         stack.Push(-1);
     }
 
@@ -21,14 +21,14 @@ void Multipliers(int sourceValue, Stack<int>& stack) {
         value /= kEvenPrimeDivisior;
     }
 
-    for (size_t i = kEvenPrimeDivisior + 1; i < static_cast<size_t>(std::sqrt(std::abs(sourceValue))) + kEvenPrimeDivisior + 1; i++) {
-        if (!(value % i)) {
+    for (size_t i = kEvenPrimeDivisior + 1; i < static_cast<size_t>(std::sqrt(value)); i += 2) {
+        if (value % i == 0) {
             stack.Push(static_cast<int>(i));
             value /= static_cast<int>(i);
         }
     }
 
-    if (stack.Empty()) {
+    if (value > 1 || stack.Empty()) {
         stack.Push(value);
     }
 }
