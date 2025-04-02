@@ -27,6 +27,10 @@ void Multipliers(int sourceValue, Stack<int>& stack) {
             value /= static_cast<int>(i);
         }
     }
+
+    if (stack.Empty()) {
+        stack.Push(value);
+    }
 }
 }  // namespace
 
