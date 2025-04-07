@@ -79,7 +79,7 @@ std::ostream& operator<<(std::ostream& stream, Term term) {
         stream << "- ";
     }
 
-    if (term.coefficient != 0 && (std::abs(term.coefficient) != 1 || std::abs(term.degree) != 1)) {
+    if (term.coefficient != 0 && ((term.degree == 0) || (std::abs(term.coefficient) != 1 && term.degree != 0))) {
         stream << std::abs(term.coefficient);
     }
 
