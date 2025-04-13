@@ -5,5 +5,5 @@ class Task {
         Task();
         Task(const Task& task);
 
-        virtual void Do() = 0;
+        virtual void Init() = 0;
 };
