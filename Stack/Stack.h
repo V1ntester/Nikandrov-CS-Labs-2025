@@ -8,6 +8,8 @@ namespace {
 const size_t kAllocateElementsStep = 10;
 }
 
+// This "ListNode" and "Stack" is specialized in Person Class demonstration
+
 template<typename TypeName, class Parent>
 class ListNode {
  private:
@@ -61,11 +63,8 @@ class Stack {
         Node* currentNode = stack.top;
 
         while (currentNode) {
-            if (std::is_pointer_v<TypeName>) {
-                stream << *(currentNode->value);
-            } else {
-                stream << currentNode->value;
-            }
+            // stream << currentNode->value;
+            stream << *currentNode->value;
 
             stream << '\n';
 
@@ -82,6 +81,9 @@ ListNode<TypeName, Parent>::ListNode(const TypeName& value, ListNode* nextNode) 
 
 template<typename TypeName, class Parent>
 ListNode<TypeName, Parent>::ListNode(const ListNode& node) = default;
+
+// template<typename TypeName, class Parent>
+// ListNode<TypeName, Parent>::~ListNode() = default;
 
 template<typename TypeName, class Parent>
 ListNode<TypeName, Parent>::~ListNode() {
