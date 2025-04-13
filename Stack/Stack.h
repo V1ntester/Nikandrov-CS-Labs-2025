@@ -93,41 +93,24 @@ void Stack<TypeName>::Copy(const Stack& stack) {
         return;
     }
 
-    size_t filled = 0;
-    size_t length = 0;
+    while(!this->Empty()) {
+        this->Pop();
+    }
 
     Node* currentNode = stack.top;
-    Node** nodeList = nullptr;
+    Stack tempStack;
 
     while (currentNode) {
-        if (filled == length) {
-            Node** newNodeList = new Node*[length += kAllocateElementsStep];
-
-            if (nodeList) {
-                for (size_t i = 0; i < filled; i++) {
-                    newNodeList[i] = nodeList[i];
-                }
-
-                delete[] nodeList;
-            }
-
-            nodeList = newNodeList;
-
-            length += 10;
-        }
-
-        nodeList[filled] = currentNode;
-
-        ++filled;
+        tempStack.Push(currentNode->value);
 
         currentNode->nextNode ? currentNode = currentNode->nextNode : currentNode = nullptr;
     }
 
-    for (int i = filled - 1; i > -1; i--) {
-        this->Push(nodeList[i]->value);
+    while (!tempStack.Empty()) {
+        this->Push(tempStack.Top());
+        
+        tempStack.Pop();
     }
-
-    delete[] nodeList;
 }
 
 template<typename TypeName>
