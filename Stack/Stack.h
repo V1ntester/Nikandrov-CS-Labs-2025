@@ -93,7 +93,7 @@ void Stack<TypeName>::Copy(const Stack& stack) {
         return;
     }
 
-    while(!this->Empty()) {
+    while (!this->Empty()) {
         this->Pop();
     }
 
@@ -108,7 +108,7 @@ void Stack<TypeName>::Copy(const Stack& stack) {
 
     while (!tempStack.Empty()) {
         this->Push(tempStack.Top());
-        
+
         tempStack.Pop();
     }
 }
