@@ -30,9 +30,9 @@ void Handler::InteractiveModeInit() {
     setTest = set + setClone + set;
 
     std::cout << setTest << '\n';
-
     std::cout << set << '\n';
     std::cout << setClone << '\n';
+    
     std::cout << setClone.isElement(firstString) << '\n';
 
     delete[] firstString;
