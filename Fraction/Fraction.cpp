@@ -69,34 +69,29 @@ Fraction::Fraction(const char* value) {
     int denominator = 1;
     char delimiter = '\0';
 
-    try {
-        std::istringstream stream(value);
+    std::istringstream stream(value);
 
-        char* token = strtok(sourceString, " ");
+    char* token = strtok(sourceString, " ");
 
-        if (strcmp(token, value) == 0) {
-            stream >> integer;
+    if (strcmp(token, value) == 0) {
+        stream >> integer;
 
-            if (stream >> delimiter && delimiter == '/') {
-                std::swap(numerator, integer);
+        if (stream >> delimiter && delimiter == '/') {
+            std::swap(numerator, integer);
 
-                stream >> denominator;
-            }
-        } else {
-            stream >> integer;
-            stream >> numerator;
-            stream >> delimiter;
             stream >> denominator;
         }
+    } else {
+        stream >> integer;
+        stream >> numerator;
+        stream >> delimiter;
+        stream >> denominator;
+    }
 
-        delete[] sourceString;
+    delete[] sourceString;
 
-        if (denominator == 0) {
-            throw std::invalid_argument("Invalid denominator");
-        }
-
-    } catch (const std::invalid_argument& exception) {
-        std::cerr << exception.what() << '\n';
+    if (denominator == 0) {
+        std::cerr << "Invalid denominator. Fraction is zero.\n";
 
         this->numerator = 0;
         this->denominator = 1;
