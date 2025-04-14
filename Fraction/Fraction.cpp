@@ -96,7 +96,7 @@ Fraction::Fraction(const char* value) {
         }
 
     } catch (const std::invalid_argument& exception) {
-        std::cout << exception.what() << '\n';
+        std::cerr << exception.what() << '\n';
 
         this->numerator = 0;
         this->denominator = 1;
