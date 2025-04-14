@@ -1,17 +1,16 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 #include <cstddef>
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
 
-    namespace {
-    struct FindAnswer {
-        bool isSuccess = false;
-        size_t index = 0;
-    };
-    }  // namespace
+namespace {
+struct FindAnswer {
+    bool isSuccess = false;
+    size_t index = 0;
+};
+}  // namespace
 
 template<typename TypeName>
 class Vector {
@@ -362,5 +361,3 @@ std::ostream& operator<<(std::ostream& stream, const Vector<TypeName>& vector) {
 
     return stream;
 }
-
-#endif
