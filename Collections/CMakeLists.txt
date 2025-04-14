@@ -22,3 +22,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 
 add_library(${project} STATIC ${SOURCE_LIST})
+
+if(ENABLE_DEBUG)
+    target_compile_options(${project} INTERFACE -g)
+endif()
