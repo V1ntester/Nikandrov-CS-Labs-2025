@@ -6,11 +6,15 @@ project(${project})
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Task.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Tasks.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Inventory.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Box.cpp
 )
 
 set(HEADERS 
     ${CMAKE_CURRENT_SOURCE_DIR}/Task.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Tasks.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Inventory.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Box.h
 )
 
 set(SOURCE_LIST 

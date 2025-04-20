@@ -1,9 +1,10 @@
 #pragma once
 
 class Task {
-    public:
-        Task();
-        Task(const Task& task);
+ public:
+    Task();
+    Task(const Task& task);
 
-        virtual void Init() = 0;
+    virtual ~Task() = default;
+    virtual void Init() = 0;
 };
