@@ -8,8 +8,6 @@ namespace {
 const size_t kAllocateElementsStep = 10;
 }
 
-// This "ListNode" and "Stack" is specialized in Person Class demonstration
-
 template<typename TypeName, class Parent>
 class ListNode {
  private:

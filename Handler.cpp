@@ -8,11 +8,13 @@
 #include "Stack/Stack.h"
 
 namespace {
+const size_t kStreamIgnoreSymbols = 256;
+
 void NavigationItemsPrint() {
     std::cout << "Выберите одно из действий: \n";
     std::cout << "a — Вывести\n";
     std::cout << "b — Добавить\n";
-    std::cout << "с — Удалить\n";
+    std::cout << "с — Удалить (Pop)\n";
     std::cout << "d — Очистить\n";
     std::cout << "q — Выход\n\n";
 
@@ -20,7 +22,13 @@ void NavigationItemsPrint() {
 }
 
 void PrintStack(Stack<Person*>& stack) {
-    stack.Print();
+    Stack<Person*> tempStack = stack;
+
+    while (!tempStack.Empty()) {
+        std::cout << *tempStack.Top() << '\n';
+
+        tempStack.Pop();
+    }
 }
 
 void AddToStack(Stack<Person*>& stack) {
@@ -65,14 +73,17 @@ void AddToStack(Stack<Person*>& stack) {
 }
 
 void PopFromStack(Stack<Person*>& stack) {
+    if (stack.Empty()) {
+        return;
+    }
+
     delete stack.Top();
 
     stack.Pop();
 }
 
 void ClearStack(Stack<Person*>& stack) {
-    while (!stack.Empty())
-    {
+    while (!stack.Empty()) {
         delete stack.Top();
 
         stack.Pop();
@@ -91,7 +102,7 @@ void Handler::InteractiveModeInit() {
 
         std::cin >> userAnswer;
 
-        std::cin.ignore(kSymbols);
+        std::cin.ignore(kStreamIgnoreSymbols, '\n');
 
         switch (userAnswer) {
             case 'a':
@@ -127,7 +138,7 @@ void Handler::DemoModeInit() {
 
     std::cout << '\n' << stack << '\n';
 
-    stack.Clear();
+    ClearStack(stack);
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {
