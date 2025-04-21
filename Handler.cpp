@@ -64,17 +64,19 @@ void AddToStack(Stack<Person*>& stack) {
     }
 }
 
-void DeleteFromStack(Stack<Person*>& stack) {
-    size_t index = 0;
+void PopFromStack(Stack<Person*>& stack) {
+    delete stack.Top();
 
-    std::cout << "Введите индекс: ";
-    std::cin >> index;
-
-    stack.Delete(index);
+    stack.Pop();
 }
 
 void ClearStack(Stack<Person*>& stack) {
-    stack.Clear();
+    while (!stack.Empty())
+    {
+        delete stack.Top();
+
+        stack.Pop();
+    }
 }
 
 }  // namespace
@@ -89,7 +91,7 @@ void Handler::InteractiveModeInit() {
 
         std::cin >> userAnswer;
 
-        std::cin.ignore();
+        std::cin.ignore(kSymbols);
 
         switch (userAnswer) {
             case 'a':
@@ -99,7 +101,7 @@ void Handler::InteractiveModeInit() {
                 AddToStack(stack);
                 break;
             case 'c':
-                DeleteFromStack(stack);
+                PopFromStack(stack);
                 break;
             case 'd':
                 ClearStack(stack);
