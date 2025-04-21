@@ -188,7 +188,7 @@ void FirstTask::Init() {
     for (size_t i = 0; i < kWordsForInputCount; i++) {
         std::cin >> buffer;
 
-        word.append(buffer);
+        word += buffer[buffer.length() - 1];
     }
 
     std::cout << "Итоговое слово: " << word << '\n';
@@ -222,7 +222,7 @@ void ThirdTask::Init() {
     std::string buffer;
 
     while (getline(inputStream, buffer, '\n')) {
-        outputStream << buffer << '\n';
+        outputStream << buffer << "\n\n";
     }
 
     inputStream.close();
@@ -232,11 +232,11 @@ void ThirdTask::Init() {
 }
 
 void FourthTask::Init() {
-    std::vector<int> firstVector;
+    std::vector<double> firstVector;
 
     std::random_device randomDevice;
-    std::default_random_engine randomEngine(static_cast<int>(randomDevice()));
-    std::uniform_int_distribution distribution(kDistributionStart, kDistributionEnd);
+    std::default_random_engine randomEngine(randomDevice());
+    std::uniform_real_distribution<double> distribution(kDistributionStart, kDistributionEnd);
 
     for (size_t i = 0; i < kStartVectorLenght; i++) {
         firstVector.push_back(distribution(randomEngine));
@@ -244,7 +244,7 @@ void FourthTask::Init() {
 
     Print(firstVector);
 
-    std::vector<int> secondVector;
+    std::vector<double> secondVector;
 
     for (size_t i = 0; i < kStartVectorLenght; i++) {
         if (firstVector[i] < 0) {
