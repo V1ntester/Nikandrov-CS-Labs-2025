@@ -136,7 +136,11 @@ void Handler::DemoModeInit() {
     stack.Push(new Engineer("Vitalya", 0, 1, 0, 0, 0));
     stack.Push(new Employee("Veniamin", 1, 0, 0, 0, 0));
 
-    std::cout << '\n' << stack << '\n';
+    std::cout << '\n';
+
+    PrintStack(stack);
+
+    std::cout << '\n';
 
     ClearStack(stack);
 }
