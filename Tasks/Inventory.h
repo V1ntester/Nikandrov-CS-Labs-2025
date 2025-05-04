@@ -5,11 +5,6 @@
 #include <string>
 
 class Inventory {
- private:
-    std::string item;
-    double cost = 0;
-    size_t onHand = 0;
-
  public:
     Inventory();
     Inventory(std::string item, double cost, size_t onHand);
@@ -24,4 +19,9 @@ class Inventory {
     size_t GetOnHand() const;
 
     friend std::ostream& operator<<(std::ostream& stream, const Inventory& inventory);
+
+ private:
+    std::string item;
+    double cost = 0;
+    size_t onHand = 0;
 };
