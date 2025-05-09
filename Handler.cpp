@@ -46,14 +46,14 @@ void Handler::DemoModeInit() {
     // SixthTask task;
     // task.Init();
 
-    // SeventhTask task;
-    // task.Init();
+    SeventhTask task;
+    task.Init();
 
     // EighthTask task;
     // task.Init();
 
-    NinethTask task;
-    task.Init();
+    // NinethTask task;
+    // task.Init();
 }
 
 Handler::Handler(bool isInteractive) : isInteractive(isInteractive) {

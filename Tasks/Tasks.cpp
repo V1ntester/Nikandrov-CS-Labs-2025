@@ -8,6 +8,7 @@
 #include <random>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Box.h"
 #include "Inventory.h"
 
@@ -317,15 +318,7 @@ void SeventhTask::Init() {
 
     Print(boxList);
 
-    Box largestBox = *boxList.cbegin();
-
-    for (auto iter = std::next(boxList.begin(), 1); iter != boxList.cend(); ++iter) {
-        if (largestBox < *iter) {
-            largestBox = *iter;
-        }
-    }
-
-    std::cout << "\nLargest box:\n" << largestBox << '\n';
+    std::cout << "\nLargest box:\n" << (*std::max_element(boxList.cbegin(), boxList.cend())) << '\n';
 }
 
 void EighthTask::Init() {
